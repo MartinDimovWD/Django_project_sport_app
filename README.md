@@ -51,16 +51,16 @@ As a trainer, you can write an article. Once signed up, you will find your train
 If the initial data doesn't load, please run the following commands in the
 terminal so the data is populated from the fixtures:
 
-python manage.py makemigrations
-python manage.py migrate
-python manage.py cities_light
-python manage.py loaddata app_user_data
-python manage.py loaddata sports_data
-python manage.py loaddata facility_data
-python manage.py loaddata gym_data
-python manage.py loaddata goal_data
-python manage.py loaddata exercise_data
-python manage.py loaddata article_data
+- python manage.py makemigrations
+- python manage.py migrate
+- python manage.py cities_light
+- python manage.py loaddata app_user_data
+- python manage.py loaddata sports_data
+- python manage.py loaddata facility_data
+- python manage.py loaddata gym_data
+- python manage.py loaddata goal_data
+- python manage.py loaddata exercise_data
+- python manage.py loaddata article_data
 
 III. Admin Site
 
