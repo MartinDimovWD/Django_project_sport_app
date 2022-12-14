@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block page_content %}
+<h1>Logged user: {{ request.user }}</h1>
+<div class="form-container">
+    <form method="post" action="{% url 'log in' %}">
+        {{ form }}
+        <input type="hidden" name="next" value="{{ next }}">
+        <button type="submit">Log in</button>
+        {% csrf_token %}
+    </form>
+</div>
+    <h2>No account?</h2>
+<button><a href="{% url 'trainer sign up' %}">Register as a coach</a></button>
+<button><a href="{% url 'trainee sign up' %}">Register as a trainee</a></button>
+{# TODO: redirect to the page where the visitor picks to sign in as trainer or trainee#}
+{#    TODO: add a button for creating user#}
+{#<h1>Register:</h1>#}
+{#<a href=""></a>#}
+{% endblock %}

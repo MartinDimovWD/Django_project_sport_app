@@ -1,0 +1,31 @@
+[
+  {
+    "model": "sport_app.Sport",
+    "pk": 1,
+    "fields": {
+    "sport_name": "Basketball",
+    "is_group_sport": "True",
+    "description": "blank",
+    "sport_photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Carter_vs_Gasol%2C_Lakers_vs_Magic.jpg/640px-Carter_vs_Gasol%2C_Lakers_vs_Magic.jpg"
+  }}
+  ,
+  {
+    "model": "sport_app.Sport",
+    "pk": 2,
+    "fields": {
+    "sport_name": "Fitness",
+    "is_group_sport": "False",
+    "description": "blank",
+    "sport_photo": "https://nationaltoday.com/wp-content/uploads/2021/04/Fitness-Day-.jpg"
+  }}
+  ,
+  {
+    "model": "sport_app.Sport",
+    "pk": 3,
+    "fields": {
+    "sport_name": "Yoga",
+    "is_group_sport": "False",
+    "description": "blank",
+    "sport_photo": "https://i0.wp.com/www.yogabasics.com/yogabasics2017/wp-content/uploads/2021/03/Ashtanga-Yoga.jpeg?fit=1080%2C720&amp;ssl=1"
+  }}
+]

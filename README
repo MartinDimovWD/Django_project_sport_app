@@ -1,0 +1,76 @@
+
+
+Welcome to my sports app!
+
+I. Introduction.
+The app is intended to be used by both coaches and trainees and all users should benefit from
+it with different features suited for their best interest.
+
+1.Visitors
+Visitors of the website can search for gyms in their city and decide which sports
+center to visit based on its rating and facilities provided. All visitors of the website will
+be able to browse in a database of articles and exercises split into article categories, types of
+exercises and body parts that each exercise is targeting.
+
+2.Trainees
+What trainees benefit more is that they can update their training progress by setting
+initial goals and adding new ones to accomplish. They can upload their workouts to keep
+track of their activity during the year.
+If a specific (more niche) exercise is missing from our database, they have the option to create
+one on their own and add it to their workout.
+Trainees will have the ability to hire coaches and rate them based on their experience.
+
+The Trainee's profile dashboard displays the trainee personal and profile data. It shows
+the latest 3 workouts and their list of goals. They can also start a workout from there and
+add new goals. Editing their profiles is also available in the dashboard.
+
+3. Coaches
+Coaches will be able to list themselves in their practiced training field and sports
+showcasing their work and specialization.
+To increase their visibility they can upgrade their membership in order to be listed
+higher in the pool of trainers. By having the option to write article, they will also
+be able to improve their image among trainees and the sports community overall.
+
+Columnists will have access to view client-created exercises so they can research and add
+them to the company's database of exercises so they are available to broader audience. They will
+also write articles and add sports to the DB.
+
+The Superuser is quite obvious. Along with administrators they will have the permissions to
+manage staff and non-staff users, content, etc.
+
+II. Loading the app
+
+There is some initial data that should be loaded when the visitor enters the site. It consists of
+a small number of articles, exercises, gyms and trainers. The content is supposed to be filled by staff
+and clients with time.
+For the sake of showcasing the project, you might want to sign up as a trainee and add some mock workouts
+and exercises.
+As a trainer, you can write an article. Once signed up, you will find your trainer profile listed in the
+'Find a coach' page available for trainees.
+
+If the initial data doesn't load, please run the following commands in the
+terminal so the data is populated from the fixtures:
+
+python manage.py makemigrations
+python manage.py migrate
+python manage.py cities_light
+python manage.py loaddata app_user_data
+python manage.py loaddata sports_data
+python manage.py loaddata facility_data
+python manage.py loaddata gym_data
+python manage.py loaddata goal_data
+python manage.py loaddata exercise_data
+python manage.py loaddata article_data
+
+III. Admin Site
+
+There are 4 types of staff users:
+- Superuser with all permissions enabled
+- Administrators with permissions to manage users and content
+- Managers with permissions to add gyms and content, manage client users.
+- Columnists - Permissions to write articles, add sports and exercises
+
+The logic behind having separate staff profiles is for example that gym listings will
+be tied to some business communication and it will cost for the gym owner to list their sports
+center. Since there isn't a system for payment in the website yet, gym owners will be reached
+out by staff personnel who will add the gyms from the back-end with the collected information.

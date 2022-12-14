@@ -1,0 +1,10 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block page_content %}
+<form action="" method="post">
+    {{ form }}
+    <button>Create Goal</button>
+    {% csrf_token %}
+</form>
+{% endblock %}

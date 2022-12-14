@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load content_filters %}
+{% block page_content %}
+<h3>{{ exercise.name|capitalize_each_word }}</h3>
+<img src="{{ exercise.exercise_photo }}" alt="" height="100" width="100">
+<ul>
+    {% for part in exercise.body_parts %}
+        <li>{{ part }}</li>
+    {% endfor %}
+</ul>
+<h4>{{ exercise.type }}</h4>
+<p>{{ exercise.description }}</p>
+
+    <div><a href="{% url 'exercises list' %}">Back to all exercises</a></div>
+{% endblock %}

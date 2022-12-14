@@ -1,0 +1,39 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load content_filters %}
+{% block page_content %}
+
+<div class="container">
+{{ time }}
+        <p class="card-text">
+            {% for category in article.category %}
+                <a href="{% url 'articles filter' category=category %}">{{ category }} |</a>
+            {% endfor %}
+        </p>
+    <div class="card mb-3 col-8">
+      <h2 class="card-title">{{ article.heading|capitalize_each_word }}</h2>
+      <p class="card-text"><small class="text-muted">{{ article.publication_date|date:'d M y' }}</small></p>
+      <p class="card-text"><small class="text-muted">
+          {% if article.author.trainerprofile %}
+              <a href="{% url 'trainer details' pk=article.author.trainerprofile.pk %}">{{ article.author }}</a>
+          {% else %}
+          {{ article.author }}
+          {% endif %}
+          <span><img src="{{ article.author.profile_picture }}" height="50px" width="50px" alt=""></span></small></p>
+        <img src="{{ article.article_image }}" class="card-img-top" alt="...">
+      <div class="card-body">
+
+        <p>{{ article.body }}</p>
+
+      </div>
+    </div>
+<button><a href="{% url 'articles list' %}">Back to all articles</a></button>
+</div>
+
+{#<h1> {{ article.heading }}</h1>#}
+{#<img src="{{ article.article_image }}" alt="">#}
+{#    TODO: add the author of the article and their profile pic.#}
+{#<h4>{{ article.publication_date }}</h4>#}
+{#<p>{{ article.body }}</p>#}
+{% endblock %}
+

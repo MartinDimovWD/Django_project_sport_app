@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block page_content %}
+<div class="container">
+    <h1 class="form-page-header">Write an article</h1>
+    <div class="article-form-container form-container ">
+        <div class="article-form form-inner"></div>
+        <form action="{% url 'article create' %}" method="post">
+            <label for="">Heading:</label><p>{{ form.heading }}</p>
+            <label for="">Article image:</label><p>{{ form.article_image }}</p>
+            <label for="">Categories:</label><p>{{ form.category }}</p>
+            <label for="">Abstract</label><p>{{ form.abstract }}</p>
+            <label for="">Body</label><p>{{ form.body }}</p>
+
+        <button>Submit Article</button>
+        {% csrf_token %}
+        </form>
+    </div>
+</div>
+{% endblock %}

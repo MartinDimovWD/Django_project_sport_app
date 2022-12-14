@@ -1,0 +1,50 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block page_content %}
+    <div id="index-background-div"><img src="{% static 'images/sign-up/coach-n-trainer-index-img.png' %}" alt="" style='height: 100%; width: 100%; object-fit: contain' id="index-background-image"></div>
+
+  <div id="signup-call-to-action">
+    <h1>Level up your game!</h1>
+    <h3>Sign up now to enhance your sports performance</h3>
+
+    <div id="trainee-sign-up-item">
+        <h2>
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              <span class="index-sign-up-btn" id="trainee-sign-up-btn">Trainee</span>
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="coach-sign-up-item" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <ul>
+                <li>Hire a coach</li>
+                <li>Track your progress</li>
+                <li>Design your workouts</li>
+                <li><a href="{% url 'trainee sign up' %}" >Sign up here as a Trainee</a></li>
+            </ul>
+          </div>
+        </div>
+    </div>
+    <div id="coach-sign-up-item">
+        <h2>
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+               <span class="index-sign-up-btn" id="coach-sign-up-btn">Coach</span>
+          </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="trainee-sign-up-item" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <ul>
+                <li>Connect with your trainees</li>
+                <li>Share knowledge</li>
+                <li>Organize your schedule</li>
+                <li><a href="{% url 'trainer sign up' %}">Sign up here</a></li>
+            </ul>
+          </div>
+        </div>
+</div>
+{#        <a href="{% url 'trainee sign up' %}"class="index-sign-up-btn" id="trainee-sign-up-btn">Trainee</a>#}
+{##}
+{#        <a href="{% url 'trainer sign up' %}"class="index-sign-up-btn" id="coach-sign-up-btn">Coach</a>#}
+
+    </div>
+{% endblock %}

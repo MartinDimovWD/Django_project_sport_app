@@ -1,0 +1,17 @@
+[
+  {
+    "model": "accounts.AppUser",
+    "pk": 1,
+    "fields": {
+      "email":"martin@martin.martin",
+      "username": "martin",
+      "first_name": "martin",
+      "last_name": "dimov",
+      "date_joined": "2022-03-03",
+      "gender": "Male",
+      "age": 20,
+      "location": 42,
+      "profile_picture": ""
+    }
+  }
+]

@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block page_content %}
+<div class="container">
+    <h1 class="form-page-header">Complete your profile</h1>
+    <div class="complete-profile-container form-container">
+        <div class="trainer-complete-profile form-inner">
+        <form action="{% url 'trainer complete profile' %}" method="post" id="trainer-complete-profile-form">
+            {{ form.as_p }}
+{#            <div>#}
+{#                <label for="">Training Field:</label><p>{{ form.training_field }}</p>#}
+{#                <label for="">Years of Experience:</label><p>{{ form.years_experience }}</p>#}
+{#                <label for="">Sports:</label><p>{{ form.sports }}</p>#}
+{#                <label for="">Phone Number:</label><p>{{ form.phone_number }}</p>#}
+{#            </div>#}
+{#            <div>#}
+{#                <label for="">Bio:</label><p>{{ form.bio }}</p>#}
+{#            </div>#}
+
+            {% csrf_token %}
+        </form>
+        <button type="submit" form="trainer-complete-profile-form">Create Profile</button>
+        </div>
+    </div>
+</div>
+{% endblock %}

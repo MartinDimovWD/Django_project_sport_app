@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block page_content %}
+<div class="container">
+    <h1 class="form-page-header">Create an exercise</h1>
+    <div class="form-container">
+        <div class="exercise-form form-inner">
+            <form action="{% url 'exercise create' %}" method="post" id="exercise-form">
+                <div>
+                    <label for="">Name:</label><p>{{ form.name }}</p>
+                    <label for="">Type:</label> <p>{{ form.type }}</p>
+                    <label for="">Metric:</label> <p>{{ form.metric }}</p>
+                    <label for="">Quantity:</label> <p>{{ form.quantity }}</p>
+                </div>
+                <div>
+                    <label for="">Image:</label> <p>{{ form.exercise_photo }}</p>
+                    <label for="">Body parts:</label> <p>{{ form.body_parts }}</p>
+                </div>
+
+                {% csrf_token %}
+            </form>
+            <button type="submit" form="exercise-form">Submit exercise</button>
+        </div>
+    </div>
+</div>
+{% endblock %}

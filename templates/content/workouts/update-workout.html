@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block page_content %}
+    <div class="container">
+        <h1 class="form-page-header">Edit your workout</h1>
+        <div class="form-container">
+            <div class="workout-form">
+                <form action="{% url 'workout update' pk=workout.pk %}" method="post">
+                    <label for="">Workout name: </label><p>{{ form.name }}</p>
+                        <label for="">Exercises: </label><p>{{ form.exercises }}</p>
+                        <label for="">Duration (minutes):</label><p>{{ form.duration }}</p>
+
+                        <button>Update Workout</button>
+                        <div>
+                            <a href="{% url 'workouts list' %}">Back to my workouts</a>
+                        </div>
+                {% csrf_token %}
+                </form>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

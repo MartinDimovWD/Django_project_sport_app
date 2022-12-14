@@ -1,0 +1,56 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load content_filters %}
+
+{% block page_content %}
+    {% if articles %}
+{#    TODO: put a carousel eventually #}
+<div class="container">
+
+{% if request.user.trainerprofile %}
+    <div>
+        <h2>Write an article <a href="{% url 'article create' %}">here</a></h2>
+    </div>
+{% endif %}
+{% for article in articles %}
+    <div class="col-5 regular-article">
+        <div class="card">
+          <div class="card-header">
+              {% for category in article.category %}
+                  <a href="{% url 'articles filter' category=category %}">{{ category }}</a> |
+                  {% endfor %}
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><a href="{% url 'article details' pk=article.pk %}">{{ article.heading|capitalize_each_word }}</a></h5>
+            <p class="card-text">{{ article.abstract }} plus some additional text and lorem ipsum that is
+            supposed to take some extra text</p>
+              <img src="{{ article.article_image }}" alt="" class="article-list-thumbnail">
+          </div>
+          <div class="card-footer text-muted">
+            {{ article.publication_date|date:'d M y' }}
+          </div>
+        <div class="card-footer text-muted">
+            {% if article.author.trainerprofile %}
+            <a href="{% url 'trainer details' pk=article.author.trainerprofile.pk %}"> {{ article.author }}</a> <span><img src="{{ article.author.profile_picture }}" height="50px" width="50px" alt=""></span>
+            {% else %}
+            {{ article.author }}
+            {% endif %}
+        </div>
+        </div>
+    </div>
+
+{% endfor %}
+{#        {% if not 'filter' in request.path %}#}
+            {% include 'partials/custom_paginator.html' %}
+{#        {% endif %}#}
+        {% if 'filter' in request.path %}
+            <div>
+                <a href="{% url 'articles list' %}">Back to all articles</a>
+            </div>
+        {% endif %}
+    {% else %}
+{#    TODO: put no articles yet#}
+        <h1>There are no articles!</h1>
+    {% endif %}
+{% endblock %}
+

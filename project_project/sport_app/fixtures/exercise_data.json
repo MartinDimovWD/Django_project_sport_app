@@ -1,0 +1,58 @@
+[
+  {
+    "model": "sport_app.Exercise",
+    "pk": 1,
+    "fields": {
+      "name":"Bench Press",
+      "description": "",
+      "type": "free weights",
+      "body_parts": ["chest", "shoulders"],
+      "exercise_photo": "https://static.strengthlevel.com/images/illustrations/bench-press-1000x1000.jpg",
+      "metric": "weight",
+      "quantity": "reps"
+    }
+  }
+  ,
+  {
+    "model": "sport_app.Exercise",
+    "pk": 2,
+    "fields": {
+      "name":"Leg Press",
+      "description": "",
+      "type": "machine",
+      "body_parts": ["legs", "glutes"],
+      "exercise_photo": "https://static.strengthlevel.com/images/illustrations/sled-leg-press-1000x1000.jpg",
+      "metric": "weight",
+      "quantity": "reps"
+    }
+  }
+  ,
+  {
+    "model": "sport_app.Exercise",
+    "pk": 3,
+    "fields": {
+      "name": "Pull up",
+      "description": "",
+      "type": "bodyweight",
+      "body_parts": [
+        "back"
+      ],
+      "exercise_photo": "https://static.strengthlevel.com/images/illustrations/pull-ups-1000x1000.jpg",
+      "metric": "weight",
+      "quantity": "reps"
+    }
+  },
+  {
+    "model": "sport_app.Exercise",
+    "pk": 4,
+    "fields": {
+      "name":"Cycling",
+      "description": "",
+      "type": "cardio",
+      "body_parts": ["legs", "core"],
+      "exercise_photo": "https://images.immediate.co.uk/production/volatile/sites/21/2022/05/Cube-Axial-WS-12-45369da.jpg?quality=45&resize=768,574",
+      "metric": "weight",
+      "quantity": "reps"
+    }
+  }
+]

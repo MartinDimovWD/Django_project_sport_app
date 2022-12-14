@@ -1,0 +1,36 @@
+[
+  {
+    "model": "sport_app.Goal",
+    "pk": 1,
+    "fields": {
+      "goal_name":"Lose 5 kg",
+      "is_accomplished": "False",
+      "date_added": "2022-12-01",
+      "owner":1,
+      "description": ""
+    }
+  },
+  {
+    "model": "sport_app.Goal",
+    "pk": 2,
+    "fields": {
+      "goal_name":"Learn to handstand",
+      "is_accomplished": "False",
+      "date_added":  "2022-12-01",
+      "owner": 1,
+      "description": ""
+    }
+  }
+  ,
+  {
+    "model": "sport_app.Goal",
+    "pk": 3,
+    "fields": {
+      "goal_name":"Run a 20km marathon",
+      "is_accomplished": "False",
+      "date_added": "2022-12-01",
+      "owner": 1,
+      "description": ""
+    }
+  }
+]

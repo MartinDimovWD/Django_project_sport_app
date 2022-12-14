@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block page_content %}
+
+{% if request.user.pk %}
+<h1>You are already registered!</h1>
+{% else %}
+<section class="register-page">
+        <div class="card" >
+            <img src="{% static 'images/sign-up/trainee-signup-img.jpg' %}" alt="" class="card-img-top">
+            <div class="card-body">
+            <h2 class="card-title">Sign up as</h2>
+            <button><a href="{% url 'trainee sign up' %}" class="btn btn-primary">Trainee</a></button>
+            </div>
+        </div>
+
+        <div class="card" >
+            <img src="{% static 'images/sign-up/coach-signup-img.jpg' %}" alt="" class="card-img-top">
+            <div class="card-body">
+            <h2 class="card-title">Sign up as</h2>
+            <button><a href="{% url 'trainer sign up' %}" class="btn btn-primary">Trainer</a></button>
+            </div>
+        </div>
+</section>
+
+{% endif %}
+{% endblock %}

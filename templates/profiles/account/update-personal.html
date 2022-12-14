@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block page_content %}
+<div class="container">
+    <h1 class="form-page-header">@{{ request.user }}</h1>
+    <div class="form-container">
+    <div class="update-personal-info">
+        <form action="{% url 'user update personal' request.user.pk %}" method="post">
+
+            <label for="">First name: </label><p>{{ form.first_name }}</p>
+            <label for="">Last name: </label><p>{{ form.last_name }}</p>
+            <label for="">Username: </label><p>{{ form.username }}</p>
+            <label for="">Location: </label><p>{{ form.location }}</p>
+            <label for="">Profile picture URL: </label><p>{{ form.profile_picture }}</p>
+            <button>Update Profile</button>
+            {% csrf_token %}
+            <button>
+                {% if request.user.trainerprofile %}
+                <a href="{% url 'trainer profile details' request.user.trainerprofile.pk %}">
+                {% elif request.user.traineeprofile %}
+                <a href="{% url 'trainee profile details' request.user.traineeprofile.pk %}">
+                {% endif %}
+                    Back to my profile</a>
+            </button>
+        </form>
+    </div>
+    </div>
+</div>
+{% endblock %}

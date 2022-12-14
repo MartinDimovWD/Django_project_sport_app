@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block page_content %}
+<div class="container">
+    <h1 class="form-page-header">@{{ request.user }}</h1>
+    <div class="form-container">
+        <div class="trainee-update-profile-form">
+            <form action="{% url 'trainee update profile' request.user.traineeprofile.pk%}" method="post">
+                <label for="">Height: </label><p>{{ form.height }} cm</p>
+                <label for="">Weight: </label><p>{{ form.weight }} kg</p>
+                <label for="">Experience level: </label><p>{{ form.experience }}</p>
+                <label for="">Goals: </label><p>{{ form.goals }}</p>
+                <button>Update Profile</button>
+                <button><a href="{% url 'trainee profile details' request.user.traineeprofile.pk %}">Back to my profile</a></button>
+                {% csrf_token %}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

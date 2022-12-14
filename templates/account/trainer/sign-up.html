@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block page_content %}
+<div class="container">
+    <h1 class="form-page-header">Sign up as coach</h1>
+    <div class="form-container">
+        <div class="trainee-signup-form form-inner">
+        <form action="{% url 'trainer sign up' %}" method="post">
+            <div>
+                <label for="">Email:</label>{{ form.email }}<p></p>
+                <label for="">Username:</label><p>{{ form.username }}</p>
+                <label for="">First Name:</label><p>{{ form.first_name }}</p>
+                <label for="">Last Name:</label><p>{{ form.last_name }}</p>
+                <label for="">Location:</label><p>{{ form.location }}</p>
+            </div>
+            <div>
+                <label for="">Age:</label><p>{{ form.age }}</p>
+                <label for="">Gender:</label><p>{{ form.gender }}</p>
+                <label for="">Password:</label><p class="form-control">{{ form.password1 }}</p>
+                <label for="">Password confirmation:</label><p class="form-control">{{ form.password2 }}</p>
+                <label for="">Profile Picture:</label><p>{{ form.profile_picture }}</p>
+            </div>
+
+            {% csrf_token %}<button>Register</button>
+        </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

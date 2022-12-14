@@ -1,0 +1,12 @@
+.profile-dashboard{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width:800px;
+}
+
+.dashboard-content {
+    display:flex;
+    flex-direction: column;
+    width:800px;
+}

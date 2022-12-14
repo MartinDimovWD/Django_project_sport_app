@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block page_content %}
+{# TODO: PUT FILTER BUTTONS#}
+{#https://www.youtube.com/watch?v=vU0VeFN-abU#}
+<h2>{{ gym.gym_name }}</h2>
+    <img src="{{ gym.logo }}" alt="" width='500px'>
+    <h3>{{ gym.location }}</h3>
+    Working hours:
+    <h4>{{ gym.get_working_hours }}</h4>
+    Sports:
+    <ul>
+    {% for sport in gym.sports_available.all %}
+        <li>{{ sport.sport_name }}</li>
+    {% endfor %}
+    </ul>
+    Facilities:
+    <ul>
+    {% for facility in gym.facilities.all %}
+        <li>{{ facility.name }}</li>
+    {% endfor %}
+</ul>
+    <div>
+        <a href="{% url 'gyms list' %}">Back to all gyms</a>
+    </div>
+{% endblock %}

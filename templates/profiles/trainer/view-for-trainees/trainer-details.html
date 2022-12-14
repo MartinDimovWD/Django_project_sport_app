@@ -1,0 +1,34 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block page_content %}
+<div class="container">
+    {{ trainer.profile.default_profile_picture }}
+    <h2>{{ trainer.profile.full_name }}</h2>
+    <img src="{{ trainer.profile.profile_picture }}" alt="" height="100px" width="100px">
+    <h3>Specialty: {{ trainer.training_field|capfirst }}</h3>
+    <h3>Years of experience: {{ trainer.years_experience }}</h3>
+    <h3>Location: {{ trainer.profile.location }}</h3>
+    <ul> Sports:
+    {% for sport in trainer.sports.all %}
+        <li>{{ sport }}</li>
+    {% endfor %}
+    </ul>
+    <h4>Age: {{ trainer.age }}</h4>
+    <p>Biography: {{ trainer.bio }}</p>
+    <p>Mobile: {{ trainer.phone_number }}</p>
+    <button>Hire</button>
+</div>
+    <div class="trainer-bio">
+        <h3>Specialized in
+        {% for sport in trainer.sports.all %}
+            {{ sport }} |
+        {% endfor %}</h3>
+        <p>{{ trainer.bio }}</p>
+    </div>
+{#TODO: put a button for hiring the trainer#}
+    <div>
+        <a href="{% url 'trainers list' %}">Back to all trainers</a>
+    </div>
+{% endblock %}
+

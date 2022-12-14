@@ -1,0 +1,43 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load content_filters %}
+{% block page_content %}
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col" id="my-exercises-div">
+            <img src="{{ request.user.profile_picture }}" class="card-img-top" id="my-exercises-img">
+            <h1 id="my-exercises-header"><a href="{% url 'my exercises list' %}">My Exercises</a></h1>
+      </div>
+        {% for exercise in exercises %}
+          <div class="col">
+            <div class="card h-100">
+              <img src="{{ exercise.exercise_photo }}" class="card-img-top" alt="..." >
+              <div class="card-body">
+                <h5 class="card-title">{{ exercise.name|capitalize_each_word }}</h5>
+                <p class="card-text">
+                    Type: {{ exercise.type }}
+                </p>
+              </div>
+              <button><a href="{% url 'exercise details' pk=exercise.pk %}">Details</a></button>
+    {#          TODO: create the add to favorites mechanism      #}
+                <button><a href="
+{#                        {% url 'add to fave' exercise.id %}#}
+                        ">Add to favorites</a></button>
+              <div class="card-footer">
+                <small class="text-muted">Body parts:
+                    {% for part in exercise.body_parts %}
+                        <a href="{% url 'exercises filter' bodypart=part %}">{{ part }} |</a>
+                    {% endfor %}</small>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+    </div>
+{% if 'filter' in request.path %}
+    <div>
+        <a href="{% url 'exercises list' %}">Back to all exercises</a>
+    </div>
+{% endif %}
+{% include 'partials/custom_paginator.html' %}
+</div>
+{% endblock %}

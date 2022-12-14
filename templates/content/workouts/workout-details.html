@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block page_content %}
+<div class="col workout-box">
+    <div class="card border-dark mb-3" style="width: 14rem; height: 17rem ;">
+      <div class="card-header bg-transparent border-dark">{{ workout.date }}</div>
+      <div class="card-body text-dark">
+        <h5 class="card-title">{{ workout.name }}</h5>
+        <p class="card-text">
+            <ul>
+          {% for exercise in workout.exercises.all %}
+              <li>{{ exercise }}</li>
+          {% endfor %}
+            </ul>
+          <p>Duration: {{ workout.duration }}min</p>
+      </div>
+      <div class="card-footer bg-transparent border-dark">
+          <button><a href="{% url 'workout update' pk=workout.pk %}">Edit</a></button>
+          <button><a href="{% url 'workout delete' pk=workout.pk %}">Delete</a></button>
+      </div>
+    </div>
+</div>
+    <div><a href="{% url 'workouts list' %}">Back to my workouts</a></div>
+{% endblock %}

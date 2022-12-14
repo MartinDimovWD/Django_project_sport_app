@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{#TODO: list trainers based on membership, rating, if they have profile picture#}
+
+{% block page_content %}
+{% for trainer in trainers %}
+
+<div class="container">
+    <div class="card mb-3" style="max-width: 540px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="{{ trainer.profile.profile_picture }}" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h4 class="card-title">{{ trainer.profile.full_name }}</h4>
+            <h5>{{ trainer.training_field }}</h5>
+            <p class="card-text">{{ trainer.bio }}</p>
+            <p class="card-text"><small class="text-muted">Years of experience: {{ trainer.years_experience }}</small></p>
+              <p>{% for sport in trainer.sports.all %} {{ sport.sport_name }} {% endfor %}</p>
+              <a href="{% url 'trainer details' pk=trainer.pk %}">Biography</a>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+{% endfor %}
+    <div>
+        <a href="{% url 'trainers list' %}">Back to all trainers</a>
+    </div>
+    {% include 'partials/custom_paginator.html' %}
+{% endblock %}

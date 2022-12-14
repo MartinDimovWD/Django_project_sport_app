@@ -1,0 +1,30 @@
+[{
+    "model": "locations.Gym",
+    "pk": 1,
+    "fields": {
+      "gym_name": "West Gym",
+      "logo": "https://fitness.west-gym.com/wp-content/uploads/2022/01/westgym-logo-black-1.png",
+      "location": 14,
+      "sports_available": [2],
+      "open_hour": 0,
+      "close_hour": 23,
+      "description": "blank",
+      "facilities": [1,2,4]
+    }
+  }
+,
+  {
+    "model": "locations.Gym",
+    "pk": 2,
+    "fields": {
+    "gym_name": "East Gym",
+    "logo": "https://i.pinimg.com/originals/77/4d/97/774d972474a86bbe1d9723d48368b3ae.jpg",
+    "location": 50,
+    "sports_available": [2,3],
+    "open_hour": 8,
+    "close_hour": 22,
+    "description": "blank",
+    "facilities": [1,2]
+    }
+  }
+]

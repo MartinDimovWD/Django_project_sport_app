@@ -1,0 +1,13 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block page_content %}
+Are you sure you want to permanently delete your account?
+    <form action="{% url 'trainee profile delete' request.user.traineeprofile.pk %}" method="post">
+    {{ form }}
+        <input type="submit" value="Confirm">
+        <button><a href="{% url 'trainee profile details' request.user.traineeprofile.pk %}">Back to my profile</a></button>
+    {% csrf_token   %}
+    </form>
+
+{% endblock %}

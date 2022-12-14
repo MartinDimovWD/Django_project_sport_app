@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+</head>
+<body>
+    <header>
+        {% include 'partials/nav.html' %}
+    </header>
+
+    <main>
+        {% block page_content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+{#        TODO: think for a footer menu  #}
+    </footer>
+</body>
+</html>

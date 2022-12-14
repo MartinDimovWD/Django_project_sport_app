@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block page_content %}
+<div class="container">
+    <h1 class="form-page-header">Complete your profile</h1>
+    <div class="complete-profile-container form-container">
+        <div class="trainee-complete-profile form-inner">
+            <form action="{% url 'trainee complete profile' %}" method="post">
+                {{ form.as_p }}
+                <button>Create Profile</button>
+                {% csrf_token %}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
