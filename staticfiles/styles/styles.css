@@ -1,9 +1,9 @@
-@import 'nav.css';
-@import 'images.css';
-@import 'base.css';
+@import 'structure/nav.css';
+@import 'utils/images.css';
+@import 'structure/base.css';
 @import 'sign-up.css';
-@import 'articles.css';
-@import 'workouts.css';
-@import 'forms.css';
-@import 'buttons.css';
+@import 'content/articles.css';
+@import 'content/workouts.css';
+@import 'utils/forms.css';
+@import 'utils/buttons.css';
 @import 'profile-dashboard.css';

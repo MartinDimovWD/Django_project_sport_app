@@ -22,7 +22,7 @@ from project_project.web_app.utils import QuerySetChain
 # TODO: INCLUDE INLINE FORMSETS TO THE WORKOUT SO YOU CAN ADD MULTIPLE EXERCISES
 
 class ArticlesListView(ListView):
-    template_name = 'content/articles/list.html'
+    template_name = 'content/articles/articles-list.html'
     model = Article
     context_object_name = 'articles'
     paginate_by = 6
@@ -74,9 +74,6 @@ class ExerciseDetails(DetailView):
     context_object_name = 'exercise'
 
 
-
-
-
 class CustomGoalCreate(LoginRequiredMixin, CreateView):
     template_name = 'content/custom_goal/create.html'
     # model = CustomExercise
@@ -88,6 +85,7 @@ class CustomGoalCreate(LoginRequiredMixin, CreateView):
         form.instance.owner = self.request.user
         form.instance.base_goal = False
         return super().form_valid(form)
+
 
 class CustomExerciseCreate(LoginRequiredMixin, CreateView):
     template_name = 'content/exercises/custom/create-exercise.html'
@@ -229,7 +227,7 @@ def filter_articles_by_category(request, category):
         'articles': articles,
         'page_obj': page_obj
     }
-    return render(request, 'content/articles/list.html', context)
+    return render(request, 'content/articles/articles-list.html', context)
 
 
 # def add_to_favourites(request, pk):

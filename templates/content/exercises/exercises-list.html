@@ -5,8 +5,13 @@
 <div class="container">
     <div class="row row-cols-1 row-cols-md-3 g-4">
     <div class="col" id="my-exercises-div">
+        {% if request.user.pk %}
             <img src="{{ request.user.profile_picture }}" class="card-img-top" id="my-exercises-img">
             <h1 id="my-exercises-header"><a href="{% url 'my exercises list' %}">My Exercises</a></h1>
+        {% else %}
+            <img src="https://i.pinimg.com/originals/c4/b7/3d/c4b73d3e1419c82d0976b48af1a29ab0.png" class="card-img-top" id="my-exercises-img">
+            <h1 id="my-exercises-header"><a href="{% url 'my exercises list' %}">Log in to add exercises</a></h1>
+        {% endif %}
       </div>
         {% for exercise in exercises %}
           <div class="col">

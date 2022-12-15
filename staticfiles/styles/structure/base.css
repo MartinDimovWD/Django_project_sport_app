@@ -1,0 +1,72 @@
+* {
+    margin:0;
+    padding: 0;
+    /*font-family: 'Bebas Neue', cursive;*/
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing:0.8px;
+}
+body{
+    height: 100%;
+
+}
+main {
+    height: 100%;
+    width:100%;
+    background-color: aliceblue;
+}
+
+a {
+    text-decoration: none;
+}
+#index-background-div{
+    height:100%;
+    width:100%;
+}
+
+
+#signup-call-to-action{
+    padding:40px;
+    width: 400px;
+    position:absolute;
+    top:130px;
+    left:60px;
+    color: floralwhite;
+    border: black 0.1px solid;
+    background: rgba(0,0,0,0.2);
+}
+
+.index-sign-up-btn {
+    display:block;
+    font-size: 70px;
+    font-weight: bold;
+
+}
+.index-sign-up-btn:visited {
+    color:white
+}
+
+.container {
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+body {
+    overflow: auto;
+}
+
+footer{
+    background-color: steelblue;
+    height: 30px
+}
+
+.dj-paginator {
+    font-size: 30px;
+}
+.dj-paginator a{
+    text-underline: none;
+    text-decoration: none;
+    font-size:35px;
+}
+

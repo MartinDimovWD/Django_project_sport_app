@@ -1,0 +1,35 @@
+ul.nav-list{
+    margin:0;
+}
+.nav-list li{
+    display:inline;
+}
+
+nav {
+    font-family: 'Bebas Neue', cursive;
+    background-color: steelblue;
+    height: 70px;
+    color:white;
+    font-size: 24px;
+    text-decoration: none;
+    display:flex;
+    justify-content: right;
+    align-items: center;
+
+}
+
+.nav-bar{
+    justify-content: right !important;
+    padding:0;
+ }
+
+nav a {
+    padding-right: 30px;
+    text-decoration: none;
+    color:white;
+    font-size: 24px;
+}
+
+nav a:hover {
+    font-weight: bold;
+}

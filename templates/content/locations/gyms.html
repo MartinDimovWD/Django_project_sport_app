@@ -2,35 +2,37 @@
 {% load static %}
 
 {% block page_content %}
-    {{ request.user.username }}
-    {{ request.user.traineeprofile }}
+
 <div class="container">
     {% if request.user.pk %}
     <a href="{% url 'gyms filter' request.user.location_id %}">Show gyms in my city</a>
     {% endif %}
-    {% for gym in gyms %}
-        <div class="card mb-3" style="max-width: 540px;">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img src="{{ gym.logo }}" class="img-fluid rounded-start" alt="...">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">{{ gym.gym_name }}</h5>
-                <p class="card-text">{{ gym.location }}</p>
-                <p class="card-text"><small class="text-muted">Open: {{ gym.get_working_hours }}</small></p>
-                  <p>{% for sport in gym.sports_available.all %} {{ sport.sport_name }} {% endfor %}</p>
-                  <a href="{% url 'gym details' pk=gym.pk %}">See more</a>
+    <div class="col-5">
+        {% for gym in gyms %}
+            <div class="card mb-3" style="max-width: 540px;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="{{ gym.logo }}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ gym.gym_name }}</h5>
+                    <p class="card-text">{{ gym.location }}</p>
+                    <p class="card-text"><small class="text-muted">Open: {{ gym.get_working_hours }}</small></p>
+                      <p>{% for sport in gym.sports_available.all %} {{ sport.sport_name }} {% endfor %}</p>
+                      <a href="{% url 'gym details' pk=gym.pk %}">See more</a>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
+        {% endfor %}
+    </div>
 
 
-    {% endfor %}
-</div>
     <div>
         <a href="{% url 'gyms list' %}">Back to all gyms</a>
     </div>
-    {% include 'partials/custom_paginator.html' %}
+
+{% include 'partials/custom_paginator.html' %}
+</div>
 {% endblock %}

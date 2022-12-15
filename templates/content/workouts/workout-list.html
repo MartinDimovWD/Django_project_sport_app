@@ -1,39 +1,69 @@
 {% extends 'index.html' %}
 {% load static %}
-
+{% load content_filters %}
 {% block page_content %}
 
-<div class="row row-cols-2 row-cols-md-5 g-4">
+<div class="container">
+    <div class="row row-cols-2 row-cols-md-5 g-4">
 
-<div class="col workout-box">
-    <div class="card border-dark mb-3" style="width: 14rem;">
-      <div class="card-body text-dark">
-          <a href="{% url 'workout create' %}"><h5 class="card-title">Start a new workout</h5></a>
-      </div>
+        <div class="col workout-box" style="height:100%">
+            <div class="card border-dark mb-3" style="width: 14rem;">
+              <div class="card-body text-dark">
+                  <a href="{% url 'workout create' %}"><h5 class="card-title">Start a new workout</h5></a>
+              </div>
+            </div>
+        </div>
+
+        {% for workout in workouts %}
+        <div class="col workout-box">
+            <div class="card border-dark mb-3" style="width: 14rem; height: 17rem ;">
+              <div class="card-header bg-transparent border-dark">{{ workout.date }}</div>
+              <div class="card-body text-dark">
+                  <div>
+                        <h4>{{ workout.name }}</h4>
+                  </div>
+                  <div>
+                        <p class="duration-p">Duration: {{ workout.duration }} min</p>
+                  </div>
+              </div>
+                <div class="modal fade" id="Modal{{ workout.pk }}" tabindex="-1" aria-labelledby="Modal{{ workout.pk }}Label" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-4" id="exampleModalLabel">{{ workout.name }} <span>/ ({{ workout.duration }} minutes)</span></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                              <h3>Exercises</h3>
+                              <div class="card-text">
+                                    <ul>
+                                      {% for exercise in workout.exercises.all %}
+                                          <li class="fs-5">{{ exercise }}</li>
+                                          <span>{{ exercise|random_reps }}</span>
+                                      {% endfor %}
+                                    </ul>
+
+{#                              <h5>Duration: {{ workout.duration }}min</h5>#}
+                              </div>
+
+                              <div class="workout-modal-btns">
+                                <button class="btn btn-outline-light"><a href="{% url 'workout update' pk=workout.pk %}">Edit</a></button>
+                                <button class="btn btn-outline-light"><a href="{% url 'workout delete' pk=workout.pk %}">Delete</a></button>
+                              </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#Modal{{ workout.pk }}">
+                      Show Details
+                    </button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
     </div>
-</div>
-{% for workout in workouts %}
-<div class="col workout-box">
-    <div class="card border-dark mb-3" style="width: 14rem; height: 17rem ;">
-      <div class="card-header bg-transparent border-dark">{{ workout.date }}</div>
-      <div class="card-body text-dark">
-        <h5 class="card-title">{{ workout.name }}</h5>
-        <p class="card-text">
-            <ul>
-          {% for exercise in workout.exercises.all %}
-              <li>{{ exercise }}</li>
-          {% endfor %}
-            </ul>
-        </p>
-        <p>Duration: {{ workout.duration }}min</p>
-      </div>
-      <div class="card-footer bg-transparent border-dark">
-          <button><a href="{% url 'workout update' pk=workout.pk %}">Edit</a></button>
-          <button><a href="{% url 'workout delete' pk=workout.pk %}">Delete</a></button>
-      </div>
-    </div>
-</div>
-{% endfor %}
-{% include 'partials/custom_paginator.html' %}
+    {% include 'partials/custom_paginator.html' %}
 </div>
 {% endblock %}

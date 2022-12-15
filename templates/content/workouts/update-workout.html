@@ -11,10 +11,10 @@
                         <label for="">Exercises: </label><p>{{ form.exercises }}</p>
                         <label for="">Duration (minutes):</label><p>{{ form.duration }}</p>
 
-                        <button>Update Workout</button>
-                        <div>
-                            <a href="{% url 'workouts list' %}">Back to my workouts</a>
-                        </div>
+                    <div class="workout-modal-btns">
+                         <button class="btn btn-outline-light" style="color:black"><a>Update Workout</a></button>
+                         <button class="btn btn-outline-light"><a href="{% url 'workouts list' %}">Back to my workouts</a></button>
+                    </div>
                 {% csrf_token %}
                 </form>
             </div>

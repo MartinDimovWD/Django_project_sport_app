@@ -1,6 +1,6 @@
 
 {% load static %}
-<nav class="nav-bar">
+<nav class="nav-bar navbar-expand navbar">
     <ul class="nav-list">
         <li><a href="{% url 'index register' %}">Home</a></li>
         <li><a href="{% url 'articles list' %}">Articles</a></li>
@@ -27,7 +27,19 @@
             <li><a href="{% url 'sign out' %}">Sign Out</a></li>
         {% else %}
             <li><a href="{% url 'log in' %}">Login</a></li>
-            <li><a href="{% url 'combined register' %}">Sign Up</a></li>
+{#            <li><a href="{% url 'combined register' %}">Sign Up</a></li>#}
+
+            <li class="nav-item dropdown" style="display: inline">
+              <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Sign Up
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'trainee sign up' %}">Trainee</a></li>
+                <li><a class="dropdown-item" href="{% url 'trainer sign up' %}">Coach</a></li>
+              </ul>
+            </li>
+
+
         {% endif %}
     </ul>
 </nav>

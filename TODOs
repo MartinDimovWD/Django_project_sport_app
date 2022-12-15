@@ -38,11 +38,8 @@ Access:
 Fixtures:
 - find out how to hardcode some trainers as they need to be related to a user
 (trainer_profile_data)
-Project:
-- fill the readme file.
 
 Styling:
-- nav menu links not taking space on hover
 - logo on the left
 - related items on the right side of the view (Article list on the left;
     small menu with gyms/trainers on the right)
@@ -52,9 +49,7 @@ run 'pip freeze > requirements.txt'
 
 
 Forms:
--create goal
 -mark goal as accomplished
--add goals to dashboard
 
 create 2 user and 2 trainer profiles
 python manage.py loaddata trainer_profile_data

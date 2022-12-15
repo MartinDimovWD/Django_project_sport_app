@@ -1,0 +1,58 @@
+.workout-box {
+    padding:0;
+    max-width:50px;
+}
+.row {
+    margin:0 !important
+}
+
+.workout-box .card-body{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.duration-p {
+    margin:0;
+    font-size:20px;
+    border-top:0.5px solid grey;
+}
+.card-footer, .card-header {
+    display:flex;
+    justify-content: center;
+}
+
+.card-body h4{
+    text-align: center;
+}
+
+/*Modal window*/
+.modal-body li{
+    border-top: 0.1px solid lightblue;
+    margin-top: 20px;
+    padding:5px;
+}
+
+.workout-modal-btns {
+    display: flex;
+    justify-content: space-evenly;
+}
+.workout-modal-btns a {
+    font-size: 24px;
+    text-decoration: none;
+    color:black;
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
+.workout-modal-btns a:hover{
+    color:black;
+
+}
+.workout-modal-btns button:hover{
+    background-color: steelblue;
+}
+.modal-title span {
+    font-size:18px;
+}
