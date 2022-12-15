@@ -7,6 +7,7 @@
     <div class="complete-profile-container form-container">
         <div class="trainer-complete-profile form-inner">
         <form action="{% url 'trainer complete profile' %}" method="post" id="trainer-complete-profile-form">
+           {% include 'partials/field-errors-alert.html' %}
             {{ form.as_p }}
 {#            <div>#}
 {#                <label for="">Training Field:</label><p>{{ form.training_field }}</p>#}

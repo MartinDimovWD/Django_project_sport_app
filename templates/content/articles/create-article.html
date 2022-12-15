@@ -7,6 +7,7 @@
     <div class="article-form-container form-container ">
         <div class="article-form form-inner"></div>
         <form action="{% url 'article create' %}" method="post">
+            {% include 'partials/field-errors-alert.html' %}
             <label for="">Heading:</label><p>{{ form.heading }}</p>
             <label for="">Article image:</label><p>{{ form.article_image }}</p>
             <label for="">Categories:</label><p>{{ form.category }}</p>

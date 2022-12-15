@@ -7,6 +7,7 @@
     <div class="form-container">
         <div class="exercise-form form-inner">
             <form action="{% url 'exercise create' %}" method="post" id="exercise-form">
+                {% include 'partials/field-errors-alert.html' %}
                 <div>
                     <label for="">Name:</label><p>{{ form.name }}</p>
                     <label for="">Type:</label> <p>{{ form.type }}</p>

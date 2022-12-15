@@ -7,6 +7,7 @@
         <div class="form-container">
             <div class="workout-form">
                 <form action="{% url 'workout update' pk=workout.pk %}" method="post">
+                    {% include 'partials/field-errors-alert.html' %}
                     <label for="">Workout name: </label><p>{{ form.name }}</p>
                         <label for="">Exercises: </label><p>{{ form.exercises }}</p>
                         <label for="">Duration (minutes):</label><p>{{ form.duration }}</p>

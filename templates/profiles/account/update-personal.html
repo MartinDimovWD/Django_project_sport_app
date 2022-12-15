@@ -7,7 +7,7 @@
     <div class="form-container">
     <div class="update-personal-info">
         <form action="{% url 'user update personal' request.user.pk %}" method="post">
-
+{% include 'partials/field-errors-alert.html' %}
             <label for="">First name: </label><p>{{ form.first_name }}</p>
             <label for="">Last name: </label><p>{{ form.last_name }}</p>
             <label for="">Username: </label><p>{{ form.username }}</p>

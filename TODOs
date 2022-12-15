@@ -16,7 +16,6 @@ Models and forms:
 Templates:
     Profiles:
     - show the count of trainees the trainer has been hired by (as a portfolio)
-    - restrict trainees accessing certain pages (e.g creating Articles)
 
 -fix the filtering in the admin panel/ fields with multiple selections
 
@@ -33,8 +32,6 @@ Template files:
 Admin dashboard that shows the count of trainees with favourite sports,
 exercises, articles, etc.
 
-Access:
-- disable the access to certain pages for guests/trainers/trainees
 Fixtures:
 - find out how to hardcode some trainers as they need to be related to a user
 (trainer_profile_data)
@@ -43,7 +40,7 @@ Styling:
 - logo on the left
 - related items on the right side of the view (Article list on the left;
     small menu with gyms/trainers on the right)
-- forms in modal windows? hmmmmm
+- forms in modal windows? hmmmm
 
 run 'pip freeze > requirements.txt'
 

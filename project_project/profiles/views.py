@@ -1,3 +1,5 @@
+import re
+
 from django import forms
 from django.contrib.auth import logout
 from django.forms import ModelForm, HiddenInput
@@ -35,7 +37,7 @@ class CompleteTrainerProfileForm(ModelForm):
                     'phone_number': forms.NumberInput(
                         attrs={
                             'class': 'form-control',
-                            'placeholder': 'xxx-xxx-xxx',
+                            'placeholder': '+359-xxx-xxx-xxx',
                         }),
                     'bio': forms.Textarea(
                         attrs={
@@ -45,6 +47,15 @@ class CompleteTrainerProfileForm(ModelForm):
 
                 }
 
+    def clean(self):
+        super(CompleteTrainerProfileForm, self).clean()
+        phone_number = int(self.cleaned_data.get('phone_number'))
+        if len(str(phone_number))!=10:
+            self._errors['phone_number'] = self.error_class([
+                'Please enter a valid phone number. It should not start with 0! +359 is added automatically. It should be 10 digits long'
+            ])
+        print(len(str(phone_number)))
+        return self.cleaned_data
 
 def complete_trainer_profile_view(request):
     client_pk = request.user.pk
@@ -92,6 +103,21 @@ class CompleteTraineeProfileForm(ModelForm):
     def __init__(self,*args,**kwargs):
         super(CompleteTraineeProfileForm,self).__init__(*args,**kwargs)
         self.fields['goals'].queryset = Goal.objects.filter(base_goal=True)
+
+    def clean(self):
+        super(CompleteTraineeProfileForm, self).clean()
+        height = int(self.cleaned_data.get('height'))
+        weight = int(self.cleaned_data.get('weight'))
+
+        if 50>height or height>250:
+            self._errors['height'] = self.error_class([
+                'This height is very unlikely. Please note it is in centimeters!'
+            ])
+        if 30>weight or weight>250:
+            self._errors['weight'] = self.error_class([
+                'This weight is very unlikely. Please note it is in kilograms!'
+            ])
+        return self.cleaned_data
 
 def complete_trainee_profile_view(request):
     client_pk = request.user.pk

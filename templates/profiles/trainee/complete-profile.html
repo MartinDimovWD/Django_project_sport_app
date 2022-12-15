@@ -7,6 +7,7 @@
     <div class="complete-profile-container form-container">
         <div class="trainee-complete-profile form-inner">
             <form action="{% url 'trainee complete profile' %}" method="post">
+                {% include 'partials/field-errors-alert.html' %}
                 {{ form.as_p }}
                 <button>Create Profile</button>
                 {% csrf_token %}

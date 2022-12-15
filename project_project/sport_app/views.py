@@ -11,6 +11,7 @@ from django.views.generic import ListView, DetailView, CreateView, DeleteView, U
 
 from project_project.accounts.models import AppUser
 from project_project.locations.models import Gym
+from project_project.profiles.mixins import TrainerProfileRequiredMixin, TraineeProfileRequiredMixin
 from project_project.profiles.models import TrainerProfile
 from project_project.sport_app.filters import ArticleCategoryFilter
 from project_project.sport_app.forms import WorkoutForm, CustomExerciseForm, ArticleForm, CustomGoalForm
@@ -48,7 +49,7 @@ class ArticleDetails(DetailView):
     context_object_name = 'article'
 
 
-class ArticleCreate(LoginRequiredMixin, CreateView):
+class ArticleCreate(TrainerProfileRequiredMixin, CreateView):
     template_name = 'content/articles/create-article.html'
     form_class = ArticleForm
     # model = Article
@@ -141,7 +142,7 @@ class TrainerDetails(DetailView):
     context_object_name = 'trainer'
 
 
-class WorkoutsListView(ListView):
+class WorkoutsListView(TraineeProfileRequiredMixin,ListView):
     template_name = 'content/workouts/workout-list.html'
     model = Workout
     paginate_by=9
@@ -152,13 +153,13 @@ class WorkoutsListView(ListView):
         return workouts
 
 
-class WorkoutDetails(DetailView):
+class WorkoutDetails(TraineeProfileRequiredMixin,DetailView):
     template_name = 'content/workouts/workout-details.html'
     model = Workout
     context_object_name = 'workout'
 
 
-class WorkoutCreateView(CreateView):
+class WorkoutCreateView(TraineeProfileRequiredMixin,CreateView):
     template_name = 'content/workouts/create-workout.html'
     # model = Workout
     # fields = ['name', 'exercises', 'duration']
@@ -186,7 +187,7 @@ class WorkoutCreateView(CreateView):
         return initials
 
 
-class WorkoutUpdateView(UpdateView):
+class WorkoutUpdateView(TraineeProfileRequiredMixin,UpdateView):
     template_name = 'content/workouts/update-workout.html'
     model = Workout
     form_class = WorkoutForm
@@ -195,7 +196,7 @@ class WorkoutUpdateView(UpdateView):
     success_url = reverse_lazy('workouts list')
 
 
-class WorkoutDeleteView(DeleteView):
+class WorkoutDeleteView(TraineeProfileRequiredMixin,DeleteView):
     template_name = 'content/workouts/delete-workout.html'
     model = Workout
     fields = []

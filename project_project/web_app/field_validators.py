@@ -1,3 +1,5 @@
+from django.core.exceptions import ValidationError
+
 
 # acc
 def name_alpha_validator(name):
@@ -5,7 +7,11 @@ def name_alpha_validator(name):
 
 
 def age_validator(age):
-    pass
+    if age>=18:
+        return age
+    else:
+        print(age)
+        raise ValidationError('Too young, mate')
 
 
 # profile

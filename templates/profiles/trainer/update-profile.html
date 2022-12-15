@@ -6,6 +6,7 @@
 <h1 class="form-page-header">@{{ request.user }}</h1>
     <div class="update-trainer-profile-container form-container">
         <form action="" method="post">
+            {% include 'partials/field-errors-alert.html' %}
             <p>Training field: {{ form.training_field }}</p>
             <p>Years of experience: {{ form.years_experience }}</p>
             <p>Biography: {{ form.bio }}</p>

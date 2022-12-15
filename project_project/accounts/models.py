@@ -8,7 +8,7 @@ from project_project.web_app.validators import name_only_alpha
 
 class AppUser(AbstractUser):
     email = models.EmailField(unique=True)
-    username = models.CharField(max_length=30, null=True, blank=True, unique=True)
+    username = models.CharField(max_length=30, null=False, blank=False, unique=True)
     first_name = models.CharField(
         max_length=30,
         null=False,

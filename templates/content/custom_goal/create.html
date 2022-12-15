@@ -3,6 +3,7 @@
 
 {% block page_content %}
 <form action="" method="post">
+{% include 'partials/field-errors-alert.html' %}
     {{ form }}
     <button>Create Goal</button>
     {% csrf_token %}

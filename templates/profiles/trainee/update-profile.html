@@ -7,6 +7,7 @@
     <div class="form-container">
         <div class="trainee-update-profile-form">
             <form action="{% url 'trainee update profile' request.user.traineeprofile.pk%}" method="post">
+                {% include 'partials/field-errors-alert.html' %}
                 <label for="">Height: </label><p>{{ form.height }} cm</p>
                 <label for="">Weight: </label><p>{{ form.weight }} kg</p>
                 <label for="">Experience level: </label><p>{{ form.experience }}</p>

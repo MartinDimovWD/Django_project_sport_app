@@ -1,3 +1,5 @@
+import re
+
 from django import forms
 from django.forms import ModelForm
 
@@ -53,9 +55,11 @@ class TrainerProfileForm(forms.ModelForm):
             'phone_number': forms.NumberInput(
                 attrs={
                     'class': 'form-control',
-                    'placeholder': 'xxx-xxx-xxx',
+                    'placeholder': '+359-xxx-xxx-xxx',
                 })
         }
+
+
 
 
 # class CompleteTrainerProfileForm(forms.ModelForm):
