@@ -31,7 +31,12 @@
           </div>
         <div class="card-footer text-muted">
             {% if article.author.trainerprofile %}
-            <a href="{% url 'trainer details' pk=article.author.trainerprofile.pk %}"> {{ article.author }}</a> <span><img src="{{ article.author.profile_picture }}" height="50px" width="50px" alt=""></span>
+            <a href="{% url 'trainer details' pk=article.author.trainerprofile.pk %}"> {{ article.author }}
+            </a>
+                {% if article.author.trainerprofile.prime_membership %}
+                        <i class="fa-solid fa-award" style="color:green"></i>
+                    {% endif %}
+                <span><img src="{{ article.author.profile_picture }}" height="50px" width="50px" alt=""></span>
             {% else %}
             {{ article.author }}
             {% endif %}

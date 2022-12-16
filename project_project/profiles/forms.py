@@ -36,7 +36,7 @@ class TraineeProfileForm(forms.ModelForm):
 class TrainerProfileForm(forms.ModelForm):
     class Meta:
         model = TrainerProfile
-        fields = ['training_field', 'years_experience', 'bio', 'phone_number']
+        fields = ['training_field', 'years_experience', 'bio', 'phone_number', 'prime_membership']
         widgets = {
             'training_field': forms.Select(
                 attrs={
@@ -56,7 +56,9 @@ class TrainerProfileForm(forms.ModelForm):
                 attrs={
                     'class': 'form-control',
                     'placeholder': '+359-xxx-xxx-xxx',
-                })
+                }),
+            'prime_membership': forms.CheckboxInput(
+            )
         }
 
 

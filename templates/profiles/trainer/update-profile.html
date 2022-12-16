@@ -11,6 +11,7 @@
             <p>Years of experience: {{ form.years_experience }}</p>
             <p>Biography: {{ form.bio }}</p>
             <p>Phone number: {{ form.phone_number }}</p>
+            <p>Prime Membership: {{ form.prime_membership }}</p>
             <button>Update Profile</button>
             <button><a href="{% url 'trainer profile details' request.user.trainerprofile.pk %}">Back to my profile</a></button>
             {% csrf_token %}

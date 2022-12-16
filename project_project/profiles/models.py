@@ -48,7 +48,7 @@ class TrainerProfile(models.Model):
 
     # TODO: count the number of trainees the trainer has hired them
     # clients = models.ManyToManyField(Trainee, )
-
+    prime_membership = models.BooleanField(default=False)
     # TODO: give trainers permissions to write articles and have them listed in their profile if any.
     def sports_trained(self):
         sports_av = []

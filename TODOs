@@ -13,9 +13,9 @@ Models and forms:
         - rating as in the gyms
         - inline formsets to the workouts so x-number of exercises could be added
 
-Templates:
-    Profiles:
-    - show the count of trainees the trainer has been hired by (as a portfolio)
+Prime membership - page for unsubscribe, filter by prime,
+only prime can write articles.
+Add call-to action for subscribing to prime.
 
 -fix the filtering in the admin panel/ fields with multiple selections
 

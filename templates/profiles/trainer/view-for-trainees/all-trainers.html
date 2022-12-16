@@ -14,7 +14,11 @@
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <h4 class="card-title">{{ trainer.profile.full_name }}</h4>
+            <h4 class="card-title">{{ trainer.profile.full_name }}
+            {% if trainer.prime_membership %}
+                <i class="fa-solid fa-award" style="color:green"></i>
+            {% endif %}
+            </h4>
             <h5>{{ trainer.training_field }}</h5>
             <p class="card-text">{{ trainer.bio }}</p>
             <p class="card-text"><small class="text-muted">Years of experience: {{ trainer.years_experience }}</small></p>

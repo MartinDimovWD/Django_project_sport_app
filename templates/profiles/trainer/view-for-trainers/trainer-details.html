@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block page_content %}
+<div class="container profile-dashboard">
 <div class="card" style="width: 18rem;">
   <img src="{{ trainerprofile.profile.profile_picture }}" class="card-img-top" alt="...">
   <div class="card-body">
@@ -23,8 +24,15 @@
     <a href="{% url 'trainer profile delete' request.user.trainerprofile.pk %}" class="card-link">Delete Account</a>
   </div>
 </div>
-    <div class="trainer-bio">
-        <h2>{{ trainerprofile.profile.full_name }}, {{  trainerprofile.training_field|capfirst }}</h2>
-        <p>{{ trainerprofile.bio }}</p>
+    <div class="dashboard-content">
+        <div class="">
+            {% if request.user.trainerprofile.prime_membership %}
+               <h3 style="color:green"> Active Partner Membership <i class="fa-solid fa-award"></i> </h3>
+            {% else %}
+                <h3>Upgrade to Partner Membership</h3>
+            {% endif %}
+        </div>
+
     </div>
+</div>
 {% endblock %}

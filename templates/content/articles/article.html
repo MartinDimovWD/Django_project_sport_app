@@ -15,7 +15,11 @@
       <p class="card-text"><small class="text-muted">{{ article.publication_date|date:'d M y' }}</small></p>
       <p class="card-text"><small class="text-muted">
           {% if article.author.trainerprofile %}
-              <a href="{% url 'trainer details' pk=article.author.trainerprofile.pk %}">{{ article.author }}</a>
+              <a href="{% url 'trainer details' pk=article.author.trainerprofile.pk %}">{{ article.author }}
+                {% if article.author.trainerprofile.prime_membership %}
+                        <i class="fa-solid fa-award" style="color:green"></i>
+                    {% endif %}
+              </a>
           {% else %}
           {{ article.author }}
           {% endif %}

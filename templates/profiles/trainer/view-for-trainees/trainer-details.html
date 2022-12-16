@@ -4,7 +4,11 @@
 {% block page_content %}
 <div class="container">
     {{ trainer.profile.default_profile_picture }}
-    <h2>{{ trainer.profile.full_name }}</h2>
+    <h2>{{ trainer.profile.full_name }}
+    {% if trainer.prime_membership %}
+        <i class="fa-solid fa-award" style="color:green"></i>
+    {% endif %}
+    </h2>
     <img src="{{ trainer.profile.profile_picture }}" alt="" height="100px" width="100px">
     <h3>Specialty: {{ trainer.training_field|capfirst }}</h3>
     <h3>Years of experience: {{ trainer.years_experience }}</h3>
