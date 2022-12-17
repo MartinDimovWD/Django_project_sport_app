@@ -1,0 +1,9 @@
+.gym-logo-container{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.gyms-list-container p{
+    font-size:18px;
+}

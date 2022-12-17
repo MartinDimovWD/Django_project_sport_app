@@ -3,7 +3,8 @@
     justify-content: space-evenly;
 }
 .workout-modal-btns a,
-.trainer-hire-btn a{
+.trainer-hire-btn a,
+.gym-details-btn a{
     font-size: 24px;
     text-decoration: none;
     color:black;
@@ -11,24 +12,33 @@
     padding-right: 35px;
 }
 
-.workout-modal-btns a:hover{
+.workout-modal-btns a:hover,
+.gym-details-btn a:hover{
     color:black;
+}
 
+.card-footer button:hover {
+    /*font-weight: bold;*/
+    color:steelblue;
 }
 .workout-modal-btns button:hover,
 .trainers-list button:hover,
-.trainer-hire-btn button:hover {
+.trainer-hire-btn button:hover,
+.gym-details-btn button:hover {
     background-color: steelblue;
 }
 
 .trainers-list button a,
-.trainer-hire-btn a {
+.trainer-hire-btn a,
+.gym-details-btn a{
     font-size:24px;
     text-decoration: none;
     color:black;
 }
 .trainers-list button,
-.trainer-hire-btn button {
+.trainer-hire-btn button,
+.gym-details-btn{
     border: 0.2px solid lightgrey;
 }
+
 

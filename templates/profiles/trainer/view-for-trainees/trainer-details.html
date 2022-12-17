@@ -22,19 +22,19 @@
 
                 </div>
                 <div class="trainer-profile">
-                    <h3>Location: {{ trainer.profile.location }}</h3>
-                    <h3>Age: {{ trainer.profile.age }}</h3>
-                    <h3>Specialized in
+                    <h3><small class="text-muted">Location: </small> {{ trainer.profile.location }}</h3>
+                    <h3><small class="text-muted">Age: </small>{{ trainer.profile.age }}</h3>
+                    <h3><small class="text-muted">Specialized in </small>
                         {% for sport in trainer.sports.all %}
                             {{ sport }} |
                         {% endfor %}
                     </h3>
-                    <h3>Years of professional experience: {{ trainer.years_experience }}</h3>
+                    <h3><small class="text-muted">Years of professional experience: </small> {{ trainer.years_experience }}</h3>
                     <h5><i class="fa-solid fa-square-phone"></i> +359-{{ trainer.phone_number }}</h5>
 
                 </div>
                 <div class="trainer-bio">
-                    <h3>Biography:</h3>
+                    <h3><small class="text-muted">Biography: </small></h3>
                     <p>{{ trainer.bio }}</p>
                     {% lorem 2 p %}
                 </div>

@@ -9,9 +9,11 @@ Models and forms:
     Profiles:
         - find how to increment the years of xp and age every year
         - validate the years of xp are not exceeding the age of the trainer - 18
+        - think of a hiring mechanism
     Sport App:
         - rating as in the gyms
         - inline formsets to the workouts so x-number of exercises could be added
+        - add to fav mechanism (exercise, gyms, articles)
 
 Prime membership - page for unsubscribe, filter by prime,
 only prime can write articles.
@@ -20,10 +22,6 @@ Add call-to action for subscribing to prime.
 Template files:
 - login.html:
     - when logged in, redirect to the page that the visitor tried to access before
--exercises-list.html
-    - add to fav mechanism
--trainer-details.html:
-    - think of a hiring mechanism
 
 Admin dashboard that shows the count of trainees with favourite sports,
 exercises, articles, etc.
@@ -45,3 +43,6 @@ Forms:
 
 create 2 user and 2 trainer profiles
 python manage.py loaddata trainer_profile_data
+
+Bugs:
+- fix the second page of the workouts list

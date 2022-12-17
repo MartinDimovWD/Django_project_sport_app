@@ -1,32 +1,38 @@
 {% extends 'index.html' %}
+{% load content_filters %}
 {% load static %}
 
 {% block page_content %}
 
-<div class="container">
-    {% if request.user.pk %}
-    <a href="{% url 'gyms filter' request.user.location_id %}">Show gyms in my city</a>
-    {% endif %}
-    <div class="col-5">
-        {% for gym in gyms %}
-            <div class="card mb-3" style="max-width: 540px;">
-              <div class="row g-0">
-                <div class="col-md-4">
-                  <img src="{{ gym.logo }}" class="img-fluid rounded-start" alt="...">
-                </div>
-                <div class="col-md-8">
-                  <div class="card-body">
-                    <h5 class="card-title">{{ gym.gym_name }}</h5>
-                    <p class="card-text">{{ gym.location }}</p>
-                    <p class="card-text"><small class="text-muted">Open: {{ gym.get_working_hours }}</small></p>
-                      <p>{% for sport in gym.sports_available.all %} {{ sport.sport_name }} {% endfor %}</p>
-                      <a href="{% url 'gym details' pk=gym.pk %}">See more</a>
+<div class="container gyms-list-container">
+    {% for gym in gyms %}
+        <div class="col-5">
+                <div class="card mt-3" style="max-width: 540px;">
+                  <div class="row g-0">
+                    <div class="col-md-4 gym-logo-container">
+                      <img src="{{ gym.logo }}" class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h4 class="card-title " style="text-align: left; border-bottom: 1px solid grey">{{ gym.gym_name }}
+                        {% if request.user.location and request.user.location == gym.location %}
+                            <span class="badge text-bg-success city-filter" ><a href="{% url 'gyms filter' request.user.location_id %}">In your city</a></span>
+                        {% endif %}
+                        {% if gym|open_now %}
+                            <span class="badge text-bg-info city-filter" >Open now</span>
+
+                        {% endif %}
+                        </h4>
+                        <p class="card-text"><small class="text-muted">Location: </small>{{ gym.location }}</p>
+                        <p class="card-text"><small class="text-muted">Open: </small>{{ gym.get_working_hours }}</p>
+                          <p><small class="text-muted">Sport available: </small>{% for sport in gym.sports_available.all %} {{ sport.sport_name }} |{% endfor %}</p>
+                          <button class="btn btn-outline-light gym-details-btn"><a href="{% url 'gym details' pk=gym.pk %}">See more</a></button>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-        {% endfor %}
-    </div>
+        </div>
+    {% endfor %}
 
 
     <div>

@@ -9,21 +9,23 @@
 {#        <a href="">Show only trainers in my city</a>#}
 {#        {{ trainers_in_city }}#}
 {#    {% endif %}#}
-
-{% for trainer in trainers %}
 <div class="container trainers-list">
+{% for trainer in trainers %}
+
     <div class="card mt-3" style="max-width: 540px;">
       <div class="row g-0
             {% if trainer.prime_membership %}
                      prime-trainer
                     {% endif %}
         ">
+
         <div class="col-md-4 trainer-avatar">
             <a href="{% url 'trainer details' pk=trainer.pk %}">
                 <img src="{{ trainer.profile.profile_picture }}" class="img-fluid rounded-start" alt="...">
                 <h3>{{ trainer.training_field }}</h3>
             </a>
         </div>
+
         <div class="col-md-8">
           <div class="card-body">
             <h4 class="card-title trainer-name">{{ trainer.profile.full_name }}
@@ -34,7 +36,7 @@
                 <span class="badge text-bg-success city-filter" ><a href="{% url 'trainers filter' location=request.user.location %}">In your city</a></span>
             {% endif %}
             </h4>
-              <p class="card-text">{{ trainer.profile.location }} </p>
+              <p class="card-text"><small class="text-muted">Location: </small>{{ trainer.profile.location }}</p>
 
 {#            <p class="card-text">{{ trainer.bio }}</p>#}
             <p class="card-text"><small class="text-muted">Years of experience:</small> {{ trainer.years_experience }}</p>

@@ -1,4 +1,5 @@
 import random
+import time
 
 from django.template import Library
 
@@ -22,3 +23,9 @@ def random_reps(exercise):
         return f'{sets} sets X {reps} reps X {weight} kg'
     elif exercise.type == 'cardio':
         return f'Duration: {duration} minutes'
+
+@register.filter('open_now')
+def open_now(gym):
+    current_hour = int(time.strftime('%H'))
+    if gym.open_hour <= current_hour <= gym.close_hour:
+        return True

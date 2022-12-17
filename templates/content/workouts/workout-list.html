@@ -6,10 +6,11 @@
 <div class="container">
     <div class="row row-cols-2 row-cols-md-5 g-4">
 
-        <div class="col workout-box" style="height:100%">
+        <div class="col workout-box" style="height:100%; align-content: center">
             <div class="card border-dark mb-3" style="width: 14rem;">
-              <div class="card-body text-dark">
-                  <a href="{% url 'workout create' %}"><h5 class="card-title">Start a new workout</h5></a>
+              <div class="card-body text-dark workout-modal-btns">
+                  <img src="{% static 'images/icons/no-gender-default-icon.png' %}" alt="" style="max-height: 150px;">
+                  <button class="btn btn-outline-light" style="border:1px solid grey"><a href="{% url 'workout create' %}" style="text-align: center; padding:0">Start a new workout</a></button>
               </div>
             </div>
         </div>

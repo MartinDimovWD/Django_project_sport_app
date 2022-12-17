@@ -4,24 +4,35 @@
 {% block page_content %}
 {# TODO: PUT FILTER BUTTONS#}
 {#https://www.youtube.com/watch?v=vU0VeFN-abU#}
-<h2>{{ gym.gym_name }}</h2>
-    <img src="{{ gym.logo }}" alt="" width='500px'>
-    <h3>{{ gym.location }}</h3>
-    Working hours:
-    <h4>{{ gym.get_working_hours }}</h4>
-    Sports:
-    <ul>
-    {% for sport in gym.sports_available.all %}
-        <li>{{ sport.sport_name }}</li>
-    {% endfor %}
-    </ul>
-    Facilities:
-    <ul>
-    {% for facility in gym.facilities.all %}
-        <li>{{ facility.name }}</li>
-    {% endfor %}
-</ul>
-    <div>
-        <a href="{% url 'gyms list' %}">Back to all gyms</a>
+    <div class="container gym-details-page-container">
+        <h1 id="gym-name">{{ gym.gym_name }} / <a href="{% url 'gyms list' %}" style="font-size:22px">Back to all gyms</a></h1>
+        <div class="gym-details-container">
+            <div class="gym-logo">
+                <img src="{{ gym.logo }}" alt="" width='500px'>
+                <h1>
+                    {% for sport in gym.sports_available.all %}
+                        {{ sport.sport_name }} |
+                    {% endfor %}
+                </h1>
+            </div>
+            <div class="gym-info">
+                <div class="gym-info-details">
+                    <h3><small class="text-muted">Location: </small> {{ gym.location }}</h3>
+                    <h3><small class="text-muted">Working hours: </small> {{ gym.get_working_hours }}</h3>
+
+                    <h3><small class="text-muted">Facilities on-site: </small>
+                        <ul>{% for facility in gym.facilities.all %}
+                            <li style="font-size:22px">{{ facility.name }}</li>
+                        {% endfor %}
+                        </ul>
+                    </h3>
+                </div>
+                <div class="gym-more-info">
+                    <h3><small class="text-muted">About: </small></h3>
+                        {% lorem 3 p %}
+                </div>
+            </div>
+        </div>
     </div>
+
 {% endblock %}

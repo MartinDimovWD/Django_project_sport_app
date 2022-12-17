@@ -1,0 +1,28 @@
+.trainer-details-page-container h1,
+.container #gym-name
+{
+    padding-top:6px;
+    padding-bottom:6px;
+    border-bottom: 0.2px solid grey;
+}
+
+.trainer-details-container,
+.gym-details-container{
+    display: flex;
+    flex-direction: row;
+}
+
+
+.trainer-details-avatar img,
+.gym-logo img{
+    max-height: 400px;
+}
+.trainer-details-avatar,
+.gym-logo h1{
+    text-align: center;
+}
+
+.trainer-details .trainer-profile,
+.gym-info-details {
+    border-bottom: 0.2px solid grey;
+}
