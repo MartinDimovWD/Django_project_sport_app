@@ -2,19 +2,27 @@
 {% load static %}
 
 {% block page_content %}
-    <div class="container">
-<h1 class="form-page-header">@{{ request.user }}</h1>
+<div class="container">
+    <h1 class="form-page-header">@{{ request.user }}</h1>
     <div class="update-trainer-profile-container form-container">
         <form action="" method="post">
-            {% include 'partials/field-errors-alert.html' %}
-            <p>Training field: {{ form.training_field }}</p>
-            <p>Years of experience: {{ form.years_experience }}</p>
-            <p>Biography: {{ form.bio }}</p>
-            <p>Phone number: {{ form.phone_number }}</p>
-            <p>Prime Membership: {{ form.prime_membership }}</p>
-            <button>Update Profile</button>
-            <button><a href="{% url 'trainer profile details' request.user.trainerprofile.pk %}">Back to my profile</a></button>
+            <div class="form-fields">
+                {% include 'partials/field-errors-alert.html' %}
+                <p>Training field: {{ form.training_field }}</p>
+                <p>Years of experience: {{ form.years_experience }}</p>
+                <p>Biography: {{ form.bio }}</p>
+                <p>Phone number: {{ form.phone_number }}</p>
+                <p>Prime Membership: {{ form.prime_membership }}</p>
+            </div>
+            <div class="workout-modal-btns">
+                <button class="btn btn-outline-light" style="color:black"><a>Update Profile</a></button>
+                <button class="btn btn-outline-light"><a href="{% url 'trainer profile details' request.user.trainerprofile.pk %}">Back to my profile</a></button>
+            </div>
             {% csrf_token %}
+
+
+
         </form>
-    </div></div>
+    </div>
+</div>
 {% endblock %}

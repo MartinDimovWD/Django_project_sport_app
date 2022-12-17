@@ -15,8 +15,8 @@
             </a></li>
 
         {% elif request.user.traineeprofile %}
-            <li><a href="{% url 'workouts list' %}">My Workouts</a></li>
             <li><a href="{% url 'trainers list' %}">Find a coach</a></li>
+            <li><a href="{% url 'workouts list' %}">My Workouts</a></li>
             <li><a href="{% url 'trainee profile details' request.user.traineeprofile.pk %}">
                 <img src="{{ request.user.profile_picture }}" alt="" width="40px" height="40px">
                 {{ request.user }}

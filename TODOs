@@ -10,14 +10,18 @@ Models and forms:
         - find how to increment the years of xp and age every year
         - validate the years of xp are not exceeding the age of the trainer - 18
         - think of a hiring mechanism
+        - Add a section in the dashboard with favourite exercises - kilograms
+            lifted/kilometers ran /etc
+        - Dashboard Stats for the year. Num of workouts,goals achieved, etc.
     Sport App:
         - rating as in the gyms
         - inline formsets to the workouts so x-number of exercises could be added
         - add to fav mechanism (exercise, gyms, articles)
 
-Prime membership - page for unsubscribe, filter by prime,
-only prime can write articles.
-Add call-to action for subscribing to prime.
+Prime membership:
+    - page for unsubscribe, filter by prime,
+    - only prime can write articles.
+    - Add call-to action for subscribing to prime.
 
 Template files:
 - login.html:
@@ -25,10 +29,6 @@ Template files:
 
 Admin dashboard that shows the count of trainees with favourite sports,
 exercises, articles, etc.
-
-Fixtures:
-- find out how to hardcode some trainers as they need to be related to a user
-(trainer_profile_data)
 
 Styling:
 - logo on the left
@@ -41,8 +41,12 @@ run 'pip freeze > requirements.txt'
 Forms:
 -mark goal as accomplished
 
-create 2 user and 2 trainer profiles
+create 2 user and 2 trainer default profiles
 python manage.py loaddata trainer_profile_data
+
+
 
 Bugs:
 - fix the second page of the workouts list
+- See more btn in the gym list to match the other buttons.
+- profile requirements mixins.

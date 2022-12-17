@@ -8,54 +8,12 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DetailView, DeleteView
 
 from project_project.accounts.models import AppUser
-from project_project.profiles.forms import TraineeProfileForm, TrainerProfileForm
+from project_project.profiles.forms import TraineeProfileForm, TrainerProfileForm, CompleteTrainerProfileForm, \
+    CompleteTraineeProfileForm, ManagePrimeSubscriptionForm
+from project_project.profiles.mixins import TrainerProfileRequiredMixin
 from project_project.profiles.models import TrainerProfile, TraineeProfile
 from project_project.sport_app.models import Goal, CustomGoal, Workout
 
-
-class CompleteTrainerProfileForm(ModelForm):
-    class Meta:
-        model = TrainerProfile
-        fields = ('client_type', 'profile', 'training_field','years_experience','sports','bio','phone_number')
-        widgets = {'profile': HiddenInput(),
-                   'client_type': HiddenInput(),
-                   'training_field': forms.Select(
-                        attrs={
-                            'class': 'form-control',
-                            'placeholder': '--',
-                        }),
-                    'years_experience': forms.NumberInput(
-                        attrs={
-                            'class': 'form-control',
-                            'placeholder': '--',
-                        }),
-                    'sports': forms.SelectMultiple(
-                        attrs={
-                            'class': 'form-control',
-                            'placeholder': '--',
-                        }),
-                    'phone_number': forms.NumberInput(
-                        attrs={
-                            'class': 'form-control',
-                            'placeholder': '+359-xxx-xxx-xxx',
-                        }),
-                    'bio': forms.Textarea(
-                        attrs={
-                            'class': 'form-control',
-                            'placeholder': 'Include any relevant professional experience. You can include certifications, testimonials, etc.',
-                        })
-
-                }
-
-    def clean(self):
-        super(CompleteTrainerProfileForm, self).clean()
-        phone_number = int(self.cleaned_data.get('phone_number'))
-        if len(str(phone_number))!=10:
-            self._errors['phone_number'] = self.error_class([
-                'Please enter a valid phone number. It should not start with 0! +359 is added automatically. It should be 10 digits long'
-            ])
-        print(len(str(phone_number)))
-        return self.cleaned_data
 
 def complete_trainer_profile_view(request):
     client_pk = request.user.pk
@@ -71,53 +29,6 @@ def complete_trainer_profile_view(request):
     context = {'form': form}
     return render(request, 'profiles/trainer/complete-profile.html', context)
 
-
-class CompleteTraineeProfileForm(ModelForm):
-    class Meta:
-        model = TraineeProfile
-        fields = ('client_type', 'profile', 'height','weight','experience','goals')
-        widgets = {'profile': HiddenInput(),
-                   'client_type': HiddenInput(),
-                   'height': forms.NumberInput(
-                       attrs={
-                           'class': 'form-control',
-                           'placeholder': '---',
-                       }),
-                   'weight': forms.NumberInput(
-                       attrs={
-                           'class': 'form-control',
-                           'placeholder': '---',
-                       }),
-                   'experience': forms.Select(
-                       attrs={
-                           'class': 'form-control',
-                           'placeholder': '---',
-                       }),
-                   'goals': forms.SelectMultiple(
-                       attrs={
-                           'class': 'form-control',
-                           'placeholder': '---',
-                       })
-                   }
-
-    def __init__(self,*args,**kwargs):
-        super(CompleteTraineeProfileForm,self).__init__(*args,**kwargs)
-        self.fields['goals'].queryset = Goal.objects.filter(base_goal=True)
-
-    def clean(self):
-        super(CompleteTraineeProfileForm, self).clean()
-        height = int(self.cleaned_data.get('height'))
-        weight = int(self.cleaned_data.get('weight'))
-
-        if 50>height or height>250:
-            self._errors['height'] = self.error_class([
-                'This height is very unlikely. Please note it is in centimeters!'
-            ])
-        if 30>weight or weight>250:
-            self._errors['weight'] = self.error_class([
-                'This weight is very unlikely. Please note it is in kilograms!'
-            ])
-        return self.cleaned_data
 
 def complete_trainee_profile_view(request):
     client_pk = request.user.pk
@@ -184,9 +95,6 @@ class TraineeProfileView(DetailView):
         return context
 
 
-
-
-
 class TraineeDeleteView(DeleteView):
     template_name = 'profiles/trainee/profile-delete.html'
     model = TraineeProfile
@@ -211,3 +119,10 @@ class TrainerDeleteView(DeleteView):
         return redirect('index register')
 
 
+class ManagePrimeSubscriptionView( UpdateView):
+    template_name= 'profiles/trainer/view-for-trainers/manage-prime.html'
+    form_class = ManagePrimeSubscriptionForm
+    model = TrainerProfile
+
+    def get_success_url(self):
+        return reverse_lazy('trainer profile details', kwargs={'pk': self.object.pk})

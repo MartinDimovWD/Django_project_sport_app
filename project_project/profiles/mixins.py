@@ -9,8 +9,8 @@ class TrainerProfileRequiredMixin(LoginRequiredMixin):
 
     def dispatch(self, request, *args, **kwargs):
         try:
-            user =request.user.trainerprofile
-            return super().dispatch(request, *args, **kwargs)
+            if request.user.trainerprofile:
+                return super().dispatch(request, *args, **kwargs)
         except:
             return render(request, 'profiles/403-need-coach-prof.html')
 

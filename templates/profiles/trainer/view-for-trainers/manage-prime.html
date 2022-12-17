@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block page_content %}
+    <div class="prime-manage-container container">
+        <h1 class="form-page-header">Partner Membership <i class="fa-solid fa-award" style="color:green; padding-left: 6px; padding-right: 6px"></i></h1>
+        <div class="form-container" >
+
+            <form action="" method="post">
+            <div>
+            {% if request.user.trainerprofile.prime_membership%}
+                <h2>Are you sure you want to cancel your partner membership?</h2>
+            {% else %}
+                <h2>Check the field below to subscribe to our partner membership</h2>
+            {% endif %}
+             {{ form }}
+            {% csrf_token %}
+            </div>
+            <div class="workout-modal-btns">
+                <button class="btn btn-outline-light" id="change-prime-confirm-btn" style="color:black"><a>Confirm</a></button>
+                <button class="btn btn-outline-light"><a href="{% url 'trainer profile details' request.user.trainerprofile.pk %}">Back to my profile</a></button>
+            </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

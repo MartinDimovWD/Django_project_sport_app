@@ -26,6 +26,9 @@ class TraineeProfile(models.Model):
     def __str__(self):
         return self.profile.full_name
 
+    def get_favourite_exercises(self):
+        pass
+
 class TrainerProfile(models.Model):
     client_type = models.CharField(max_length=30, null=False,blank=False)
     profile = models.OneToOneField(AppUser, on_delete=models.CASCADE)

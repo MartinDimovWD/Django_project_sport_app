@@ -8,5 +8,16 @@
 .dashboard-content {
     display:flex;
     flex-direction: column;
+    height:80vh;
     width:800px;
+    /*justify-content: space-between;*/
+}
+
+#prime-deactivate {
+    text-decoration: none;
+    color:red;
+    font-size:14px;
+}
+#prime-deactivate:hover {
+    color:darkred;
 }

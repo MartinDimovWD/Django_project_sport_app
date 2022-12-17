@@ -4,12 +4,11 @@
 {% block page_content %}
 
 <div class="container">
-{{ time }}
-        <p class="card-text">
-            {% for category in article.category %}
-                <a href="{% url 'articles filter' category=category %}">{{ category }} |</a>
-            {% endfor %}
-        </p>
+    <p class="card-text">
+        {% for category in article.category %}
+            <a href="{% url 'articles filter' category=category %}">{{ category }} |</a>
+        {% endfor %}
+    </p>
     <div class="card mb-3 col-8">
       <h2 class="card-title">{{ article.heading|capitalize_each_word }}</h2>
       <p class="card-text"><small class="text-muted">{{ article.publication_date|date:'d M y' }}</small></p>
@@ -23,12 +22,14 @@
           {% else %}
           {{ article.author }}
           {% endif %}
-          <span><img src="{{ article.author.profile_picture }}" height="50px" width="50px" alt=""></span></small></p>
-        <img src="{{ article.article_image }}" class="card-img-top" alt="...">
+          <span><img src="{{ article.author.profile_picture }}" height="50px" width="50px" alt=""></span></small>
+      </p>
+        <img src="{{ article.article_image }}" class="card-img-top" alt="..." style="height: 300px">
       <div class="card-body">
 
-        <p>{{ article.body }}</p>
-
+        <p>
+          {% lorem 4 p %}
+        </p>
       </div>
     </div>
 <button><a href="{% url 'articles list' %}">Back to all articles</a></button>
