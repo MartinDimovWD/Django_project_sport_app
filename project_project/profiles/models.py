@@ -56,3 +56,5 @@ class TrainerProfile(models.Model):
             sports_av.append(sport.sport_name)
         return ", ".join(sports_av)
 
+    def __str__(self):
+        return self.profile.full_name

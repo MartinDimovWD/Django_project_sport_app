@@ -34,25 +34,6 @@
     padding:5px;
 }
 
-.workout-modal-btns {
-    display: flex;
-    justify-content: space-evenly;
-}
-.workout-modal-btns a {
-    font-size: 24px;
-    text-decoration: none;
-    color:black;
-    padding-left: 35px;
-    padding-right: 35px;
-}
-
-.workout-modal-btns a:hover{
-    color:black;
-
-}
-.workout-modal-btns button:hover{
-    background-color: steelblue;
-}
 .modal-title span {
     font-size:18px;
 }

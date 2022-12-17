@@ -17,15 +17,11 @@ Prime membership - page for unsubscribe, filter by prime,
 only prime can write articles.
 Add call-to action for subscribing to prime.
 
--fix the filtering in the admin panel/ fields with multiple selections
-
 Template files:
 - login.html:
     - when logged in, redirect to the page that the visitor tried to access before
 -exercises-list.html
     - add to fav mechanism
--profiles/trainer/view-for-trainees.html
-    - list trainers by membership and location
 -trainer-details.html:
     - think of a hiring mechanism
 
@@ -43,7 +39,6 @@ Styling:
 - forms in modal windows? hmmmm
 
 run 'pip freeze > requirements.txt'
-
 
 Forms:
 -mark goal as accomplished

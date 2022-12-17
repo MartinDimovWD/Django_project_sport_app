@@ -1,0 +1,42 @@
+.trainer-avatar {
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.trainer-avatar h3 {
+    text-align: center;
+    padding-top:4px;
+}
+
+.city-filter a {
+    text-decoration: none;
+    color:white
+}
+
+.city-filter a:hover {
+    color:greenyellow;
+}
+
+.prime-trainer {
+    border: 4px solid gold;
+}
+
+.trainers-list .trainer-name {
+    text-align:left;
+    border-bottom: 1px solid grey;
+}
+.trainers-list p {
+    font-size: 18px;
+}
+.trainer-avatar a {
+    text-decoration: none;
+    color:black
+}
+.trainer-avatar a:hover {
+    text-decoration: none;
+    color: black;
+}
+.trainers-list .card-title {
+    display:flex;
+    align-items: center;
+}

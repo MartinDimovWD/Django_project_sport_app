@@ -2,37 +2,47 @@
 {% load static %}
 
 {% block page_content %}
-<div class="container">
-    {{ trainer.profile.default_profile_picture }}
-    <h2>{{ trainer.profile.full_name }}
-    {% if trainer.prime_membership %}
-        <i class="fa-solid fa-award" style="color:green"></i>
-    {% endif %}
-    </h2>
-    <img src="{{ trainer.profile.profile_picture }}" alt="" height="100px" width="100px">
-    <h3>Specialty: {{ trainer.training_field|capfirst }}</h3>
-    <h3>Years of experience: {{ trainer.years_experience }}</h3>
-    <h3>Location: {{ trainer.profile.location }}</h3>
-    <ul> Sports:
-    {% for sport in trainer.sports.all %}
-        <li>{{ sport }}</li>
-    {% endfor %}
-    </ul>
-    <h4>Age: {{ trainer.age }}</h4>
-    <p>Biography: {{ trainer.bio }}</p>
-    <p>Mobile: {{ trainer.phone_number }}</p>
-    <button>Hire</button>
+<div class="container trainer-details-page-container">
+    <h1>{{ trainer.profile.full_name }}
+        {% if trainer.prime_membership %}
+            <i class="fa-solid fa-award" style="color:green"></i>
+        {% endif %} / <a href="{% url 'trainers list' %}" style="font-size:22px">Back to all trainers</a>
+    </h1>
+    <div class="trainer-details-container">
+        <div class="trainer-details-avatar">
+            <img src="{{ trainer.profile.profile_picture }}" alt="">
+            <h2>{{ trainer.training_field|capfirst }}</h2>
+            <div class="trainer-hire-btn">
+                <button class="btn btn-outline-light"><a style="color:black">Hire</a></button>
+            </div>
+        </div>
+        <div class="trainer-info">
+            <div class="trainer-details">
+                <div class="trainer-name">
+
+                </div>
+                <div class="trainer-profile">
+                    <h3>Location: {{ trainer.profile.location }}</h3>
+                    <h3>Age: {{ trainer.profile.age }}</h3>
+                    <h3>Specialized in
+                        {% for sport in trainer.sports.all %}
+                            {{ sport }} |
+                        {% endfor %}
+                    </h3>
+                    <h3>Years of professional experience: {{ trainer.years_experience }}</h3>
+                    <h5><i class="fa-solid fa-square-phone"></i> +359-{{ trainer.phone_number }}</h5>
+
+                </div>
+                <div class="trainer-bio">
+                    <h3>Biography:</h3>
+                    <p>{{ trainer.bio }}</p>
+                    {% lorem 2 p %}
+                </div>
+
+            </div>
+
+        </div>
+    </div>
 </div>
-    <div class="trainer-bio">
-        <h3>Specialized in
-        {% for sport in trainer.sports.all %}
-            {{ sport }} |
-        {% endfor %}</h3>
-        <p>{{ trainer.bio }}</p>
-    </div>
-{#TODO: put a button for hiring the trainer#}
-    <div>
-        <a href="{% url 'trainers list' %}">Back to all trainers</a>
-    </div>
 {% endblock %}
 

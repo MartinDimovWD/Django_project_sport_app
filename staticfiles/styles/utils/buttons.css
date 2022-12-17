@@ -1,0 +1,34 @@
+.workout-modal-btns {
+    display: flex;
+    justify-content: space-evenly;
+}
+.workout-modal-btns a,
+.trainer-hire-btn a{
+    font-size: 24px;
+    text-decoration: none;
+    color:black;
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
+.workout-modal-btns a:hover{
+    color:black;
+
+}
+.workout-modal-btns button:hover,
+.trainers-list button:hover,
+.trainer-hire-btn button:hover {
+    background-color: steelblue;
+}
+
+.trainers-list button a,
+.trainer-hire-btn a {
+    font-size:24px;
+    text-decoration: none;
+    color:black;
+}
+.trainers-list button,
+.trainer-hire-btn button {
+    border: 0.2px solid lightgrey;
+}
+

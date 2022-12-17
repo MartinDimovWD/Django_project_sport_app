@@ -3,7 +3,8 @@ from django.urls import path, include
 from project_project.sport_app.views import ArticlesListView, ArticleDetails, TrainersListView, TrainerDetails, \
     ExercisesListView, ExerciseDetails, WorkoutsListView, WorkoutDetails, WorkoutCreateView, WorkoutUpdateView, \
     WorkoutDeleteView, filter_exercises_by_bodypart, filter_articles_by_category, ArticleCreate, CustomExerciseCreate, \
-    CustomExerciseUpdate, CustomExerciseDetail, CustomExerciseDelete, CustomExerciseList, CustomGoalCreate
+    CustomExerciseUpdate, CustomExerciseDetail, CustomExerciseDelete, CustomExerciseList, CustomGoalCreate, \
+    filter_trainers_by_location
 
 urlpatterns=[
     path('articles/', include([
@@ -15,6 +16,7 @@ urlpatterns=[
     ])),
     path('trainers/',include([
         path('', TrainersListView.as_view(), name='trainers list'),
+        path('filter/<location>/', filter_trainers_by_location, name='trainers filter'),
         # TODO: PUT A SLUG INSTEAD OF PK!
         path('trainer/<int:pk>', TrainerDetails.as_view(), name='trainer details'),
     ])),

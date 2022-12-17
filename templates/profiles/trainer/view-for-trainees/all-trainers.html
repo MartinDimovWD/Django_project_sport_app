@@ -4,34 +4,51 @@
 {#TODO: list trainers based on membership, rating, if they have profile picture#}
 
 {% block page_content %}
-{% for trainer in trainers %}
 
-<div class="container">
-    <div class="card mb-3" style="max-width: 540px;">
-      <div class="row g-0">
-        <div class="col-md-4">
-          <img src="{{ trainer.profile.profile_picture }}" class="img-fluid rounded-start" alt="...">
+{#    {% if trainers_in_city %}#}
+{#        <a href="">Show only trainers in my city</a>#}
+{#        {{ trainers_in_city }}#}
+{#    {% endif %}#}
+
+{% for trainer in trainers %}
+<div class="container trainers-list">
+    <div class="card mt-3" style="max-width: 540px;">
+      <div class="row g-0
+            {% if trainer.prime_membership %}
+                     prime-trainer
+                    {% endif %}
+        ">
+        <div class="col-md-4 trainer-avatar">
+            <a href="{% url 'trainer details' pk=trainer.pk %}">
+                <img src="{{ trainer.profile.profile_picture }}" class="img-fluid rounded-start" alt="...">
+                <h3>{{ trainer.training_field }}</h3>
+            </a>
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <h4 class="card-title">{{ trainer.profile.full_name }}
+            <h4 class="card-title trainer-name">{{ trainer.profile.full_name }}
             {% if trainer.prime_membership %}
-                <i class="fa-solid fa-award" style="color:green"></i>
+                <i class="fa-solid fa-award" style="color:green; padding-left: 6px; padding-right: 6px"></i>
+            {% endif %}
+            {% if request.user.location and request.user.location == trainer.profile.location %}
+                <span class="badge text-bg-success city-filter" ><a href="{% url 'trainers filter' location=request.user.location %}">In your city</a></span>
             {% endif %}
             </h4>
-            <h5>{{ trainer.training_field }}</h5>
-            <p class="card-text">{{ trainer.bio }}</p>
-            <p class="card-text"><small class="text-muted">Years of experience: {{ trainer.years_experience }}</small></p>
-              <p>{% for sport in trainer.sports.all %} {{ sport.sport_name }} {% endfor %}</p>
-              <a href="{% url 'trainer details' pk=trainer.pk %}">Biography</a>
+              <p class="card-text">{{ trainer.profile.location }} </p>
+
+{#            <p class="card-text">{{ trainer.bio }}</p>#}
+            <p class="card-text"><small class="text-muted">Years of experience:</small> {{ trainer.years_experience }}</p>
+
+              <p><small class="text-muted">Practices:</small> {% for sport in trainer.sports.all %} {{ sport.sport_name }} |{% endfor %}</p>
+              <button class="btn btn-outline-light"><a href="{% url 'trainer details' pk=trainer.pk %}">Check Biography</a></button>
           </div>
         </div>
       </div>
     </div>
-</div>
 {% endfor %}
     <div>
         <a href="{% url 'trainers list' %}">Back to all trainers</a>
     </div>
     {% include 'partials/custom_paginator.html' %}
+</div>
 {% endblock %}
