@@ -1,45 +1,52 @@
 
 {% load static %}
-<nav class="nav-bar navbar-expand navbar">
-    <ul class="nav-list">
-        <li><a href="{% url 'index register' %}">Home</a></li>
-        <li><a href="{% url 'articles list' %}">Articles</a></li>
-        <li><a href="{% url 'exercises list' %}">Exercises</a></li>
-        <li><a href="{% url 'gyms list' %}">Find a gym</a></li>
+<nav class="nav-bar navbar">
+    <div class="nav-logo">
+        Logo <i class="fa-solid fa-dumbbell"></i> here
+    </div>
+    <div>
+        <ul class="nav-list">
+            {% if not request.user.pk %}
+                <li><a href="{% url 'index register' %}">Home</a></li>
+            {% endif %}
+            <li><a href="{% url 'articles list' %}">Articles</a></li>
+            <li><a href="{% url 'exercises list' %}">Exercises</a></li>
+            <li><a href="{% url 'gyms list' %}">Find a gym</a></li>
 
-        {% if request.user.trainerprofile %}
-            <li><a href="">My Trainees</a></li>
-            <li><a href="{% url 'trainer profile details' request.user.trainerprofile.pk %}">
-                <img src="{{ request.user.profile_picture }}" alt="" width="40px" height="40px">
-                {{ request.user }}
-            </a></li>
+            {% if request.user.trainerprofile %}
+                <li><a href="">My Trainees</a></li>
+                <li><a href="{% url 'trainer profile details' request.user.trainerprofile.pk %}">
+                    <img src="{{ request.user.profile_picture }}" alt="" width="40px" height="40px">
+                    {{ request.user }}
+                </a></li>
 
-        {% elif request.user.traineeprofile %}
-            <li><a href="{% url 'trainers list' %}">Find a coach</a></li>
-            <li><a href="{% url 'workouts list' %}">My Workouts</a></li>
-            <li><a href="{% url 'trainee profile details' request.user.traineeprofile.pk %}">
-                <img src="{{ request.user.profile_picture }}" alt="" width="40px" height="40px">
-                {{ request.user }}
-            </a></li>
-        {% endif %}
+            {% elif request.user.traineeprofile %}
+                <li><a href="{% url 'trainers list' %}">Find a coach</a></li>
+                <li><a href="{% url 'workouts list' %}">My Workouts</a></li>
+                <li><a href="{% url 'trainee profile details' request.user.traineeprofile.pk %}">
+                    <img src="{{ request.user.profile_picture }}" alt="" width="40px" height="40px">
+                    {{ request.user }}
+                </a></li>
+            {% endif %}
 
-        {% if request.user.pk %}
-            <li><a href="{% url 'sign out' %}">Sign Out</a></li>
-        {% else %}
-            <li><a href="{% url 'log in' %}">Login</a></li>
-{#            <li><a href="{% url 'combined register' %}">Sign Up</a></li>#}
+            {% if request.user.pk %}
+                <li><a href="{% url 'sign out' %}">Sign Out</a></li>
+            {% else %}
+                <li><a href="{% url 'log in' %}">Login</a></li>
+    {#            <li><a href="{% url 'combined register' %}">Sign Up</a></li>#}
 
-            <li class="nav-item dropdown" style="display: inline">
-              <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Sign Up
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'trainee sign up' %}">Trainee</a></li>
-                <li><a class="dropdown-item" href="{% url 'trainer sign up' %}">Coach</a></li>
-              </ul>
-            </li>
+                <li class="nav-item dropdown" style="display: inline">
+                  <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Sign Up
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'trainee sign up' %}">Trainee</a></li>
+                    <li><a class="dropdown-item" href="{% url 'trainer sign up' %}">Coach</a></li>
+                  </ul>
+                </li>
 
 
-        {% endif %}
-    </ul>
+            {% endif %}
+        </ul>
+    </div>
 </nav>

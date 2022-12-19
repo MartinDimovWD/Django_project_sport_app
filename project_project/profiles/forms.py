@@ -7,7 +7,7 @@ from project_project.profiles.models import TraineeProfile, TrainerProfile
 from project_project.sport_app.models import Goal
 
 
-class TraineeProfileForm(forms.ModelForm):
+class TraineeProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = TraineeProfile
         fields = ['height', 'weight', 'experience', 'goals']
@@ -33,7 +33,7 @@ class TraineeProfileForm(forms.ModelForm):
         }
 
 
-class TrainerProfileForm(forms.ModelForm):
+class TrainerProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = TrainerProfile
         fields = ['training_field', 'years_experience', 'bio', 'phone_number', 'prime_membership']
@@ -60,6 +60,7 @@ class TrainerProfileForm(forms.ModelForm):
             'prime_membership': forms.CheckboxInput(
             )
         }
+
 
 class CompleteTrainerProfileForm(ModelForm):
     class Meta:
@@ -104,6 +105,7 @@ class CompleteTrainerProfileForm(ModelForm):
             ])
         print(len(str(phone_number)))
         return self.cleaned_data
+
 
 class CompleteTraineeProfileForm(ModelForm):
     class Meta:

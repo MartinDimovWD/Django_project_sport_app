@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, UpdateView
 
-from project_project.accounts.forms import AppUserUpdateForm
+from project_project.accounts.forms import AppUserUpdateForm, ClientSignUpForm
 from project_project.accounts.models import AppUser
 from project_project.web_app.field_validators import age_validator
 
@@ -16,80 +16,6 @@ from project_project.web_app.field_validators import age_validator
 def combined_sign_up_view(request):
     return render(request, 'account/register-page.html')
 
-
-class ClientSignUpForm(UserCreationForm):
-    class Meta:
-        model = AppUser
-        fields = ('email', 'username', 'first_name', 'last_name', 'gender', 'age', 'location', 'password1', 'password2', 'profile_picture')
-        widgets = {
-            'email': forms.EmailInput(
-                attrs={
-                    'class': 'form-control',
-                    'placeholder': 'email@any.com'
-                }
-            ),
-            'username': forms.TextInput(
-                attrs={
-                    'class': 'form-control',
-                    'placeholder': 'myname'
-                }
-            ),
-            'first_name': forms.TextInput(
-                attrs={
-                    'class': 'form-control',
-                    'placeholder': 'Jon'
-                }
-            ),
-            'last_name': forms.TextInput(
-                attrs={
-                    'class': 'form-control',
-                    'placeholder': 'Doe'
-                }
-            ),
-            'location': forms.Select(
-                attrs={
-                    'class': 'form-control',
-                }
-            ),
-            'age': forms.NumberInput(
-                attrs={
-                    'class': 'form-control',
-                    'placeholder': '20'
-                }
-            ),
-            'gender': forms.Select(
-                attrs={
-                    'class': 'form-control',
-                }
-            ),
-            'password1': forms.HiddenInput(
-                attrs={
-                    'class': 'form-control',
-                    'placeholder': '********'
-                }
-            ),
-            'password2': forms.HiddenInput(
-                attrs={
-                    'class': 'form-control',
-                    'placeholder': '********'
-                }
-            ),
-            'profile_picture': forms.URLInput(
-                attrs={
-                    'class': 'form-control',
-                    'placeholder': 'https://www.image.url'
-                }
-            ),
-        }
-    def clean(self):
-        super(ClientSignUpForm, self).clean()
-        age = int(self.cleaned_data.get('age'))
-        if age>120:
-            print(age)
-            self._errors['age'] = self.error_class([
-                'You are too old. You should be taking a break'
-            ])
-        return self.cleaned_data
 
 class TrainerSignUpView(CreateView):
     template_name = 'account/trainer/sign-up.html'

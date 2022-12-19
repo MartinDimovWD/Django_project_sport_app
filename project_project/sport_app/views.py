@@ -77,10 +77,10 @@ class ExerciseDetails(DetailView):
 
 class CustomGoalCreate(LoginRequiredMixin, CreateView):
     template_name = 'content/custom_goal/create.html'
-    # model = CustomExercise
     context_object_name = 'custom_goal'
     form_class = CustomGoalForm
-    success_url = reverse_lazy('index register')
+    success_url = reverse_lazy('workouts list')
+
 
     def form_valid(self, form):
         form.instance.owner = self.request.user

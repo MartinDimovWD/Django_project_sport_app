@@ -85,13 +85,13 @@ class CustomExerciseForm(forms.ModelForm):
         model = CustomExercise
         fields = ['name', 'type', 'body_parts',
                   'exercise_photo', 'metric', 'quantity']
-        widgets={
+        widgets = {
             'name': forms.TextInput(
-            attrs={
+             attrs={
                 'class':'form-control',
                 'placeholder': 'My Exercise'
-            }
-        ),
+             }
+            ),
             'type': forms.Select(
                 attrs={
                     'class': 'form-control'

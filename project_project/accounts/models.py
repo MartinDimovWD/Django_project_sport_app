@@ -48,14 +48,3 @@ class AppUser(AbstractUser):
         super(AppUser, self).save(*args, **kwargs)
 
 
-#???????
-    # def client_type(self):
-        # self.client_type = ''
-        # if self.trainerprofile:
-        #     self.client_type= 'Coach'
-        # elif self.traineeprofile:
-        #     self.client_type= 'Trainee'
-        # else:
-        #     self.client_type = 'Staff'
-        # return self.client_type
-        # return self.client_type

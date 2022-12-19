@@ -2,10 +2,17 @@
 {% load static %}
 
 {% block page_content %}
-<form action="" method="post">
-{% include 'partials/field-errors-alert.html' %}
-    {{ form }}
-    <button>Create Goal</button>
-    {% csrf_token %}
-</form>
+<div class="container">
+    <h1>Create a new goal</h1>
+    <div class="create-goal-container">
+        <form action="" method="post">
+        {% include 'partials/field-errors-alert.html' %}
+            {{ form }}
+            <div class="workout-modal-btns">
+                <button class="btn btn-outline-light" style="color:black"><a>Submit Goal</a></button>
+            </div>
+            {% csrf_token %}
+        </form>
+    </div>
+</div>
 {% endblock %}

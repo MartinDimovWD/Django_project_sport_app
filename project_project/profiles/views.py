@@ -8,7 +8,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DetailView, DeleteView
 
 from project_project.accounts.models import AppUser
-from project_project.profiles.forms import TraineeProfileForm, TrainerProfileForm, CompleteTrainerProfileForm, \
+from project_project.profiles.forms import TraineeProfileUpdateForm, TrainerProfileUpdateForm, CompleteTrainerProfileForm, \
     CompleteTraineeProfileForm, ManagePrimeSubscriptionForm
 from project_project.profiles.mixins import TrainerProfileRequiredMixin
 from project_project.profiles.models import TrainerProfile, TraineeProfile
@@ -24,8 +24,8 @@ def complete_trainer_profile_view(request):
     if request.method == 'POST':
         form = CompleteTrainerProfileForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('index register')
+            trainer = form.save()
+            return redirect('trainer profile details', pk=trainer.pk)
     context = {'form': form}
     return render(request, 'profiles/trainer/complete-profile.html', context)
 
@@ -38,15 +38,15 @@ def complete_trainee_profile_view(request):
         if form.is_valid():
             for goal in list(form.cleaned_data['goals']):
                 CustomGoal.objects.create(owner=AppUser.objects.get(pk=client_pk), goal_name=goal.goal_name, base_goal=False)
-            form.save()
-            return redirect('index register')
+            trainee = form.save()
+            return redirect('trainee profile details', pk=trainee.pk)
     context = {'form': form}
     return render(request, 'profiles/trainee/complete-profile.html', context)
 
 
 class UpdateTrainerProfileView(UpdateView):
     model = TrainerProfile
-    form_class = TrainerProfileForm
+    form_class = TrainerProfileUpdateForm
     # fields = ['training_field', 'years_experience', 'bio', 'phone_number']
     template_name = 'profiles/trainer/update-profile.html'
     success_url = '/'
@@ -69,7 +69,7 @@ class TrainerPersonalProfileView(DetailView):
 
 class UpdateTraineeProfileView(UpdateView):
     model = TraineeProfile
-    form_class = TraineeProfileForm
+    form_class = TraineeProfileUpdateForm
     # fields = ['height', 'weight', 'experience', 'goals']
     template_name = 'profiles/trainee/update-profile.html'
 

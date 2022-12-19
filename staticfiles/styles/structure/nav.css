@@ -19,10 +19,13 @@ nav {
 }
 
 .nav-bar{
-    justify-content: right !important;
+    justify-content: space-between;
     padding:0;
  }
 
+.nav-logo {
+    margin-left:15px;
+}
 nav a {
     padding-right: 30px;
     text-decoration: none;
@@ -31,5 +34,5 @@ nav a {
 }
 
 nav a:hover {
-    font-weight: bold;
+    color:lightgoldenrodyellow;
 }
