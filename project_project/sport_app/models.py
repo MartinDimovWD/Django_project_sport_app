@@ -72,7 +72,7 @@ class Exercise(models.Model):
         null=False, blank=False
     )
     body_parts = MultiSelectField(
-        max_length=30,
+        max_length=50,
         choices=(
             ('Legs', 'Legs'),
             ('Shoulders', 'Shoulders'),
@@ -139,7 +139,7 @@ class Article(models.Model):
     publication_date = models.DateTimeField(auto_now_add=True)
     article_image = models.URLField(null=False,blank=False)
     category = MultiSelectField(
-        max_length=30,
+        max_length=1000,
         choices=(
             ('Exercises', 'Exercises'),
             ('Nutrition', 'Nutrition'),
