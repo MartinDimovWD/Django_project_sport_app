@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block page_content %}
+<div class="container">
+    <h1 class="form-page-header">Edit {{ custom_exercise.name }}</h1>
+    <div class="form-container">
+        <div class="exercise-form form-inner">
+            <form action="{% url 'custom exercise update' pk=custom_exercise.pk%}" method="post" id="exercise-form">
+                {% include 'partials/field-errors-alert.html' %}
+                <div>
+                    <div>
+                        <label for="">Name:</label><p>{{ form.name }}</p>
+                        <label for="">Type:</label> <p>{{ form.type }}</p>
+                        <label for="">Metric:</label> <p>{{ form.metric }}</p>
+                        <label for="">Quantity:</label> <p>{{ form.quantity }}</p>
+                    </div>
+                    <div>
+                        <label for="">Image:</label> <p>{{ form.exercise_photo }}</p>
+                        <label for="">Body parts:</label> <p>{{ form.body_parts }}</p>
+                    </div>
+                </div>
+                {% csrf_token %}
+                <div class="workout-modal-btns">
+                    <button class="btn btn-outline-light" style="color:black"><a>Submit changes</a></button>
+                    <button class="btn btn-outline-light"><a href="{% url 'exercises list' %}">Back to my exercises</a></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

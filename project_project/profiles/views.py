@@ -119,7 +119,7 @@ class TrainerDeleteView(DeleteView):
         return redirect('index register')
 
 
-class ManagePrimeSubscriptionView( UpdateView):
+class ManagePrimeSubscriptionView(UpdateView):
     template_name= 'profiles/trainer/view-for-trainers/manage-prime.html'
     form_class = ManagePrimeSubscriptionForm
     model = TrainerProfile

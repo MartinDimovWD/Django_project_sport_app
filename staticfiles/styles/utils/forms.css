@@ -23,6 +23,7 @@ form input, form label{
 .form-inner {
     display:flex;
     flex-direction: column;
+
 }
 form label{
     font-size: 21px;
@@ -35,4 +36,8 @@ form label{
 
 .article-form-container {
     width:1300px;
+}
+
+.exercise-form {
+    width: 700px;
 }

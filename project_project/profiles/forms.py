@@ -58,6 +58,9 @@ class TrainerProfileUpdateForm(forms.ModelForm):
                     'placeholder': '+359-xxx-xxx-xxx',
                 }),
             'prime_membership': forms.CheckboxInput(
+                attrs={
+                    'style': 'display: inline'
+                }
             )
         }
 
@@ -160,6 +163,9 @@ class ManagePrimeSubscriptionForm(ModelForm):
         fields = ('prime_membership',)
         widgets={
             'prime_membership': forms.CheckboxInput(
-
+                attrs={
+                    'style': 'display: inline'
+                }
             )
         }
+

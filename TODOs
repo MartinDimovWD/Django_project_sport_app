@@ -50,3 +50,5 @@ Bugs:
 - profile requirements mixins.
 - In exercises and Workouts list show only content that is created by the
     user except for the base content.
+- phone to be changed as char instead of number input and put num validator.
+If you enter a number starting with 0 it is not a valid number, hence error.

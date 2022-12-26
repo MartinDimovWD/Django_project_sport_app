@@ -13,7 +13,7 @@
             {% else %}
                 <h2>Check the field below to subscribe to our partner membership</h2>
             {% endif %}
-             {{ form }}
+             <p>Prime Membership: {{ form.prime_membership }}</p>
             {% csrf_token %}
             </div>
             <div class="workout-modal-btns">

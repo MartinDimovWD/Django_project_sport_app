@@ -6,24 +6,15 @@
     <h1 class="form-page-header">Complete your profile</h1>
     <div class="complete-profile-container form-container">
         <div class="trainer-complete-profile form-inner">
-        <form action="{% url 'trainer complete profile' %}" method="post" id="trainer-complete-profile-form">
-           {% include 'partials/field-errors-alert.html' %}
-            {{ form.as_p }}
-{#            <div>#}
-{#                <label for="">Training Field:</label><p>{{ form.training_field }}</p>#}
-{#                <label for="">Years of Experience:</label><p>{{ form.years_experience }}</p>#}
-{#                <label for="">Sports:</label><p>{{ form.sports }}</p>#}
-{#                <label for="">Phone Number:</label><p>{{ form.phone_number }}</p>#}
-{#            </div>#}
-{#            <div>#}
-{#                <label for="">Bio:</label><p>{{ form.bio }}</p>#}
-{#            </div>#}
-
-            {% csrf_token %}
-        </form>
+            <form action="{% url 'trainer complete profile' %}" method="post" id="trainer-complete-profile-form">
+               {% include 'partials/field-errors-alert.html' %}
+                {{ form.as_p }}
+                {% csrf_token %}
             <div class="workout-modal-btns">
                 <button class="btn btn-outline-light" style="color:black" type="submit" form="trainer-complete-profile-form"><a>Create Profile</a></button>
             </div>
+            </form>
+
         </div>
     </div>
 </div>

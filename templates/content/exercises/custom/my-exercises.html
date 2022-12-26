@@ -18,7 +18,11 @@
                     Type: {{ exercise.type }}
                 </p>
               </div>
-              <button><a href="{% url 'custom exercise details' pk=exercise.pk %}">Details</a></button>
+              <button><a href="{% url 'custom exercise details' pk=exercise.pk %}">Details</a>
+                  {% if request.user.pk == exercise.owner.pk %}
+                  <a href="{% url 'custom exercise update' pk=exercise.pk %}"> / Edit</a>
+                  {% endif %}
+              </button>
     {#          TODO: create the add to favorites mechanism      #}
                 <button><a href="">Add to favorites</a></button>
               <div class="card-footer">

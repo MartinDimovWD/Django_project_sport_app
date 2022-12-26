@@ -9,19 +9,23 @@
             <form action="{% url 'exercise create' %}" method="post" id="exercise-form">
                 {% include 'partials/field-errors-alert.html' %}
                 <div>
-                    <label for="">Name:</label><p>{{ form.name }}</p>
-                    <label for="">Type:</label> <p>{{ form.type }}</p>
-                    <label for="">Metric:</label> <p>{{ form.metric }}</p>
-                    <label for="">Quantity:</label> <p>{{ form.quantity }}</p>
+                    <div>
+                        <label for="">Name:</label><p>{{ form.name }}</p>
+                        <label for="">Type:</label> <p>{{ form.type }}</p>
+                        <label for="">Metric:</label> <p>{{ form.metric }}</p>
+                        <label for="">Quantity:</label> <p>{{ form.quantity }}</p>
+                    </div>
+                    <div>
+                        <label for="">Image:</label> <p>{{ form.exercise_photo }}</p>
+                        <label for="">Body parts:</label> <p>{{ form.body_parts }}</p>
+                    </div>
                 </div>
-                <div>
-                    <label for="">Image:</label> <p>{{ form.exercise_photo }}</p>
-                    <label for="">Body parts:</label> <p>{{ form.body_parts }}</p>
-                </div>
-
                 {% csrf_token %}
+                <div class="workout-modal-btns">
+                    <button class="btn btn-outline-light" style="color:black"><a>Submit exercise</a></button>
+                    <button class="btn btn-outline-light"><a href="{% url 'exercises list' %}">Back to my exercises</a></button>
+                </div>
             </form>
-            <button type="submit" form="exercise-form">Submit exercise</button>
         </div>
     </div>
 </div>

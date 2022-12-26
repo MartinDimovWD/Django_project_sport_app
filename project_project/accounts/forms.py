@@ -136,4 +136,15 @@ class AppUserUpdateForm(forms.ModelForm):
         }
 
 
-
+# class SignInForm(forms.ModelForm):
+#     class Meta:
+#         model = AppUser
+#         fields = []
+#         widgets = {
+#             'email': forms.EmailInput(
+#                 attrs={
+#                     'class': 'form-control',
+#                     'placeholder': 'Enter your email'
+#                 }
+#             )
+#         }

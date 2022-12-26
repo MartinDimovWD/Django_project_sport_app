@@ -1,6 +1,7 @@
 .workout-modal-btns {
     display: flex;
     justify-content: space-evenly;
+    border-top: 0.2px solid lightgrey;
 }
 .workout-modal-btns a,
 .trainer-hire-btn a,

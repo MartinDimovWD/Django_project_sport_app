@@ -115,7 +115,8 @@ class CustomExerciseUpdate(LoginRequiredMixin, UpdateView):
     template_name = 'content/exercises/custom/update-exercise.html'
     model = CustomExercise
     context_object_name = 'custom_exercise'
-
+    form_class = CustomExerciseForm
+    success_url = reverse_lazy('my exercises list')
 
 class CustomExerciseDetail(LoginRequiredMixin, DetailView):
     template_name = 'content/exercises/custom/exercise-details.html'

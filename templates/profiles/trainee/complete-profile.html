@@ -9,7 +9,9 @@
             <form action="{% url 'trainee complete profile' %}" method="post">
                 {% include 'partials/field-errors-alert.html' %}
                 {{ form.as_p }}
-                <button>Create Profile</button>
+                <div class="workout-modal-btns">
+                    <button class="btn btn-outline-light" style="color:black" type="submit"><a>Create Profile</a></button>
+                </div>
                 {% csrf_token %}
             </form>
         </div>

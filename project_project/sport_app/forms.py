@@ -80,6 +80,7 @@ class CustomGoalForm(forms.ModelForm):
             )
         }
 
+
 class CustomExerciseForm(forms.ModelForm):
     class Meta:
         model = CustomExercise

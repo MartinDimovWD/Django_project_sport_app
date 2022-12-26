@@ -2,22 +2,32 @@
 {% load static %}
 
 {% block page_content %}
-<h1>Logged user: {{ request.user }}</h1>
-<div class="form-container">
+<div class="container">
+    <h1 class="form-page-header"> </h1>
+    <div class="login-container form-container">
+        <div class="form-inner">
+            <form method="post" action="{% url 'log in' %}" id="login-form">
+                {% include 'partials/field-errors-alert.html' %}
+                {{ form }}
+                <input type="hidden" name="next" value="{{ next }}">
+{#                <button type="submit">Log in</button>#}
+                {% csrf_token %}
+            <div class="workout-modal-btns">
+                <button class="btn btn-outline-light" style="color:black" type="submit" form="login-form"><a>Log in</a></button>
+            </div>
+            </form>
 
-    <form method="post" action="{% url 'log in' %}">
-        {% include 'partials/field-errors-alert.html' %}
-        {{ form }}
-        <input type="hidden" name="next" value="{{ next }}">
-        <button type="submit">Log in</button>
-        {% csrf_token %}
-    </form>
-</div>
+        </div>
+
+    </div>
     <h2>No account?</h2>
-<button><a href="{% url 'trainer sign up' %}">Register as a coach</a></button>
-<button><a href="{% url 'trainee sign up' %}">Register as a trainee</a></button>
-{# TODO: redirect to the page where the visitor picks to sign in as trainer or trainee#}
+    <div class="workout-modal-btns">
+        <button class="btn btn-outline-light"><a href="{% url 'trainer sign up' %}">Register as a coach</a></button>
+        <button class="btn btn-outline-light"><a href="{% url 'trainee sign up' %}">Register as a trainee</a></button>
+    </div>
+        {# TODO: redirect to the page where the visitor picks to sign in as trainer or trainee#}
 {#    TODO: add a button for creating user#}
 {#<h1>Register:</h1>#}
 {#<a href=""></a>#}
+</div>
 {% endblock %}
