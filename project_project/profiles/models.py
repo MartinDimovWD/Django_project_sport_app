@@ -1,5 +1,6 @@
 from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
+from django.utils.text import slugify
 
 from project_project.accounts.models import AppUser
 from project_project.sport_app.models import Goal, Exercise, Sport
@@ -23,11 +24,22 @@ class TraineeProfile(models.Model):
     goals = models.ManyToManyField(Goal, )
     favourite_exercises = models.ManyToManyField(Exercise, )
     favourite_sports = models.ManyToManyField(Sport, )
+    slug = models.SlugField(
+        max_length=200,
+        null=False,
+        blank=True,
+    )
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        if not self.slug:
+            self.slug = slugify(f'{self.profile.username}')
+        return super().save(*args, **kwargs)
     def __str__(self):
         return self.profile.full_name
 
     def get_favourite_exercises(self):
         pass
+
 
 class TrainerProfile(models.Model):
     client_type = models.CharField(max_length=30, null=False,blank=False)
@@ -53,6 +65,17 @@ class TrainerProfile(models.Model):
     # clients = models.ManyToManyField(Trainee, )
     prime_membership = models.BooleanField(default=False)
     # TODO: give trainers permissions to write articles and have them listed in their profile if any.
+    slug = models.SlugField(
+        max_length=200,
+        null=False,
+        blank=True,
+    )
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        if not self.slug:
+            self.slug = slugify(f'{self.profile.username}')
+        return super().save(*args, **kwargs)
     def sports_trained(self):
         sports_av = []
         for sport in list(self.sports.all()):

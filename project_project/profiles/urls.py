@@ -8,18 +8,18 @@ from project_project.profiles.views import complete_trainer_profile_view, comple
 urlpatterns = [
     path('trainer/', include([
         path('complete-profile/', complete_trainer_profile_view, name='trainer complete profile'),
-        path('update-profile/<int:pk>/', UpdateTrainerProfileView.as_view(), name='trainer update profile'),
-        path('profile-details/<int:pk>/', TrainerProfileView.as_view(), name='trainer details'),
-        path('profile-details/<int:pk>/trainer', TrainerPersonalProfileView.as_view(), name='trainer profile details'),
-        path('profile-delete/<int:pk>/', TrainerDeleteView.as_view(), name='trainer profile delete'),
-        path('manage-prime/<int:pk>', ManagePrimeSubscriptionView.as_view(), name='manage prime'),
+        path('update-profile/<slug:slug>/', UpdateTrainerProfileView.as_view(), name='trainer update profile'),
+        # path('profile-details/<int:pk>/', TrainerProfileView.as_view(), name='trainer details'),
+        path('profile-details/<slug:slug>/trainer', TrainerPersonalProfileView.as_view(), name='trainer profile details'),
+        path('profile-delete/<slug:slug>/', TrainerDeleteView.as_view(), name='trainer profile delete'),
+        path('manage-prime/<slug:slug>', ManagePrimeSubscriptionView.as_view(), name='manage prime'),
 
     ])),
     path('trainee/', include([
         path('complete-profile/', complete_trainee_profile_view, name='trainee complete profile'),
-        path('update-profile/<int:pk>/', UpdateTraineeProfileView.as_view(), name='trainee update profile'),
-        path('profile-details/<int:pk>/', TraineeProfileView.as_view(), name='trainee profile details'),
-        path('profile-delete/<int:pk>/', TraineeDeleteView.as_view(), name='trainee profile delete')
+        path('update-profile/<slug:slug>/', UpdateTraineeProfileView.as_view(), name='trainee update profile'),
+        path('profile-details/<slug:slug>/', TraineeProfileView.as_view(), name='trainee profile details'),
+        path('profile-delete/<slug:slug>/', TraineeDeleteView.as_view(), name='trainee profile delete')
     ]))
 ]
 

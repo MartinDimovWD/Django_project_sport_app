@@ -3,6 +3,7 @@ from datetime import datetime
 from django.db import models
 from django.shortcuts import render
 from django.urls import reverse_lazy
+from django.utils.text import slugify
 from multiselectfield import MultiSelectField
 
 from project_project.accounts.models import AppUser
@@ -108,6 +109,17 @@ class Exercise(models.Model):
         ),
         null=False, blank=False
     )
+    slug = models.SlugField(
+        max_length=200,
+        null=False,
+        blank=True,
+    )
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        if not self.slug:
+            self.slug = slugify(f'{self.name}')
+        return super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -154,6 +166,18 @@ class Article(models.Model):
     )
     # rating = models.PositiveIntegerField(default=None)
     # TODO: if default is None show empty stars. Make a function that once receiving a rating, calculates the average and shows it
+    slug = models.SlugField(
+        max_length=200,
+        null=False,
+        blank=True,
+    )
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        if not self.slug:
+            self.slug = slugify(f'{self.heading}')
+        return super().save(*args, **kwargs)
+
     def __str__(self):
         return self.heading
 

@@ -11,27 +11,27 @@ urlpatterns=[
         path('', ArticlesListView.as_view(), name='articles list'),
         path('filter/<category>/', filter_articles_by_category, name='articles filter'),
         # TODO: PUT A SLUG INSTEAD OF PK!
-        path('article/<int:pk>', ArticleDetails.as_view(), name='article details'),
+        path('article/<slug:slug>', ArticleDetails.as_view(), name='article details'),
         path('create', ArticleCreate.as_view(), name='article create'),
     ])),
     path('trainers/',include([
         path('', TrainersListView.as_view(), name='trainers list'),
         path('filter/<location>/', filter_trainers_by_location, name='trainers filter'),
         # TODO: PUT A SLUG INSTEAD OF PK!
-        path('trainer/<int:pk>', TrainerDetails.as_view(), name='trainer details'),
+        path('trainer/<slug:slug>', TrainerDetails.as_view(), name='trainer details'),
     ])),
     path('exercises/',include([
         path('', ExercisesListView.as_view(), name='exercises list'),
         path('filter/<bodypart>', filter_exercises_by_bodypart, name='exercises filter'),
         # TODO: PUT A SLUG INSTEAD OF PK!
-        path('exercise/<int:pk>', ExerciseDetails.as_view(), name='exercise details'),
+        path('exercise/<slug:slug>', ExerciseDetails.as_view(), name='exercise details'),
         # path('exercise/fave/<int:pk>', add_to_favourites, name='add to fave'),
         path('custom/', include([
             path('', CustomExerciseList.as_view(), name='my exercises list'),
             path('create/', CustomExerciseCreate.as_view(), name='exercise create'),
-            path('update/<int:pk>', CustomExerciseUpdate.as_view(), name='custom exercise update'),
-            path('details/<int:pk>', CustomExerciseDetail.as_view(), name='custom exercise details'),
-            path('delete/<int:pk>', CustomExerciseDelete.as_view(), name='custom exercise delete'),
+            path('update/<slug:slug>', CustomExerciseUpdate.as_view(), name='custom exercise update'),
+            path('details/<slug:slug>', CustomExerciseDetail.as_view(), name='custom exercise details'),
+            path('delete/<slug:slug>', CustomExerciseDelete.as_view(), name='custom exercise delete'),
         ]))
     ])),
     path('workouts/',include([

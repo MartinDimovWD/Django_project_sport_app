@@ -20,8 +20,8 @@
 
             </ul>
         <div class="card-body">
-            <a href="{% url 'trainee update profile' request.user.traineeprofile.pk %}" class="card-link">Edit Profile</a>
-            <a href="{% url 'trainee profile delete' request.user.traineeprofile.pk %}" class="card-link">Delete Account</a>
+            <a href="{% url 'trainee update profile' slug=request.user.traineeprofile.slug %}" class="card-link">Edit Profile</a>
+            <a href="{% url 'trainee profile delete' slug=request.user.traineeprofile.slug %}" class="card-link">Delete Account</a>
         </div>
     </div>
     <div class="dashboard-content">

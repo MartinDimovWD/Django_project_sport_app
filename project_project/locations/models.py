@@ -1,6 +1,7 @@
 from cities_light.models import City
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
+from django.utils.text import slugify
 
 from project_project.sport_app.models import Sport
 
@@ -54,6 +55,12 @@ class Gym(models.Model):
         null=True,
         blank=True)
     facilities = models.ManyToManyField(Facility,)
+    slug = models.SlugField(
+        max_length=200,
+        unique=True,
+        null=False,
+        blank=True,
+    )
     # rating = models.PositiveIntegerField(default=None)
     # TODO: if default is None show empty stars. Make a function that once receiving a rating, calculates the average and shows it
     def __str__(self):
@@ -75,3 +82,9 @@ class Gym(models.Model):
         for sport in list(self.sports_available.all()):
             sports_av.append(sport.sport_name)
         return ", ".join(sports_av)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        if not self.slug:
+            self.slug = slugify(f'{self.gym_name}-{self.location}')
+        return super().save(*args, **kwargs)

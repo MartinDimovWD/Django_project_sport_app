@@ -81,7 +81,6 @@ class CustomGoalCreate(LoginRequiredMixin, CreateView):
     form_class = CustomGoalForm
     success_url = reverse_lazy('workouts list')
 
-
     def form_valid(self, form):
         form.instance.owner = self.request.user
         form.instance.base_goal = False
@@ -118,6 +117,7 @@ class CustomExerciseUpdate(LoginRequiredMixin, UpdateView):
     form_class = CustomExerciseForm
     success_url = reverse_lazy('my exercises list')
 
+
 class CustomExerciseDetail(LoginRequiredMixin, DetailView):
     template_name = 'content/exercises/custom/exercise-details.html'
     model = CustomExercise
@@ -152,6 +152,7 @@ class TrainersListView(ListView):
             trainers_in_city = TrainerProfile.objects.filter(profile__location=location.pk).order_by('-prime_membership')
             context['trainers_in_city'] = trainers_in_city
         return context
+
 
 class TrainerDetails(DetailView):
     template_name = 'profiles/trainer/view-for-trainees/trainer-details.html'
@@ -236,6 +237,7 @@ def filter_custom_exercises_by_bodypart(request, bodypart):
     }
     return render(request, 'content/exercises/custom/my-exercises.html', context)
 
+
 def filter_articles_by_category(request, category):
     articles = Article.objects.filter(category__contains=category)
     paginator = Paginator(articles, 6)
@@ -246,6 +248,7 @@ def filter_articles_by_category(request, category):
         'page_obj': page_obj
     }
     return render(request, 'content/articles/articles-list.html', context)
+
 
 def filter_trainers_by_location(request, location):
     trainers = TrainerProfile.objects.filter(profile__location__name=location)

@@ -23,7 +23,7 @@
                     Type: {{ exercise.type }}
                 </p>
               </div>
-              <button><a href="{% url 'exercise details' pk=exercise.pk %}">Details</a></button>
+              <button><a href="{% url 'exercise details' slug=exercise.slug %}">Details</a></button>
     {#          TODO: create the add to favorites mechanism      #}
                 <button><a href="
 {#                        {% url 'add to fave' exercise.id %}#}

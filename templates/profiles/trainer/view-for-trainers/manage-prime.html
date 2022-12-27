@@ -18,7 +18,7 @@
             </div>
             <div class="workout-modal-btns">
                 <button class="btn btn-outline-light" id="change-prime-confirm-btn" style="color:black"><a>Confirm</a></button>
-                <button class="btn btn-outline-light"><a href="{% url 'trainer profile details' request.user.trainerprofile.pk %}">Back to my profile</a></button>
+                <button class="btn btn-outline-light"><a href="{% url 'trainer profile details' slug=request.user.trainerprofile.slug %}">Back to my profile</a></button>
             </div>
             </form>
         </div>

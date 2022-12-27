@@ -22,3 +22,4 @@ class TraineeProfileRequiredMixin(LoginRequiredMixin):
             return super().dispatch(request, *args, **kwargs)
         except:
             return render(request, 'profiles/403-need-trainee-prof.html')
+

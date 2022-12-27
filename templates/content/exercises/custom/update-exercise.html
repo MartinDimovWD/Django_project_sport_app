@@ -6,7 +6,7 @@
     <h1 class="form-page-header">Edit {{ custom_exercise.name }}</h1>
     <div class="form-container">
         <div class="exercise-form form-inner">
-            <form action="{% url 'custom exercise update' pk=custom_exercise.pk%}" method="post" id="exercise-form">
+            <form action="{% url 'custom exercise update' slug=custom_exercise.slug%}" method="post" id="exercise-form">
                 {% include 'partials/field-errors-alert.html' %}
                 <div>
                     <div>

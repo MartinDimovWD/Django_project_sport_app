@@ -25,7 +25,7 @@ def complete_trainer_profile_view(request):
         form = CompleteTrainerProfileForm(request.POST)
         if form.is_valid():
             trainer = form.save()
-            return redirect('trainer profile details', pk=trainer.pk)
+            return redirect('trainer profile details', slug=trainer.slug)
     context = {'form': form}
     return render(request, 'profiles/trainer/complete-profile.html', context)
 
@@ -39,7 +39,7 @@ def complete_trainee_profile_view(request):
             for goal in list(form.cleaned_data['goals']):
                 CustomGoal.objects.create(owner=AppUser.objects.get(pk=client_pk), goal_name=goal.goal_name, base_goal=False)
             trainee = form.save()
-            return redirect('trainee profile details', pk=trainee.pk)
+            return redirect('trainee profile details', slug=trainee.slug)
     context = {'form': form}
     return render(request, 'profiles/trainee/complete-profile.html', context)
 
@@ -52,13 +52,15 @@ class UpdateTrainerProfileView(UpdateView):
     success_url = '/'
 
     def get_success_url(self):
-        return reverse_lazy('trainer profile details', kwargs={'pk': self.object.pk})
+        return reverse_lazy('trainer profile details', kwargs={'slug': self.object.slug})
 
 
 class TrainerProfileView(DetailView):
     template_name = 'profiles/trainer/view-for-trainees/trainer-details.html'
     model = TrainerProfile
     context_object_name = 'trainer'
+    def get_success_url(self):
+        return reverse_lazy('trainer details', kwargs={'slug': self.object.slug})
 
 
 class TrainerPersonalProfileView(DetailView):
@@ -74,7 +76,7 @@ class UpdateTraineeProfileView(UpdateView):
     template_name = 'profiles/trainee/update-profile.html'
 
     def get_success_url(self):
-        return reverse_lazy('trainee profile details', kwargs={'pk': self.object.pk})
+        return reverse_lazy('trainee profile details', kwargs={'slug': self.object.slug})
 
 
 class TraineeProfileView(DetailView):
@@ -125,4 +127,4 @@ class ManagePrimeSubscriptionView(UpdateView):
     model = TrainerProfile
 
     def get_success_url(self):
-        return reverse_lazy('trainer profile details', kwargs={'pk': self.object.pk})
+        return reverse_lazy('trainer profile details', kwargs={'slug': self.object.slug})
