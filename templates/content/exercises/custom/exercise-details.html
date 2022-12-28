@@ -2,15 +2,23 @@
 {% load static %}
 {% load content_filters %}
 {% block page_content %}
-<h3>{{ custom_exercise.name|capitalize_each_word }}</h3>
-<img src="{{ custom_exercise.exercise_photo }}" alt="" height="100" width="100">
-<ul>
-    {% for part in custom_exercise.body_parts %}
-        <li>{{ part }}</li>
-    {% endfor %}
-</ul>
-<h4>{{ custom_exercise.type }}</h4>
-<p>{{ custom_exercise.description }}</p>
+    <div class="container">
 
-    <div><a href="{% url 'exercises list' %}">Back to all exercises</a></div>
+    <h1 id="exercise-name">{{ custom_exercise.name|capitalize_each_word }} / <a href="{% url 'exercises list' %}">Back to all exercises</a></h1>
+        <div class="exercise-details-container">
+            <div class="exercise-illustration">
+                <img src="{{ custom_exercise.exercise_photo }}" alt="" height="100" width="100">
+                <h1>
+                    {% for part in custom_exercise.body_parts %}
+                        {{ part }} |
+                    {% endfor %}
+                </h1>
+            </div>
+            <div class="exercise-info">
+                <h4><small class="text-muted">Type: </small>{{ custom_exercise.type }}</h4>
+                <p><small class="text-muted">Description: </small>{{ custom_exercise.description }}</p>
+                <p><small class="text-muted">Instructions: </small></p>
+            </div>
+        </div>
+    </div>
 {% endblock %}

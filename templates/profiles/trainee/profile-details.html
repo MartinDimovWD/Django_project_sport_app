@@ -34,7 +34,8 @@
                         <th>Completed</th>
                         <th>Date added</th>
                         <th>Date finished</th>
-                        <th>Mark as completed</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 {% for goal in goals %}
@@ -47,7 +48,11 @@
                         {% endif %}
                         <td>{{ goal.date_added }}</td>
                         <td>{{ goal.date_finished }}</td>
-                        <td style="justify-content: center; display:flex; font-size:24px">{% if not goal.is_accomplished %} <input type="radio"> {% endif %}</td>
+                        <td>{% if not goal.is_accomplished %}
+{#                            <input type="radio">#}
+                            <button>Mark as completed</button>
+                        {% endif %}</td>
+                    <td><button>Delete</button></td>
                     </tr>
                 {% endfor %}
                 <tr>
@@ -56,6 +61,19 @@
             </table>
 
         </div>
+
+
+
+        <div>
+            <form method="post" action="/">
+                {{ formset }}
+                {% csrf_token %}
+                <input type="submit" name="Submit">
+            </form>
+        </div>
+
+
+
         <div class="latest-workouts">
             <h1>Latest workouts</h1>
             {% if last_workouts %}

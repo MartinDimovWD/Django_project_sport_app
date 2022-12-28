@@ -1,5 +1,6 @@
 .trainer-details-page-container h1,
-.container #gym-name
+.container #gym-name,
+#exercise-name
 {
     padding-top:6px;
     padding-bottom:6px;
@@ -7,7 +8,8 @@
 }
 
 .trainer-details-container,
-.gym-details-container{
+.gym-details-container,
+.exercise-details-container{
     display: flex;
     flex-direction: row;
 }

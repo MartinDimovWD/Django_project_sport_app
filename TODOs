@@ -12,13 +12,14 @@ Models and forms:
         - Add a section in the dashboard with favourite exercises - kilograms
             lifted/kilometers ran /etc
         - Dashboard Stats for the year. Num of workouts,goals achieved, etc.
+        - Accordion Menu - Goals, Workouts, Stats
     Sport App:
         - rating as in the gyms
         - inline formsets to the workouts so x-number of exercises could be added
         - add to fav mechanism (exercise, gyms, articles)
-
+        - have a page MANAGE GOALS or figure out how to implement the god damn formset in the detailview
 Prime membership:
-    - page for unsubscribe, filter by prime,
+    - filter by prime,
     - only prime can write articles.
     - Add call-to action for subscribing to prime.
 
@@ -38,16 +39,19 @@ run 'pip freeze > requirements.txt'
 
 Forms:
 -mark goal as accomplished
+= 'Mark as completed' button appears if the goal is not accomplished.
+On click the goal is accomplished and the page is refreshed.
+
 
 create 2 users and 2 trainer default profiles
 python manage.py loaddata trainer_profile_data
 
 Bugs:
 - fix the second page of the workouts list
-- See more btn in the gym list to match the other buttons.
 - profile requirements mixins.
 - In exercises and Workouts list show only content that is created by the
     user except for the base content.
 - phone to be changed as char instead of number input and put num validator.
 If you enter a number starting with 0 it is not a valid number, hence error.
 - users can change other people's profiles - mixin that allows only the owner to access the page.
+

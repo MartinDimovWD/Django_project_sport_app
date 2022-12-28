@@ -2,16 +2,18 @@ import re
 
 from django import forms
 from django.contrib.auth import logout
-from django.forms import ModelForm, HiddenInput
+from django.forms import ModelForm, HiddenInput, formset_factory, modelformset_factory, inlineformset_factory
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DetailView, DeleteView
+from django.views.generic.edit import FormMixin
 
 from project_project.accounts.models import AppUser
 from project_project.profiles.forms import TraineeProfileUpdateForm, TrainerProfileUpdateForm, CompleteTrainerProfileForm, \
     CompleteTraineeProfileForm, ManagePrimeSubscriptionForm
 from project_project.profiles.mixins import TrainerProfileRequiredMixin
 from project_project.profiles.models import TrainerProfile, TraineeProfile
+from project_project.sport_app.forms import CustomGoalForm, CompleteGoalForm
 from project_project.sport_app.models import Goal, CustomGoal, Workout
 
 
@@ -79,12 +81,21 @@ class UpdateTraineeProfileView(UpdateView):
         return reverse_lazy('trainee profile details', kwargs={'slug': self.object.slug})
 
 
-class TraineeProfileView(DetailView):
+class TraineeProfileView(FormMixin, DetailView):
     template_name = 'profiles/trainee/profile-details.html'
     model = TraineeProfile
-
+    form_class = CompleteGoalForm
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        goals = Goal.objects.filter(owner=self.request.user.pk)
+        GoalsFormset = inlineformset_factory(AppUser, Goal, form=CompleteGoalForm, max_num=len(goals))
+        user = AppUser.objects.get(pk=self.request.user.pk)
+        formset = GoalsFormset(instance=user)
+        # GoalsFormset = inlineformset_factory(AppUser, Goal, fields=('goal_name', 'is_accomplished'), max_num=len(goals))
+        #  formset = GoalsFormset(queryset = goals)
+        context['formset'] = formset
+
         context['goals'] = Goal.objects.filter(base_goal=False, owner=self.request.user.pk)
         user_workouts = Workout.objects.filter(owner=self.request.user.pk).order_by('-pk')
         context['last_workouts'] = user_workouts
@@ -96,7 +107,15 @@ class TraineeProfileView(DetailView):
             context['last_workout_three'] = user_workouts[2]
         return context
 
-
+    # def form_valid(self, form):
+    #     context = self.get_context_data()
+    #     formsets = context['formset']
+    #     if form.is_valid() and formsets.is_valid():
+    #         self.object = form.save()
+    #         formsets.instance = self.object
+    #         formsets.save()
+    #     return super(TraineeProfileView, self).form_valid(form)
+    #
 class TraineeDeleteView(DeleteView):
     template_name = 'profiles/trainee/profile-delete.html'
     model = TraineeProfile

@@ -1,6 +1,8 @@
 from django import forms
+from django.forms import inlineformset_factory
 
-from project_project.sport_app.models import Workout, CustomExercise, Article, CustomGoal
+from project_project.accounts.models import AppUser
+from project_project.sport_app.models import Workout, CustomExercise, Article, CustomGoal, Goal
 
 
 class ArticleForm(forms.ModelForm):
@@ -56,11 +58,12 @@ class WorkoutForm(forms.ModelForm):
                 })
         }
 
+
 class CustomGoalForm(forms.ModelForm):
     class Meta:
         model = CustomGoal
         fields = ['goal_name', 'is_accomplished', 'description']
-        widget = {
+        widgets = {
             'goal_name': forms.TextInput(
                 attrs={
                     'class':'form-control',
@@ -68,9 +71,9 @@ class CustomGoalForm(forms.ModelForm):
                 },
             ),
             'is_accomplished': forms.CheckboxInput(
-                attrs={
-                    'class': 'form-control',
-                },
+                # attrs={
+                #     'class': 'form-control',
+                # },
             ),
             'description': forms.TextInput(
                 attrs={
@@ -80,6 +83,17 @@ class CustomGoalForm(forms.ModelForm):
             )
         }
 
+class CompleteGoalForm(forms.ModelForm):
+    class Meta:
+        model=CustomGoal
+        fields=['goal_name', 'is_accomplished']
+        # widgets={
+        #     'is_accomplished': forms.CheckboxInput(
+        #         attrs={
+        #             'class': 'form-control',
+        #         },
+        #     ),
+        # }
 
 class CustomExerciseForm(forms.ModelForm):
     class Meta:
@@ -122,3 +136,6 @@ class CustomExerciseForm(forms.ModelForm):
                 }
             )
         }
+
+
+

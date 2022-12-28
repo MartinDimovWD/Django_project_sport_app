@@ -157,6 +157,7 @@ class CompleteTraineeProfileForm(ModelForm):
             ])
         return self.cleaned_data
 
+
 class ManagePrimeSubscriptionForm(ModelForm):
     class Meta:
         model = TrainerProfile
