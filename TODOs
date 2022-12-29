@@ -18,6 +18,7 @@ Models and forms:
         - inline formsets to the workouts so x-number of exercises could be added
         - add to fav mechanism (exercise, gyms, articles)
         - have a page MANAGE GOALS or figure out how to implement the god damn formset in the detailview
+        - if the goal is completed it cannot be edited anymore - readonly
 Prime membership:
     - filter by prime,
     - only prime can write articles.

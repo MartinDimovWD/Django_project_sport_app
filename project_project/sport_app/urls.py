@@ -4,7 +4,7 @@ from project_project.sport_app.views import ArticlesListView, ArticleDetails, Tr
     ExercisesListView, ExerciseDetails, WorkoutsListView, WorkoutDetails, WorkoutCreateView, WorkoutUpdateView, \
     WorkoutDeleteView, filter_exercises_by_bodypart, filter_articles_by_category, ArticleCreate, CustomExerciseCreate, \
     CustomExerciseUpdate, CustomExerciseDetail, CustomExerciseDelete, CustomExerciseList, CustomGoalCreate, \
-    filter_trainers_by_location
+    filter_trainers_by_location, manage_goals
 
 urlpatterns=[
     path('articles/', include([
@@ -45,5 +45,6 @@ urlpatterns=[
             path('<int:pk>/delete', WorkoutDeleteView.as_view(), name='workout delete'),
             ]))
     ])),
-    path('content/create-goal', CustomGoalCreate.as_view(), name='create custom goal')
+    path('content/create-goal', CustomGoalCreate.as_view(), name='create custom goal'),
+    path('content/manage-goals', manage_goals, name='manage goals'),
 ]

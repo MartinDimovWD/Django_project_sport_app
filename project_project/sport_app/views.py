@@ -14,8 +14,9 @@ from project_project.locations.models import Gym
 from project_project.profiles.mixins import TrainerProfileRequiredMixin, TraineeProfileRequiredMixin
 from project_project.profiles.models import TrainerProfile
 from project_project.sport_app.filters import ArticleCategoryFilter
-from project_project.sport_app.forms import WorkoutForm, CustomExerciseForm, ArticleForm, CustomGoalForm
-from project_project.sport_app.models import Article, Exercise, Workout, CustomExercise, CustomGoal
+from project_project.sport_app.forms import WorkoutForm, CustomExerciseForm, ArticleForm, CustomGoalForm, \
+    CompleteGoalForm
+from project_project.sport_app.models import Article, Exercise, Workout, CustomExercise, CustomGoal, Goal
 from project_project.web_app.utils import QuerySetChain
 
 
@@ -85,6 +86,46 @@ class CustomGoalCreate(LoginRequiredMixin, CreateView):
         form.instance.owner = self.request.user
         form.instance.base_goal = False
         return super().form_valid(form)
+
+
+def manage_goals(request):
+    goals=Goal.objects.filter(owner=request.user.pk)
+    GoalsFormset = inlineformset_factory(
+        AppUser,
+        Goal, fields=('goal_name', 'is_accomplished'),
+        max_num=len(goals),
+        extra=1
+    )
+    user = AppUser.objects.get(pk=request.user.pk)
+    if request.method=='POST':
+        form=GoalsFormset(request.POST, instance=user)
+        form.save()
+        return redirect('trainee profile details', slug=user.traineeprofile.slug)
+
+    form = GoalsFormset(instance=user)
+    context={'form':form}
+    return render(request, 'content/custom_goal/manage-goals.html', context)
+
+# class ManageGoalsView(CreateView):
+#     template_name = 'content/custom_goal/manage-goals.html'
+#     context_object_name = 'goals'
+#     form_class = CustomGoalForm
+#     success_url = reverse_lazy('workouts list')
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         goals = Goal.objects.filter(owner=self.request.user.pk)
+#         GoalsFormset = inlineformset_factory(AppUser, Goal, form=CompleteGoalForm, max_num=len(goals))
+#         user = AppUser.objects.get(pk=self.request.user.pk)
+#         formset = GoalsFormset(instance=user)
+#         # GoalsFormset = inlineformset_factory(AppUser, Goal, fields=('goal_name', 'is_accomplished'), max_num=len(goals))
+#         #  formset = GoalsFormset(queryset = goals)
+#         context['formset'] = formset
+#         return context
+#
+#     def get_queryset(self):
+#         goals = Goal.objects.all()
+#         return goals
 
 
 class CustomExerciseCreate(LoginRequiredMixin, CreateView):

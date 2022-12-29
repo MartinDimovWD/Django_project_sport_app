@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block page_content %}
+    <form action="{% url 'manage goals' %}" method="post">
+        {{ form }}
+        {% csrf_token %}
+        <input type="submit" name="submit">
+    </form>
+    <a href="{% url 'create custom goal' %}">Add a new goal</a>
+{% endblock %}

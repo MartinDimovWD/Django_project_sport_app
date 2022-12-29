@@ -88,14 +88,6 @@ class TraineeProfileView(FormMixin, DetailView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        goals = Goal.objects.filter(owner=self.request.user.pk)
-        GoalsFormset = inlineformset_factory(AppUser, Goal, form=CompleteGoalForm, max_num=len(goals))
-        user = AppUser.objects.get(pk=self.request.user.pk)
-        formset = GoalsFormset(instance=user)
-        # GoalsFormset = inlineformset_factory(AppUser, Goal, fields=('goal_name', 'is_accomplished'), max_num=len(goals))
-        #  formset = GoalsFormset(queryset = goals)
-        context['formset'] = formset
-
         context['goals'] = Goal.objects.filter(base_goal=False, owner=self.request.user.pk)
         user_workouts = Workout.objects.filter(owner=self.request.user.pk).order_by('-pk')
         context['last_workouts'] = user_workouts
@@ -107,14 +99,7 @@ class TraineeProfileView(FormMixin, DetailView):
             context['last_workout_three'] = user_workouts[2]
         return context
 
-    # def form_valid(self, form):
-    #     context = self.get_context_data()
-    #     formsets = context['formset']
-    #     if form.is_valid() and formsets.is_valid():
-    #         self.object = form.save()
-    #         formsets.instance = self.object
-    #         formsets.save()
-    #     return super(TraineeProfileView, self).form_valid(form)
+
     #
 class TraineeDeleteView(DeleteView):
     template_name = 'profiles/trainee/profile-delete.html'
