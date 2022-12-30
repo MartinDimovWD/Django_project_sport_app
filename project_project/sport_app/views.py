@@ -87,6 +87,10 @@ class CustomGoalCreate(LoginRequiredMixin, CreateView):
         form.instance.base_goal = False
         return super().form_valid(form)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['other_goals'] = Goal.objects.all()
+        return context
 
 def manage_goals(request):
     goals=Goal.objects.filter(owner=request.user.pk)
