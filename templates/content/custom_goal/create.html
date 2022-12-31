@@ -8,12 +8,14 @@
         <form action="" method="post">
         {% include 'partials/field-errors-alert.html' %}
             {{ form }}
+
             <div class="workout-modal-btns">
                 <button class="btn btn-outline-light" style="color:black"><a>Submit Goal</a></button>
             </div>
             {% csrf_token %}
         </form>
+
     </div>
 </div>
-    {{ other_goals }}
+
 {% endblock %}

@@ -7,7 +7,7 @@ from django.forms import ModelForm, modelformset_factory, inlineformset_factory
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView, TemplateView
 
 from project_project.accounts.models import AppUser
 from project_project.locations.models import Gym
@@ -96,40 +96,34 @@ def manage_goals(request):
     goals=Goal.objects.filter(owner=request.user.pk)
     GoalsFormset = inlineformset_factory(
         AppUser,
-        Goal, fields=('goal_name', 'is_accomplished'),
+        Goal,
+        fields=('goal_name', 'is_accomplished'),
         max_num=len(goals),
         extra=1
     )
     user = AppUser.objects.get(pk=request.user.pk)
-    if request.method=='POST':
-        form=GoalsFormset(request.POST, instance=user)
-        form.save()
-        return redirect('trainee profile details', slug=user.traineeprofile.slug)
+    formset = GoalsFormset(instance=user)
+    create_form= CustomGoalForm()
+    # print(request.POST)
+    if request.method =='POST':
+        if 'create_form' in request.POST:
+            create_form = CustomGoalForm(request.POST)
+            if create_form.is_valid():
+                f = create_form.save(commit=False)
+                f.owner = user
+                f.base_goal = False
+                f.save()
+                return redirect('trainee profile details', slug=user.traineeprofile.slug)
+        else:
+            formset = GoalsFormset(request.POST, instance=user)
+            if formset.is_valid():
+                print('ok')
+                formset.save()
+                return redirect('trainee profile details', slug=user.traineeprofile.slug)
 
-    form = GoalsFormset(instance=user)
-    context={'form':form}
+    context={'formset':formset,
+             'create_form': create_form}
     return render(request, 'content/custom_goal/manage-goals.html', context)
-
-# class ManageGoalsView(CreateView):
-#     template_name = 'content/custom_goal/manage-goals.html'
-#     context_object_name = 'goals'
-#     form_class = CustomGoalForm
-#     success_url = reverse_lazy('workouts list')
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         goals = Goal.objects.filter(owner=self.request.user.pk)
-#         GoalsFormset = inlineformset_factory(AppUser, Goal, form=CompleteGoalForm, max_num=len(goals))
-#         user = AppUser.objects.get(pk=self.request.user.pk)
-#         formset = GoalsFormset(instance=user)
-#         # GoalsFormset = inlineformset_factory(AppUser, Goal, fields=('goal_name', 'is_accomplished'), max_num=len(goals))
-#         #  formset = GoalsFormset(queryset = goals)
-#         context['formset'] = formset
-#         return context
-#
-#     def get_queryset(self):
-#         goals = Goal.objects.all()
-#         return goals
 
 
 class CustomExerciseCreate(LoginRequiredMixin, CreateView):

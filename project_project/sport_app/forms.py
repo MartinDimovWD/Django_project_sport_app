@@ -60,6 +60,8 @@ class WorkoutForm(forms.ModelForm):
 
 
 class CustomGoalForm(forms.ModelForm):
+    create_form = forms.BooleanField(widget=forms.HiddenInput, initial=True)
+
     class Meta:
         model = CustomGoal
         fields = ['goal_name', 'is_accomplished', 'description']
@@ -80,20 +82,21 @@ class CustomGoalForm(forms.ModelForm):
                     'class': 'form-control',
                     'placeholder': 'Write your plan how you want to achieve this goal'
                 },
-            )
+            ),
+
         }
 
 class CompleteGoalForm(forms.ModelForm):
     class Meta:
         model=CustomGoal
         fields=['goal_name', 'is_accomplished']
-        # widgets={
-        #     'is_accomplished': forms.CheckboxInput(
-        #         attrs={
-        #             'class': 'form-control',
-        #         },
-        #     ),
-        # }
+        widgets={
+            'is_accomplished': forms.CheckboxInput(
+                attrs={
+                    'class': 'form-control',
+                },
+            ),
+        }
 
 class CustomExerciseForm(forms.ModelForm):
     class Meta:
