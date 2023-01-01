@@ -4,7 +4,7 @@ form {
     border: black 3px solid;
 }
 .form-container{
-    max-width: 900px;
+    max-width: 1100px;
     display:flex;
     justify-content: center;
     flex-direction: column;
@@ -40,4 +40,8 @@ form label{
 
 .exercise-form {
     width: 700px;
+}
+
+.goal-management-form-container {
+    width:1200px;
 }

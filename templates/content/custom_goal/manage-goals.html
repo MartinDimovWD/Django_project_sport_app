@@ -3,59 +3,92 @@
 {% load static %}
 
 {% block page_content %}
-    <form action="{% url 'manage goals' %}" method="post">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Goal name</th>
-                <th>Completed</th>
-                <th>Date added</th>
-                <th>Date finished</th>
-                <th>Mark as completed</th>
-                <th>Delete</th>
-            </tr>
-        </thead>
-        {{ formset.management_form }}
-        {% for form in formset %}
-            <tr>
-            {% if form.instance.is_accomplished %}
-                <td>{{ form.instance.goal_name }}</td>
-                <td style="font-size:24px"><i class="fa-solid fa-square-check" style="color:green"> </i></td>
-                <td>{{ form.instance.date_added|date_convert }}</td>
-                <td>{{ form.instance.date_finished|date_convert }}</td>
-                <td>--</td>
-                <td>{{ form.DELETE }}</td>
-            {% else %}
-                <td>{{ form.goal_name }}</td>
-                <td style="font-size:24px"><i class="fa-solid fa-square-xmark" style="color: red"></i></td>
-                <td>{{ form.instance.date_added|date_convert }}</td>
-                <td>--</td>
-                <td>{{ form.is_accomplished }}</td>
-                <td>{{ form.DELETE }}</td>
-            {% endif %}
+<div class="container ">
+    <h1 class="form-page-header">Goal Management Panel</h1>
+    <div class="form-container goal-management-form-container">
 
-            <td style="display:none">
-{#                These should stay here for now.                       #}
-{#                Otherwise the form breaks for some reason.            #}
-                {% for field in form %}
-                    {{ field }}
-                {% endfor %}
-            </td>
-            </tr>
-        {% endfor %}
-    </table>
+        <form action="{% url 'manage goals' %}" method="post">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Goal name</th>
+                    <th>Completed</th>
+                    <th>Date added</th>
+                    <th>Mark as completed</th>
+                    <th>Date finished</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            {{ formset.management_form }}
+            {% for form in formset %}
+                <tr>
+                {% if form.instance.is_accomplished %}
+                    <td>{{ form.instance.goal_name }}</td>
+                    <td style="font-size:24px"><i class="fa-solid fa-square-check" style="color:green"> </i></td>
+                    <td>{{ form.instance.date_added|date_convert }}</td>
+                    <td>--</td>
+                    <td>{{ form.instance.date_finished|date_convert }}</td>
+                    <td>{{ form.DELETE }}</td>
+                {% else %}
+                    <td>{{ form.goal_name }}</td>
+                    <td style="font-size:24px"><i class="fa-solid fa-square-xmark" style="color: red"></i></td>
+                    <td>{{ form.instance.date_added|date_convert }}</td>
+                    <td>{{ form.is_accomplished }}</td>
+                    <td>--</td>
+                    <td>{{ form.DELETE }}</td>
+                {% endif %}
+
+                <td style="display:none">
+        {#                These should stay here for now.                       #}
+        {#                Otherwise the form breaks for some reason.            #}
+                    {% for field in form %}
+                        {{ field }}
+                    {% endfor %}
+                </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+            {% csrf_token %}
+            <div class="workout-modal-btns">
+                <button class="btn btn-outline-light" style="color:black"><a>Submit Changes</a></button>
+                <button class="btn btn-outline-light" style="color:black" id="goal-management-create-goal-btn" type="button"
+                        data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <a href="#">Create new goal</a></button>
+            </div>
+        </form>
 
 
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create new goal</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form action="" method="POST" style="display:block" id="goal-management-create-goal-form">
+                    {{ create_form }}
+                    {% csrf_token %}
+                </form>
+              </div>
+              <div class="workout-modal-btns">
+                <button type="button" class="btn btn-outline-light" style="color:black" data-bs-dismiss="modal"><a>Close</a></button>
+                <button class="btn btn-outline-light" style="color:black" form="goal-management-create-goal-form"><a>Create goal</a></button>
+              </div>
+            </div>
+          </div>
+        </div>
 
+{#        <form action="" method="POST" style="display:none" id="goal-management-create-goal-form">#}
+{#            {{ create_form }}#}
+{#            {% csrf_token %}#}
+{#            <div class="workout-modal-btns">#}
+{#                <button class="btn btn-outline-light" style="color:black"><a>Create goal</a></button>#}
+{#            </div>#}
+{#        </form>#}
 
-        {% csrf_token %}
-        <button>Submit changes</button>
-    </form>
-
-    <form action="" method="POST">
-        {{ create_form }}
-        {% csrf_token %}
-        <input type="submit">
-    </form>
-    <a href="{% url 'create custom goal' %}">Add a new goal</a>
+        <a href="{% url 'trainee profile details' slug=request.user.traineeprofile.slug %}">Back to my dashboard</a>
+    </div>
+</div>
 {% endblock %}

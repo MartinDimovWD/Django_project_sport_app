@@ -21,6 +21,9 @@ Models and forms:
         - if the goal is completed it cannot be edited anymore - readonly
         - goals - when clicking on the goal name or block, open a modal that
         shows the description of the goal.
+        - consider a list with categories of goals depending on level:
+        beginner goals: 10 pull ups; run 5km
+        advanced: learn to handstand; run 20km marathon
 Prime membership:
     - filter by prime,
     - only prime can write articles.

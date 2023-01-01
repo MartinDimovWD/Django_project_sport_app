@@ -48,14 +48,18 @@
                         <td style="justify-content: center; display:flex; font-size:24px"><i class="fa-solid fa-square-xmark" style="color: red"></i></td>
                         {% endif %}
                         <td>{{ goal.date_added|date_convert }}</td>
+                        {% if goal.date_finished %}
                         <td>{{ goal.date_finished|date_convert }}</td>
-
+                        {% else %}
+                        <td>--</td>
+                        {% endif %}
                     </tr>
                 {% endfor %}
                 <tr>
                     <td><a href="{% url 'manage goals' %}">Manage Goals</a></td>
                     <td><a href="{% url 'create custom goal' %}">Add a new goal</a></td>
                 </tr>
+
             </table>
 
         </div>

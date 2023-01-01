@@ -3,18 +3,18 @@
 
 {% block page_content %}
 <div class="container">
-    <h1>Create a new goal</h1>
-    <div class="create-goal-container">
-        <form action="" method="post">
-        {% include 'partials/field-errors-alert.html' %}
-            {{ form }}
-
-            <div class="workout-modal-btns">
-                <button class="btn btn-outline-light" style="color:black"><a>Submit Goal</a></button>
-            </div>
-            {% csrf_token %}
-        </form>
-
+    <h1 class="form-page-header">Create a new goal</h1>
+    <div class="form-container">
+        <div class="create-goal-container form-inner">
+            <form action="" method="post">
+            {% include 'partials/field-errors-alert.html' %}
+                {{ form }}
+                <div class="workout-modal-btns">
+                    <button class="btn btn-outline-light" style="color:black"><a>Submit Goal</a></button>
+                </div>
+                {% csrf_token %}
+            </form>
+        </div>
     </div>
 </div>
 

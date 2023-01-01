@@ -1,12 +1,18 @@
 @import 'structure/nav.css';
-@import 'utils/images.css';
 @import 'structure/base.css';
-@import 'sign-up.css';
-@import 'content/articles.css';
-@import 'content/workouts.css';
+
+@import 'utils/images.css';
 @import 'utils/forms.css';
 @import 'utils/buttons.css';
+
+@import 'sign-up.css';
+
 @import 'profile-dashboard.css';
+
+@import 'content/articles.css';
+@import 'content/workouts.css';
 @import 'content/trainers-list.css';
 @import 'content/card-detailed-info.css';
 @import 'content/gyms.css';
+
+
