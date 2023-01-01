@@ -1,10 +1,13 @@
 from django.urls import path, include
 
-from project_project.sport_app.views import ArticlesListView, ArticleDetails, TrainersListView, TrainerDetails, \
-    ExercisesListView, ExerciseDetails, WorkoutsListView, WorkoutDetails, WorkoutCreateView, WorkoutUpdateView, \
-    WorkoutDeleteView, filter_exercises_by_bodypart, filter_articles_by_category, ArticleCreate, CustomExerciseCreate, \
-    CustomExerciseUpdate, CustomExerciseDetail, CustomExerciseDelete, CustomExerciseList, CustomGoalCreate, \
-    filter_trainers_by_location, manage_goals
+from project_project.sport_app.views.articles_views import ArticlesListView, ArticleDetails, ArticleCreate
+from project_project.sport_app.views.exercises_views import ExercisesListView, ExerciseDetails, CustomExerciseList, \
+    CustomExerciseCreate, CustomExerciseUpdate, CustomExerciseDetail, CustomExerciseDelete
+from project_project.sport_app.views.goal_views import CustomGoalCreate, manage_goals
+from project_project.sport_app.views.filtering_views import filter_exercises_by_bodypart, filter_articles_by_category, filter_trainers_by_location
+from project_project.sport_app.views.trainers_views import TrainersListView, TrainerDetails
+from project_project.sport_app.views.workouts_views import WorkoutsListView, WorkoutCreateView, WorkoutDetails, \
+    WorkoutUpdateView, WorkoutDeleteView
 
 urlpatterns=[
     path('articles/', include([
