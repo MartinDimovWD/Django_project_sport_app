@@ -7,3 +7,5 @@ class ArticleCategoryFilter(django_filters.FilterSet):
     class Meta:
         model = Article
         fields = {'category': ['exact']}
+
+

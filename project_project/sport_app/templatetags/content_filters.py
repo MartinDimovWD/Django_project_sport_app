@@ -29,3 +29,7 @@ def open_now(gym):
     current_hour = int(time.strftime('%H'))
     if gym.open_hour <= current_hour <= gym.close_hour:
         return True
+
+@register.filter('date_convert')
+def date_convert(date):
+    return date.strftime('%d %b %Y - %I %p')

@@ -86,10 +86,11 @@ class CustomGoalForm(forms.ModelForm):
 
         }
 
+
 class CompleteGoalForm(forms.ModelForm):
     class Meta:
         model=CustomGoal
-        fields=['goal_name', 'is_accomplished']
+        fields=['goal_name', 'is_accomplished', 'description']
         widgets={
             'is_accomplished': forms.CheckboxInput(
                 attrs={
@@ -97,6 +98,7 @@ class CompleteGoalForm(forms.ModelForm):
                 },
             ),
         }
+
 
 class CustomExerciseForm(forms.ModelForm):
     class Meta:

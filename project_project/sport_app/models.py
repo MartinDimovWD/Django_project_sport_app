@@ -42,11 +42,20 @@ class Goal(models.Model):
         null=True,
         blank=True
     )
+    owner = models.ForeignKey(AppUser, on_delete=models.CASCADE)
     date_added = models.DateTimeField(auto_now_add=True)
+    date_finished = models.DateTimeField(
+        null=True,
+        blank=True
+    )
     def __str__(self):
         return self.goal_name
 
-    owner = models.ForeignKey(AppUser, on_delete=models.CASCADE)
+    def save(self, *args, **kwargs):
+        if self.is_accomplished==True:
+            self.date_finished = datetime.now()
+            print('noise')
+        super(Goal, self).save(*args, **kwargs)
 
 # custom goals are those that users has created, and they are only accessible to them
 class CustomGoal(Goal):

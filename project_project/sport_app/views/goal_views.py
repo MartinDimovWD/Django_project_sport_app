@@ -31,7 +31,7 @@ def manage_goals(request):
     GoalsFormset = inlineformset_factory(
         AppUser,
         Goal,
-        fields=('goal_name', 'is_accomplished'),
+        fields=('goal_name', 'is_accomplished',),
         max_num=len(goals),
         extra=1
     )
@@ -49,9 +49,8 @@ def manage_goals(request):
                 f.save()
                 return redirect('trainee profile details', slug=user.traineeprofile.slug)
         else:
-            formset = GoalsFormset(request.POST, instance=user)
+            formset = GoalsFormset(request.POST, instance=user )
             if formset.is_valid():
-                print('ok')
                 formset.save()
                 return redirect('trainee profile details', slug=user.traineeprofile.slug)
 

@@ -1,13 +1,55 @@
 {% extends 'index.html' %}
+{% load content_filters %}
 {% load static %}
 
 {% block page_content %}
     <form action="{% url 'manage goals' %}" method="post">
-        {{ formset }}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Goal name</th>
+                <th>Completed</th>
+                <th>Date added</th>
+                <th>Date finished</th>
+                <th>Mark as completed</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        {{ formset.management_form }}
+        {% for form in formset %}
+            <tr>
+            {% if form.instance.is_accomplished %}
+                <td>{{ form.instance.goal_name }}</td>
+                <td style="font-size:24px"><i class="fa-solid fa-square-check" style="color:green"> </i></td>
+                <td>{{ form.instance.date_added|date_convert }}</td>
+                <td>{{ form.instance.date_finished|date_convert }}</td>
+                <td>--</td>
+                <td>{{ form.DELETE }}</td>
+            {% else %}
+                <td>{{ form.goal_name }}</td>
+                <td style="font-size:24px"><i class="fa-solid fa-square-xmark" style="color: red"></i></td>
+                <td>{{ form.instance.date_added|date_convert }}</td>
+                <td>--</td>
+                <td>{{ form.is_accomplished }}</td>
+                <td>{{ form.DELETE }}</td>
+            {% endif %}
+
+            <td style="display:none">
+{#                These should stay here for now.                       #}
+{#                Otherwise the form breaks for some reason.            #}
+                {% for field in form %}
+                    {{ field }}
+                {% endfor %}
+            </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+
+
+
         {% csrf_token %}
-
-
-        <input type="submit">
+        <button>Submit changes</button>
     </form>
 
     <form action="" method="POST">
