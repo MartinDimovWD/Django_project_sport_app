@@ -38,9 +38,9 @@
                               <h3>Exercises</h3>
                               <div class="card-text">
                                     <ul>
-                                      {% for exercise in workout.exercises.all %}
-                                          <li class="fs-5">{{ exercise }}</li>
-                                          <span>{{ exercise|random_reps }}</span>
+                                      {% for exerciseInst in workout|get_exercises_of_workout %}
+                                          <li class="fs-5">{{ exerciseInst }}</li>
+                                          <span>{{ exerciseInst.exercise|random_reps }}</span>
                                       {% endfor %}
                                     </ul>
 

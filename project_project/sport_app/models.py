@@ -134,29 +134,7 @@ class Exercise(models.Model):
         return self.name
 
 
-class ExerciseInstance(models.Model):
-    owner = models.ForeignKey(AppUser, on_delete=models.CASCADE )
-    exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE)
-    reps = models.PositiveIntegerField(
-        default=0,
-        null=True,
-        blank=True
-    )
-    weight = models.PositiveIntegerField(
-        default=0,
-        null=True,
-        blank=True
-    )
-    distance = models.PositiveIntegerField(
-        default=0,
-        null=True,
-        blank=True
-    )
-    duration = models.PositiveIntegerField(
-        default=0,
-        null=True,
-        blank=True
-    )
+
 
 # Custom exercises are those created by the user, and they are only accessible to them
 class CustomExercise(Exercise):
@@ -228,9 +206,8 @@ class Workout(models.Model):
         blank=True,
         null=True
     )
-
     # exercises = models.ManyToManyField(Exercise, )
-    exercises = models.ManyToManyField(Exercise,)
+
     def __str__(self):
         return self.name
 
@@ -247,3 +224,34 @@ class Workout(models.Model):
         super(Workout, self).save(*args, **kwargs)
 
 
+class ExerciseInstance(models.Model):
+    workout = models.ForeignKey(Workout, on_delete=models.CASCADE )
+    exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE)
+    sets = models.PositiveIntegerField(
+        default=0,
+        null=True,
+        blank=True
+    )
+    reps = models.PositiveIntegerField(
+        default=0,
+        null=True,
+        blank=True
+    )
+    weight = models.PositiveIntegerField(
+        default=0,
+        null=True,
+        blank=True
+    )
+    distance = models.PositiveIntegerField(
+        default=0,
+        null=True,
+        blank=True
+    )
+    duration = models.PositiveIntegerField(
+        default=0,
+        null=True,
+        blank=True
+    )
+
+    def __str__(self):
+        return self.exercise.name

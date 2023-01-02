@@ -37,7 +37,7 @@ class ArticleForm(forms.ModelForm):
 class WorkoutForm(forms.ModelForm):
     class Meta:
         model = Workout
-        fields = ['name', 'exercises', 'duration']
+        fields = ['name',  'duration']
         widgets = {
             'name': forms.TextInput(attrs={
                 'size':'50',
@@ -45,12 +45,7 @@ class WorkoutForm(forms.ModelForm):
                 'class': 'form-control'
                 }),
             # TODO: INLINE FORMSET HERE!!!!
-            'exercises': forms.SelectMultiple(
-                attrs={
-                    'size': '12',
-                    'class': 'form-control'
-                }
-            ),
+
             'duration': forms.NumberInput(
                 attrs={
                     'placeholder': '---',
@@ -102,11 +97,17 @@ class CompleteGoalForm(forms.ModelForm):
 class ExerciseInstanceCreateForm(forms.ModelForm):
     class Meta:
         model = ExerciseInstance
-        fields = ['exercise', 'reps', 'weight', 'distance', 'duration']
+        fields = ['exercise', 'sets', 'reps', 'weight', 'distance', 'duration']
         widgets = {
             'exercise': forms.Select(
                 attrs={
                     'class': 'form-control',
+                }
+            ),
+            'sets': forms.NumberInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': '0'
                 }
             ),
             'reps': forms.NumberInput(
@@ -134,6 +135,7 @@ class ExerciseInstanceCreateForm(forms.ModelForm):
                 }
             ),
         }
+
 
 class CustomExerciseForm(forms.ModelForm):
     class Meta:

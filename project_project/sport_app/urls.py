@@ -7,7 +7,7 @@ from project_project.sport_app.views.goal_views import CustomGoalCreate, manage_
 from project_project.sport_app.views.filtering_views import filter_exercises_by_bodypart, filter_articles_by_category, filter_trainers_by_location
 from project_project.sport_app.views.trainers_views import TrainersListView, TrainerDetails
 from project_project.sport_app.views.workouts_views import WorkoutsListView, WorkoutCreateView, WorkoutDetails, \
-    WorkoutUpdateView, WorkoutDeleteView
+    WorkoutUpdateView, WorkoutDeleteView, add_workout
 
 urlpatterns=[
     path('articles/', include([
@@ -39,8 +39,8 @@ urlpatterns=[
     ])),
     path('workouts/',include([
         path('', WorkoutsListView.as_view(), name='workouts list'),
-        # path('create-new-workout/', create_workout, name='workout create'),
-        path('create-new-workout/', WorkoutCreateView.as_view(), name='workout create'),
+        path('create-new-workout/', add_workout, name='workout create'),
+        # path('create-new-workout/', WorkoutCreateView.as_view(), name='workout create'),
         # TODO: PUT A SLUG INSTEAD OF PK!
         path('workout/', include([
             path('<int:pk>', WorkoutDetails.as_view(), name='workout details'),

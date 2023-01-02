@@ -9,16 +9,41 @@
                     <form action="{% url 'workout create' %}" method="post">
                         {% include 'partials/field-errors-alert.html' %}
                     {#    {{ form.as_p }}#}
-                        <label for="">Workout name: </label><p>{{ form.name }}</p>
-                        <label for="">Exercises: </label><p>{{ form.exercises }}</p>
-                        <label for="">Duration (minutes):</label><p>{{ form.duration }}</p>
-                        <div class="workout-modal-btns">
-                            <button class="btn btn-outline-light" style="color:black"><a href="{{request.META.HTTP_REFERER}}">Cancel</a></button>
-                            <button class="btn btn-outline-light" style="color:black"><a>Finish Workout</a></button>
-                        </div>
+{#                        <label for="">Workout name: </label><p>{{ form.name }}</p>#}
+{#                        <label for="">Exercises: </label><p>{{ form.exercises }}</p>#}
+{#                        <label for="">Duration (minutes):</label><p>{{ form.duration }}</p>#}
+{#                        <div class="workout-modal-btns">#}
+{#                            <button class="btn btn-outline-light" style="color:black"><a href="{{request.META.HTTP_REFERER}}">Cancel</a></button>#}
+{#                            <button class="btn btn-outline-light" style="color:black"><a>Finish Workout</a></button>#}
+{#                        </div>#}
+                        {{ form }}
+                        {{ formset }}
+{#                        {% for f in formset %}#}
+{#                            {{ f.exercise }}#}
+{#                            <p style="display:none" id="reps">Reps {{ f.reps }}</p>#}
+{#                            <p style="display:none">{{ f.weight }}</p>#}
+{#                            <p style="display:none" id="duration">Duration {{ f.duration }}</p>#}
+{##}
+{#                        {% endfor %}#}
+
                         {% csrf_token %}
+                        <button>Submit</button>
                     </form>
             </div>
         </div>
     </div>
+    <script>
+    let ok = document.querySelectorAll('.select-field select')[0]
+    console.log(ok)
+    ok.addEventListener('click', ()=>{
+        console.log(ok.value)
+        if (ok.value === '17') {
+            document.getElementById('reps').style.display = 'block'
+        }
+        else if (ok.value === '18'){
+            document.getElementById('duration').style.display = 'block'
+
+        }
+    })
+    </script>
 {% endblock %}

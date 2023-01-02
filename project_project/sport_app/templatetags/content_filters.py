@@ -3,6 +3,8 @@ import time
 
 from django.template import Library
 
+from project_project.sport_app.models import ExerciseInstance
+
 register = Library()
 
 
@@ -33,3 +35,8 @@ def open_now(gym):
 @register.filter('date_convert')
 def date_convert(date):
     return date.strftime('%d %b %Y - %I %p')
+
+@register.filter('get_exercises_of_workout')
+def get_exercises_of_workout(workout):
+    exercises = ExerciseInstance.objects.filter(workout=workout)
+    return exercises

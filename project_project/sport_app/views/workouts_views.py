@@ -1,11 +1,14 @@
 from datetime import datetime
 
+from django.forms import inlineformset_factory
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
+from project_project.accounts.models import AppUser
 from project_project.profiles.mixins import TraineeProfileRequiredMixin
 from project_project.sport_app.forms import WorkoutForm
-from project_project.sport_app.models import Workout
+from project_project.sport_app.models import Workout, Exercise, ExerciseInstance
 
 
 class WorkoutsListView(TraineeProfileRequiredMixin,ListView):
@@ -70,12 +73,33 @@ class WorkoutDeleteView(TraineeProfileRequiredMixin,DeleteView):
     success_url = reverse_lazy('workouts list')
 
 
-# def add_workout(request):
-#     ExercisesFormset = inlineformset_factory(
-#         Workout,
-#         Exercise,
-#         fields=('name',),
-#         max_num=10,
-#         extra=3
-#     )
+def add_workout(request):
+    user = AppUser.objects.get(pk=request.user.pk)
+    ExercisesFormset = inlineformset_factory(
+        Workout,
+        ExerciseInstance,
+        fields=('exercise', 'sets','reps', 'weight', 'distance', 'duration'),
+        max_num=10,
+        extra=3
+    )
+    if request.method == 'POST':
+        form = WorkoutForm(request.POST)
+        if form.is_valid():
+            f = form.save(commit=False)
+            f.owner = user
+            f.save()
+            formset = ExercisesFormset(request.POST, instance=f)
+            if formset.is_valid():
+                formset.save()
+                return redirect('workouts list')
 
+    else:
+        form = WorkoutForm()
+        formset = ExercisesFormset()
+
+    context = {
+        'form': form,
+        'formset': formset
+    }
+
+    return render(request, 'content/workouts/create-workout.html', context)
