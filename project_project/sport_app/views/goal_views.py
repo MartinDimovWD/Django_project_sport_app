@@ -47,12 +47,14 @@ def manage_goals(request):
                 f.owner = user
                 f.base_goal = False
                 f.save()
-                return redirect('trainee profile details', slug=user.traineeprofile.slug)
+                return redirect('manage goals')
+                # return redirect('trainee profile details', slug=user.traineeprofile.slug)
         else:
             formset = GoalsFormset(request.POST, instance=user )
             if formset.is_valid():
                 formset.save()
-                return redirect('trainee profile details', slug=user.traineeprofile.slug)
+                return redirect('manage goals')
+                # return redirect('trainee profile details', slug=user.traineeprofile.slug)
 
     context={'formset': formset,
              'create_form': create_form}

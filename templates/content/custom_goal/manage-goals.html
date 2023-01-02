@@ -89,6 +89,7 @@
 {#        </form>#}
 
         <a href="{% url 'trainee profile details' slug=request.user.traineeprofile.slug %}">Back to my dashboard</a>
+        <a href="{% url 'workout create' %}">Start a new workout</a>
     </div>
 </div>
 {% endblock %}

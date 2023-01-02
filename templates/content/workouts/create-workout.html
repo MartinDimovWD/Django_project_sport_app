@@ -13,6 +13,7 @@
                         <label for="">Exercises: </label><p>{{ form.exercises }}</p>
                         <label for="">Duration (minutes):</label><p>{{ form.duration }}</p>
                         <div class="workout-modal-btns">
+                            <button class="btn btn-outline-light" style="color:black"><a href="{{request.META.HTTP_REFERER}}">Cancel</a></button>
                             <button class="btn btn-outline-light" style="color:black"><a>Finish Workout</a></button>
                         </div>
                         {% csrf_token %}

@@ -2,7 +2,7 @@ from django import forms
 from django.forms import inlineformset_factory
 
 from project_project.accounts.models import AppUser
-from project_project.sport_app.models import Workout, CustomExercise, Article, CustomGoal, Goal
+from project_project.sport_app.models import Workout, CustomExercise, Article, CustomGoal, Goal, ExerciseInstance
 
 
 class ArticleForm(forms.ModelForm):
@@ -99,6 +99,41 @@ class CompleteGoalForm(forms.ModelForm):
             ),
         }
 
+class ExerciseInstanceCreateForm(forms.ModelForm):
+    class Meta:
+        model = ExerciseInstance
+        fields = ['exercise', 'reps', 'weight', 'distance', 'duration']
+        widgets = {
+            'exercise': forms.Select(
+                attrs={
+                    'class': 'form-control',
+                }
+            ),
+            'reps': forms.NumberInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': '0'
+                }
+            ),
+            'weight': forms.NumberInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': '0'
+                }
+            ),
+            'distance': forms.NumberInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': '0'
+                }
+            ),
+            'duration': forms.NumberInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': '0'
+                }
+            ),
+        }
 
 class CustomExerciseForm(forms.ModelForm):
     class Meta:

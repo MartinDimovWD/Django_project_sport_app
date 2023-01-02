@@ -15,7 +15,7 @@ class WorkoutsListView(TraineeProfileRequiredMixin,ListView):
     context_object_name = 'workouts'
 
     def get_queryset(self):
-        workouts = Workout.objects.order_by('-date')
+        workouts = Workout.objects.filter(owner=self.request.user.pk).order_by('-date')
         return workouts
 
 
@@ -68,3 +68,14 @@ class WorkoutDeleteView(TraineeProfileRequiredMixin,DeleteView):
     fields = []
     context_object_name = 'workout'
     success_url = reverse_lazy('workouts list')
+
+
+# def add_workout(request):
+#     ExercisesFormset = inlineformset_factory(
+#         Workout,
+#         Exercise,
+#         fields=('name',),
+#         max_num=10,
+#         extra=3
+#     )
+

@@ -134,6 +134,30 @@ class Exercise(models.Model):
         return self.name
 
 
+class ExerciseInstance(models.Model):
+    owner = models.ForeignKey(AppUser, on_delete=models.CASCADE )
+    exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE)
+    reps = models.PositiveIntegerField(
+        default=0,
+        null=True,
+        blank=True
+    )
+    weight = models.PositiveIntegerField(
+        default=0,
+        null=True,
+        blank=True
+    )
+    distance = models.PositiveIntegerField(
+        default=0,
+        null=True,
+        blank=True
+    )
+    duration = models.PositiveIntegerField(
+        default=0,
+        null=True,
+        blank=True
+    )
+
 # Custom exercises are those created by the user, and they are only accessible to them
 class CustomExercise(Exercise):
     owner = models.ForeignKey(AppUser, on_delete=models.CASCADE )
@@ -200,6 +224,7 @@ class Workout(models.Model):
     date = models.DateTimeField(auto_now_add=True)
 
     duration = models.PositiveIntegerField(
+        default=0,
         blank=True,
         null=True
     )

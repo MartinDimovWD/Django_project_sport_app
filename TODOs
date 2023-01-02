@@ -17,8 +17,6 @@ Models and forms:
         - rating as in the gyms
         - inline formsets to the workouts so x-number of exercises could be added
         - add to fav mechanism (exercise, gyms, articles)
-        - have a page MANAGE GOALS or figure out how to implement the god damn formset in the detailview
-        - if the goal is completed it cannot be edited anymore - readonly
         - goals - when clicking on the goal name or block, open a modal that
         shows the description of the goal.
         - consider a list with categories of goals depending on level:
@@ -42,12 +40,6 @@ Styling:
 - forms in modal windows? hmmmm
 
 run 'pip freeze > requirements.txt'
-
-Forms:
--mark goal as accomplished
-= 'Mark as completed' button appears if the goal is not accomplished.
-On click the goal is accomplished and the page is refreshed.
-
 
 create 2 users and 2 trainer default profiles
 python manage.py loaddata trainer_profile_data
