@@ -255,3 +255,31 @@ class ExerciseInstance(models.Model):
 
     def __str__(self):
         return self.exercise.name
+
+
+class FavouriteExercise(models.Model):
+    exercise = models.ForeignKey(
+        Exercise,
+        on_delete=models.RESTRICT,
+        null=False,
+        blank=True
+    )
+
+    user = models.ForeignKey(
+        AppUser,
+        on_delete=models.RESTRICT
+    )
+
+
+class UserReadingList(models.Model):
+    article = models.ForeignKey(
+        Article,
+        on_delete=models.RESTRICT,
+        null=False,
+        blank=True
+    )
+
+    user = models.ForeignKey(
+        AppUser,
+        on_delete=models.RESTRICT
+    )

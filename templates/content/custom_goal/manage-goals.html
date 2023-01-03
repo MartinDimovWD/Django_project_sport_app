@@ -11,7 +11,8 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Goal name</th>
+                    <th>Goal</th>
+                    <th></th>
                     <th>Completed</th>
                     <th>Date added</th>
                     <th>Mark as completed</th>
@@ -24,6 +25,9 @@
                 <tr>
                 {% if form.instance.is_accomplished %}
                     <td>{{ form.instance.goal_name }}</td>
+                    <td>
+                    {% include 'partials/goalDescriptionModal.html' %}
+                    </td>
                     <td style="font-size:24px"><i class="fa-solid fa-square-check" style="color:green"> </i></td>
                     <td>{{ form.instance.date_added|date_convert }}</td>
                     <td>--</td>
@@ -31,6 +35,9 @@
                     <td>{{ form.DELETE }}</td>
                 {% else %}
                     <td>{{ form.goal_name }}</td>
+                    <td>
+                    {% include 'partials/goalDescriptionModal.html' %}
+                    </td>
                     <td style="font-size:24px"><i class="fa-solid fa-square-xmark" style="color: red"></i></td>
                     <td>{{ form.instance.date_added|date_convert }}</td>
                     <td>{{ form.is_accomplished }}</td>
@@ -92,4 +99,5 @@
         <a href="{% url 'workout create' %}">Start a new workout</a>
     </div>
 </div>
+
 {% endblock %}

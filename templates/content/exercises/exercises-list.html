@@ -25,9 +25,15 @@
               </div>
               <button><a href="{% url 'exercise details' slug=exercise.slug %}">Details</a></button>
     {#          TODO: create the add to favorites mechanism      #}
-                <button><a href="
-{#                        {% url 'add to fave' exercise.id %}#}
-                        ">Add to favorites</a></button>
+                <button>
+                    <a href="{% url 'favourite exercise' pk=exercise.pk %}">
+                        {% if not exercise in user_faves %}
+                            Add to favorites
+                        {% else %}
+                            Remove from favorites
+                        {% endif %}
+                    </a>
+                </button>
               <div class="card-footer">
                 <small class="text-muted">Body parts:
                     {% for part in exercise.body_parts %}

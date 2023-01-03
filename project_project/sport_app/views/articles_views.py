@@ -1,9 +1,11 @@
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView
 
 from project_project.profiles.mixins import TrainerProfileRequiredMixin
 from project_project.sport_app.forms import ArticleForm
-from project_project.sport_app.models import Article
+from project_project.sport_app.models import Article, UserReadingList
 
 
 class ArticlesListView(ListView):
@@ -20,7 +22,10 @@ class ArticlesListView(ListView):
             context['featured2'] = Article.objects.all()[1]
         # context['form'] = self.filterset.form
         # TODO: might put featured articles instead of the first 3
+        reading_list = [art.article for art in UserReadingList.objects.filter(user=self.request.user)]
+        context['reading_list'] = reading_list
         return context
+
 
     def get_queryset(self):
         articles = Article.objects.order_by('-publication_date')
@@ -44,3 +49,13 @@ class ArticleCreate(TrainerProfileRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+@login_required
+def add_article_to_reading_list(request, pk):
+    article = Article.objects.get(pk=pk)
+    article_in_reading_list = UserReadingList.objects.filter(article=article, user=request.user)
+    if article_in_reading_list:
+        article_in_reading_list.delete()
+    else:
+        UserReadingList.objects.create(article=article, user=request.user)
+    return redirect('articles list')

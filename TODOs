@@ -16,9 +16,11 @@ Models and forms:
     Sport App:
         - rating as in the gyms
         - inline formsets to the workouts so x-number of exercises could be added
-        - add to fav mechanism (exercise, gyms, articles)
-        - goals - when clicking on the goal name or block, open a modal that
-        shows the description of the goal.
+        - also fix the edit workout page as it is still the general update cbv
+        - add to fav mechanism (exercises and articles). Instead of a btn
+        maybe make a heart on the thumbnail that the user can click on for fave exercises
+        and an open book for articles and reading list
+        - goal description is added in the panel. also add it to the dashboard
         - consider a list with categories of goals depending on level:
         beginner goals: 10 pull ups; run 5km
         advanced: learn to handstand; run 20km marathon
@@ -45,11 +47,15 @@ create 2 users and 2 trainer default profiles
 python manage.py loaddata trainer_profile_data
 
 Bugs:
-- fix the second page of the workouts list
 - profile requirements mixins.
 - In exercises and Workouts list show only content that is created by the
     user except for the base content.
 - phone to be changed as char instead of number input and put num validator.
 If you enter a number starting with 0 it is not a valid number, hence error.
 - users can change other people's profiles - mixin that allows only the owner to access the page.
-
+- the goals field in the complete trainee profile shows all goals.
+I can maybe disable the field in that view so the goals are only managed through the
+goal management panel. Also the metrics are showing under the field. Fix them
+so they are next to the label in ().
+- disable the username field from edit profile.
+- the update and back to profile buttons don't work.

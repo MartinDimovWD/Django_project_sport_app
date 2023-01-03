@@ -21,7 +21,7 @@ def random_reps(exercise):
     duration = random.randint(10, 40)
     if exercise.type == 'bodyweight':
         return f'{sets} sets X {reps} reps'
-    elif exercise.type == 'machine' or exercise.type == 'free weights':
+    elif exercise.type == 'machine' or exercise.type == 'free_weights':
         return f'{sets} sets X {reps} reps X {weight} kg'
     elif exercise.type == 'cardio':
         return f'Duration: {duration} minutes'

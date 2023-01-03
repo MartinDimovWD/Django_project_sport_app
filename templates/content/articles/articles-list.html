@@ -41,9 +41,18 @@
                      <span><img src="{{ article.author.profile_picture }}" height="25px" width="25px" alt=""></span>
                     {% else %}
                     {{ article.author }}
-
                     {% endif %}
                 </div>
+                <div class="card-footer">
+                    <a href="{% url 'add to reading list' pk=article.pk %}">
+                        {% if not article in reading_list %}
+                            Add to reading list
+                        {% else %}
+                            Remove from reading list
+                        {% endif %}
+                    </a>
+                </div>
+
             </div>
         </div>
     {% endfor %}

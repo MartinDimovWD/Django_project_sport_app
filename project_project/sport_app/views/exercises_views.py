@@ -1,9 +1,11 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from project_project.sport_app.forms import CustomExerciseForm
-from project_project.sport_app.models import Exercise, CustomExercise
+from project_project.sport_app.models import Exercise, CustomExercise, FavouriteExercise, Article, UserReadingList
 
 
 class ExercisesListView(ListView):
@@ -11,6 +13,12 @@ class ExercisesListView(ListView):
     model = Exercise
     paginate_by = 8
     context_object_name = 'exercises'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user_faves = [ex.exercise for ex in FavouriteExercise.objects.filter(user=self.request.user)]
+        context['user_faves'] = user_faves
+        return context
 
 
 class ExerciseDetails(DetailView):
@@ -61,4 +69,15 @@ class CustomExerciseDelete(DeleteView):
     template_name = 'content/exercises/custom/exercise-delete.html'
     model = CustomExercise
     context_object_name = 'custom_exercise'
+
+@login_required
+def add_to_favourites_exercise(request, pk):
+    exercise = Exercise.objects.get(pk=pk)
+    user_favourite_exercises = FavouriteExercise.objects.filter(exercise=exercise, user=request.user)
+    if user_favourite_exercises:
+        user_favourite_exercises.delete()
+    else:
+        FavouriteExercise.objects.create(exercise=exercise, user=request.user)
+    return redirect('exercises list')
+
 
