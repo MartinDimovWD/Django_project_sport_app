@@ -1,5 +1,3 @@
-
-
 Welcome to my sports app!
 
 I. Introduction.
@@ -74,3 +72,9 @@ The logic behind having separate staff profiles is for example that gym listings
 be tied to some business communication and it will cost for the gym owner to list their sports
 center. Since there isn't a system for payment in the website yet, gym owners will be reached
 out by staff personnel who will add the gyms from the back-end with the collected information.
+
+
+DISCLAIMERS:
+- The website is not optimized for mobile and small screens. You can get the best experience on a standard monitor
+- There is a small amount of dummy data. Content such as exercises, articles and gyms are supposed to be uploaded
+by the owner of the app. Alternatively it could be scraped from another website or get them with an API.

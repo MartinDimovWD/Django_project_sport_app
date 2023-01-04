@@ -41,7 +41,6 @@
             </div>
     </div>
 
-    </div>
     <div class="card" style="width: 18rem;">
         <img src="{{ traineeprofile.profile.profile_picture }}" class="card-img-top" alt="...">
         <div class="card-body">
@@ -50,7 +49,6 @@
             <p class="card-text">Location: {{ traineeprofile.profile.location }}</p>
             <p class="card-text">Member since: {{ traineeprofile.profile.date_joined|date:'d M y' }}</p>
             <a href="{% url 'user update personal' request.user.pk %}" class="card-link">Edit Personal Info</a>
-
         </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">Experience: {{ traineeprofile.experience }}</li>

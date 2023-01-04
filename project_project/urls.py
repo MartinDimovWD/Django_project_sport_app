@@ -7,6 +7,6 @@ urlpatterns = [
     path('auth/', include('project_project.accounts.urls')),
     path('profiles/', include('project_project.profiles.urls')),
     path('locations/', include('project_project.locations.urls')),
-    path('sport-app/', include('project_project.sport_app.urls')),
-
+    path('sport-app/', include('project_project.sport_app.urls'))
 ]
+

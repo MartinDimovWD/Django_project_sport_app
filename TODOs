@@ -1,30 +1,24 @@
 TODOs:
 
-load the pages with animation
-
 Models and forms:
     Locations:
         - gym rating - Default: none -> empty star
     Profiles:
         - find how to increment the years of xp and age every year
         - validate the years of xp are not exceeding the age of the trainer - 18
-        - think of a hiring mechanism
-        - Add a section in the dashboard with favourite exercises - kilograms
-            lifted/kilometers ran /etc
+        - think of a hiring mechanism and booking a meeting
         - Dashboard Stats for the year. Num of workouts,goals achieved, etc.
-        - Accordion Menu - Goals, Workouts, Reading List, Stats
     Sport App:
         - rating as in the gyms
         - inline formsets to the workouts so x-number of exercises could be added
         - also fix the edit workout page as it is still the general update cbv
-        - add to fav mechanism (exercises and articles). Instead of a btn
-        maybe make a heart on the thumbnail that the user can click on for fave exercises
-        and an open book for articles and reading list
-        - goal description is added in the panel. also add it to the dashboard
+        - Instead of a btn maybe make a heart on the thumbnail that the user
+        can click on for fave exercises and an open book for articles and reading list
         - consider a list with categories of goals depending on level:
         beginner goals: 10 pull ups; run 5km
         advanced: learn to handstand; run 20km marathon
         - the workout model should sum all kg lifted, distance ran, etc in a method
+        - workout - calendar view
 Prime membership:
     - filter by prime,
     - only prime can write articles.
@@ -43,6 +37,10 @@ Styling:
     small menu with gyms/trainers on the right)
 - forms in modal windows? hmmmm
 
+Load the pages with animation
+
+Error Handling and Unit Testing
+
 run 'pip freeze > requirements.txt'
 
 create 2 users and 2 trainer default profiles
@@ -55,8 +53,7 @@ Bugs:
 - phone to be changed as char instead of number input and put num validator.
 If you enter a number starting with 0 it is not a valid number, hence error.
 - users can change other people's profiles - mixin that allows only the owner to access the page.
-I might disable the field in that view so the goals are only managed through the
-goal management panel. Also the metrics are showing under the field. Fix them
-so they are next to the label in ().
+- Edit profile-the metrics are showing under the field (KG, CM). Fix them so they
+are next to the label in ().
 - disable the username field from edit profile.
 - the update and back to profile buttons don't work.

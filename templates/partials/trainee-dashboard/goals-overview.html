@@ -5,6 +5,7 @@
         <thead>
             <tr>
                 <th>Goal name</th>
+                <th></th>
                 <th>Completed</th>
                 <th>Date added</th>
                 <th>Date finished</th>
@@ -15,10 +16,34 @@
         {% for goal in goals %}
             <tr>
                 <td>{{ goal.goal_name }}</td>
+                <td>
+                    {% if goal.description %}
+                        <button class="btn" id="goal-description-btn" type="button"
+                        data-bs-toggle="modal" data-bs-target="#goal{{ goal.pk }}Modal">
+                            <i class="fa-solid fa-circle-info"></i>
+                        </button>
+                    {% endif %}
+                    <div class="modal fade" id="goal{{ goal.pk }}Modal" tabindex="-1" aria-labelledby="goal{{ goal.pk }}Label" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="goal{{ goal.pk }}Label">{{ goal.goal_name }}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            {{ goal.description }}
+                          </div>
+                          <div class="workout-modal-btns">
+                            <button type="button" class="btn btn-outline-light" style="color:black" data-bs-dismiss="modal"><a>Close</a></button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </td>
                 {% if goal.is_accomplished %}
-                <td style="justify-content: center; display:flex; font-size:24px"><i class="fa-solid fa-square-check" style="color:green"> </i></td>
+                    <td style="font-size:24px"><i class="fa-solid fa-square-check" style="color:green"> </i></td>
                 {% else %}
-                <td style="justify-content: center; display:flex; font-size:24px"><i class="fa-solid fa-square-xmark" style="color: red"></i></td>
+                    <td style="font-size:24px"><i class="fa-solid fa-square-xmark" style="color: red"></i></td>
                 {% endif %}
                 <td>{{ goal.date_added|date_convert }}</td>
                 {% if goal.date_finished %}
@@ -35,3 +60,4 @@
     </table>
 
 </div>
+

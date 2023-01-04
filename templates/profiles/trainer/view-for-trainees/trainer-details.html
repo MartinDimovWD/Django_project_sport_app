@@ -13,7 +13,11 @@
             <img src="{{ trainer.profile.profile_picture }}" alt="">
             <h2>{{ trainer.training_field|capfirst }}</h2>
             <div class="trainer-hire-btn">
-                <button class="btn btn-outline-light"><a style="color:black">Hire</a></button>
+                <button class="btn btn-outline-light">
+                    <a style="color:black" href="{% url 'hire coach' coach_pk=trainer.profile.pk %}">
+                        Hire
+                    </a>
+                </button>
             </div>
         </div>
         <div class="trainer-info">
@@ -31,6 +35,13 @@
                     </h3>
                     <h3><small class="text-muted">Years of professional experience: </small> {{ trainer.years_experience }}</h3>
                     <h5><i class="fa-solid fa-square-phone"></i> +359-{{ trainer.phone_number }}</h5>
+                    <button class="btn btn-outline-light" style="background-color:lightgreen">
+                        <a  style="color:black; font-size:20px">
+                            <i class="fa-regular fa-calendar-days"></i>
+                            Book a meeting
+                        </a>
+                    </button>
+
 
                 </div>
                 <div class="trainer-bio">

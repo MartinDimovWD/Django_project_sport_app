@@ -84,3 +84,19 @@ class TrainerProfile(models.Model):
 
     def __str__(self):
         return self.profile.full_name
+
+
+class Contract(models.Model):
+    client = models.ForeignKey(AppUser, on_delete=models.RESTRICT, related_name='+')
+    coach = models.ForeignKey(AppUser, on_delete=models.RESTRICT, related_name='+')
+    sign_date = models.DateTimeField(auto_now_add=True)
+    # end_date = models.DateTimeField()
+    is_active = models.BooleanField(default=False)
+
+
+    # users can send each other direct messages only if they have a contract.
+    # Otherwise, they can only book a meeting
+
+    # TODO: the trainee will send a hire request that will show up
+    # as a notification that the coach needs to accept for the contract to
+    # be signed

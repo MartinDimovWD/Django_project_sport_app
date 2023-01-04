@@ -1,7 +1,7 @@
 .profile-dashboard{
     display:flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
     width:800px;
 }
 
