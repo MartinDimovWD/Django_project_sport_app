@@ -1,0 +1,11 @@
+<div class="reading-list">
+    <h1>Reading list</h1>
+    {% if reading_list %}
+        {% for article in reading_list %}
+            {{ article }}
+
+        {% endfor %}
+    {% else %}
+        No articles added
+    {% endif %}
+</div>

@@ -1,0 +1,10 @@
+<div class="favourite-exercises">
+    <h1>Favourite exercises</h1>
+    {% if user_faves %}
+        {% for exercise in user_faves %}
+            {{ exercise }}
+        {% endfor %}
+    {% else %}
+        No favourite exercises
+    {% endif %}
+</div>

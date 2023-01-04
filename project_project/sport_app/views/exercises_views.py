@@ -25,7 +25,11 @@ class ExerciseDetails(DetailView):
     template_name = 'content/exercises/exercise.html'
     model = Exercise
     context_object_name = 'exercise'
-
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user_faves = [ex.exercise for ex in FavouriteExercise.objects.filter(user=self.request.user)]
+        context['user_faves'] = user_faves
+        return context
 
 
 class CustomExerciseCreate(LoginRequiredMixin, CreateView):

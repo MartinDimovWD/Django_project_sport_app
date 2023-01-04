@@ -5,7 +5,7 @@ ul.nav-list{
     display:inline;
 }
 
-nav {
+.main-nav {
     font-family: 'Bebas Neue', cursive;
     background-color: steelblue;
     height: 70px;
@@ -26,13 +26,13 @@ nav {
 .nav-logo {
     margin-left:15px;
 }
-nav a {
+.main-nav a {
     padding-right: 30px;
     text-decoration: none;
     color:white;
     font-size: 24px;
 }
 
-nav a:hover {
+.main-nav a:hover {
     color:lightgoldenrodyellow;
 }

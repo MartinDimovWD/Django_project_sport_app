@@ -11,6 +11,6 @@
 </ul>
 <h4>{{ exercise.type }}</h4>
 <p>{{ exercise.description }}</p>
-
+{% include 'partials/content/add-exericse-to-favourites.html' %}
     <div><a href="{% url 'exercises list' %}">Back to all exercises</a></div>
 {% endblock %}

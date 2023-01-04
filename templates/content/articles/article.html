@@ -9,6 +9,7 @@
             <a href="{% url 'articles filter' category=category %}">{{ category }} |</a>
         {% endfor %}
     </p>
+    {% include 'partials/content/add-article-to-reading-list.html' %}
     <div class="card mb-3 col-8">
       <h2 class="card-title">{{ article.heading|capitalize_each_word }}</h2>
       <p class="card-text"><small class="text-muted">{{ article.publication_date|date:'d M y' }}</small></p>

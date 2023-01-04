@@ -21,3 +21,24 @@
 #prime-deactivate:hover {
     color:darkred;
 }
+
+.dashboard-nav-menu {
+    display:flex;
+    flex-direction:column;
+    background-color: steelblue;
+    height:80vh;
+    min-width:230px;
+    justify-content: center;
+}
+
+.dashboard-nav-menu a:hover {
+    color:lightgoldenrodyellow;
+}
+.dashboard-nav-menu a {
+    font-size: 24px;
+    text-decoration: none;
+    text-align:center;
+    color: white;
+    margin-top:15px;
+    margin-bottom:15px;
+}

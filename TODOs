@@ -12,7 +12,7 @@ Models and forms:
         - Add a section in the dashboard with favourite exercises - kilograms
             lifted/kilometers ran /etc
         - Dashboard Stats for the year. Num of workouts,goals achieved, etc.
-        - Accordion Menu - Goals, Workouts, Stats
+        - Accordion Menu - Goals, Workouts, Reading List, Stats
     Sport App:
         - rating as in the gyms
         - inline formsets to the workouts so x-number of exercises could be added
@@ -24,6 +24,7 @@ Models and forms:
         - consider a list with categories of goals depending on level:
         beginner goals: 10 pull ups; run 5km
         advanced: learn to handstand; run 20km marathon
+        - the workout model should sum all kg lifted, distance ran, etc in a method
 Prime membership:
     - filter by prime,
     - only prime can write articles.
@@ -35,6 +36,7 @@ Template files:
 
 Admin dashboard that shows the count of trainees with favourite sports,
 exercises, articles, etc.
+Also think of what other metrics the business might need.
 
 Styling:
 - related items on the right side of the view (Article list on the left;
@@ -53,8 +55,7 @@ Bugs:
 - phone to be changed as char instead of number input and put num validator.
 If you enter a number starting with 0 it is not a valid number, hence error.
 - users can change other people's profiles - mixin that allows only the owner to access the page.
-- the goals field in the complete trainee profile shows all goals.
-I can maybe disable the field in that view so the goals are only managed through the
+I might disable the field in that view so the goals are only managed through the
 goal management panel. Also the metrics are showing under the field. Fix them
 so they are next to the label in ().
 - disable the username field from edit profile.

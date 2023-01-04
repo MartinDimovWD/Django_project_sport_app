@@ -1,0 +1,9 @@
+<a href="{% url 'add to reading list' pk=article.pk %}">
+    {% if not article in reading_list %}
+        <i class="fa-solid fa-book" style="color:green"></i>
+        Add to reading list
+    {% else %}
+        <i class="fa-solid fa-book" style="color:red"></i>
+        Remove from reading list
+    {% endif %}
+</a>

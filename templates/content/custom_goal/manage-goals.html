@@ -26,7 +26,7 @@
                 {% if form.instance.is_accomplished %}
                     <td>{{ form.instance.goal_name }}</td>
                     <td>
-                    {% include 'partials/goalDescriptionModal.html' %}
+                    {% include 'partials/content/goalDescriptionModal.html' %}
                     </td>
                     <td style="font-size:24px"><i class="fa-solid fa-square-check" style="color:green"> </i></td>
                     <td>{{ form.instance.date_added|date_convert }}</td>
@@ -36,7 +36,7 @@
                 {% else %}
                     <td>{{ form.goal_name }}</td>
                     <td>
-                    {% include 'partials/goalDescriptionModal.html' %}
+                    {% include 'partials/content/goalDescriptionModal.html' %}
                     </td>
                     <td style="font-size:24px"><i class="fa-solid fa-square-xmark" style="color: red"></i></td>
                     <td>{{ form.instance.date_added|date_convert }}</td>

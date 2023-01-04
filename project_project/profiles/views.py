@@ -14,7 +14,7 @@ from project_project.profiles.forms import TraineeProfileUpdateForm, TrainerProf
 from project_project.profiles.mixins import TrainerProfileRequiredMixin
 from project_project.profiles.models import TrainerProfile, TraineeProfile
 from project_project.sport_app.forms import CustomGoalForm, CompleteGoalForm
-from project_project.sport_app.models import Goal, CustomGoal, Workout
+from project_project.sport_app.models import Goal, CustomGoal, Workout, UserReadingList, FavouriteExercise
 
 
 def complete_trainer_profile_view(request):
@@ -85,12 +85,17 @@ class TraineeProfileView(FormMixin, DetailView):
     template_name = 'profiles/trainee/profile-details.html'
     model = TraineeProfile
     form_class = CompleteGoalForm
+
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
 
         context['goals'] = Goal.objects.filter(base_goal=False, owner=self.request.user.pk)
         user_workouts = Workout.objects.filter(owner=self.request.user.pk).order_by('-pk')
         context['last_workouts'] = user_workouts
+        reading_list = [art.article for art in UserReadingList.objects.filter(user=self.request.user)]
+        context['reading_list'] = reading_list
+        user_faves = [ex.exercise for ex in FavouriteExercise.objects.filter(user=self.request.user)]
+        context['user_faves'] = user_faves
         if len(user_workouts)>=1:
             context['last_workout_one'] = user_workouts[0]
         if len(user_workouts)>=2:

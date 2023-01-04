@@ -26,7 +26,6 @@ class ArticlesListView(ListView):
         context['reading_list'] = reading_list
         return context
 
-
     def get_queryset(self):
         articles = Article.objects.order_by('-publication_date')
         return articles
@@ -36,6 +35,12 @@ class ArticleDetails(DetailView):
     template_name = 'content/articles/article.html'
     model = Article
     context_object_name = 'article'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        reading_list = [art.article for art in UserReadingList.objects.filter(user=self.request.user)]
+        context['reading_list'] = reading_list
+        return context
 
 
 class ArticleCreate(TrainerProfileRequiredMixin, CreateView):
@@ -49,6 +54,7 @@ class ArticleCreate(TrainerProfileRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
 
 @login_required
 def add_article_to_reading_list(request, pk):

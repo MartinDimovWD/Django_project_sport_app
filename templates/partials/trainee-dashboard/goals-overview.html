@@ -1,37 +1,37 @@
 {% load content_filters %}
 <div class="personal-goals">
-            <h1>Goals:</h1>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Goal name</th>
-                        <th>Completed</th>
-                        <th>Date added</th>
-                        <th>Date finished</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                {% for goal in goals %}
-                    <tr>
-                        <td>{{ goal.goal_name }}</td>
-                        {% if goal.is_accomplished %}
-                        <td style="justify-content: center; display:flex; font-size:24px"><i class="fa-solid fa-square-check" style="color:green"> </i></td>
-                        {% else %}
-                        <td style="justify-content: center; display:flex; font-size:24px"><i class="fa-solid fa-square-xmark" style="color: red"></i></td>
-                        {% endif %}
-                        <td>{{ goal.date_added|date_convert }}</td>
-                        {% if goal.date_finished %}
-                        <td>{{ goal.date_finished|date_convert }}</td>
-                        {% else %}
-                        <td>--</td>
-                        {% endif %}
-                    </tr>
-                {% endfor %}
-                <tr>
-                    <td><a href="{% url 'manage goals' %}">Manage Goals</a></td>
-                </tr>
+    <h1>Goals</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Goal name</th>
+                <th>Completed</th>
+                <th>Date added</th>
+                <th>Date finished</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        {% for goal in goals %}
+            <tr>
+                <td>{{ goal.goal_name }}</td>
+                {% if goal.is_accomplished %}
+                <td style="justify-content: center; display:flex; font-size:24px"><i class="fa-solid fa-square-check" style="color:green"> </i></td>
+                {% else %}
+                <td style="justify-content: center; display:flex; font-size:24px"><i class="fa-solid fa-square-xmark" style="color: red"></i></td>
+                {% endif %}
+                <td>{{ goal.date_added|date_convert }}</td>
+                {% if goal.date_finished %}
+                <td>{{ goal.date_finished|date_convert }}</td>
+                {% else %}
+                <td>--</td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        <tr>
+            <td><a href="{% url 'manage goals' %}">Manage Goals</a></td>
+        </tr>
 
-            </table>
+    </table>
 
-        </div>
+</div>

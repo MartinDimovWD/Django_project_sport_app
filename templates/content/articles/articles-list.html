@@ -44,13 +44,7 @@
                     {% endif %}
                 </div>
                 <div class="card-footer">
-                    <a href="{% url 'add to reading list' pk=article.pk %}">
-                        {% if not article in reading_list %}
-                            Add to reading list
-                        {% else %}
-                            Remove from reading list
-                        {% endif %}
-                    </a>
+                    {% include 'partials/content/add-article-to-reading-list.html' %}
                 </div>
 
             </div>
