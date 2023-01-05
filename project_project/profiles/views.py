@@ -15,6 +15,7 @@ from project_project.profiles.forms import TraineeProfileUpdateForm, TrainerProf
     CompleteTraineeProfileForm, ManagePrimeSubscriptionForm
 from project_project.profiles.mixins import TrainerProfileRequiredMixin
 from project_project.profiles.models import TrainerProfile, TraineeProfile, Contract
+from project_project.profiles.utils import check_for_active_contract
 from project_project.sport_app.forms import CustomGoalForm, CompleteGoalForm
 from project_project.sport_app.models import Goal, CustomGoal, Workout, UserReadingList, FavouriteExercise
 
@@ -63,8 +64,11 @@ class TrainerProfileView(DetailView):
     template_name = 'profiles/trainer/view-for-trainees/trainer-details.html'
     model = TrainerProfile
     context_object_name = 'trainer'
+
     def get_success_url(self):
         return reverse_lazy('trainer details', kwargs={'slug': self.object.slug})
+
+
 
 
 class TrainerPersonalProfileView(DetailView):
@@ -133,19 +137,25 @@ class TrainerDeleteView(DeleteView):
 
 
 class ManagePrimeSubscriptionView(UpdateView):
-    template_name= 'profiles/trainer/view-for-trainers/manage-prime.html'
+    template_name = 'profiles/trainer/view-for-trainers/manage-prime.html'
     form_class = ManagePrimeSubscriptionForm
     model = TrainerProfile
 
     def get_success_url(self):
         return reverse_lazy('trainer profile details', kwargs={'slug': self.object.slug})
 
+
 @login_required
 def hire_coach_view(request, coach_pk):
     trainee = request.user
     coach = AppUser.objects.get(pk=coach_pk)
-    has_active_contract = Contract.objects.filter(client=trainee, coach=coach, is_active=True)
-    if not has_active_contract:
+    active_contract = check_for_active_contract(trainee, coach)
+    if not active_contract:
         Contract.objects.create(client=trainee, coach=coach, is_active=True)
+    else:
+        Contract.objects.get(client=trainee, coach=coach, is_active=True).terminate()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+    # if there is no active contract, a new one is created
+
 

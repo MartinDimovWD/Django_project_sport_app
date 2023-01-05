@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block page_content %}
+    {{ user_faves }}
 <div class="container trainer-details-page-container">
     <h1>{{ trainer.profile.full_name }}
         {% if trainer.prime_membership %}
@@ -15,7 +16,11 @@
             <div class="trainer-hire-btn">
                 <button class="btn btn-outline-light">
                     <a style="color:black" href="{% url 'hire coach' coach_pk=trainer.profile.pk %}">
-                        Hire
+                        {% if not have_active_contract %}
+                            Hire
+                        {% else %}
+                            Cancel Contract
+                        {% endif %}
                     </a>
                 </button>
             </div>

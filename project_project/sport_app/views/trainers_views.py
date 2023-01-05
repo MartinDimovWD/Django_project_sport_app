@@ -1,6 +1,9 @@
 from django.views.generic import ListView, DetailView
 
+from project_project.accounts.models import AppUser
 from project_project.profiles.models import TrainerProfile
+from project_project.profiles.utils import check_for_active_contract
+from project_project.sport_app.models import FavouriteExercise
 
 
 class TrainersListView(ListView):
@@ -32,4 +35,10 @@ class TrainerDetails(DetailView):
     model = TrainerProfile
     context_object_name = 'trainer'
 
-
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        trainee = self.request.user
+        coach = AppUser.objects.get(pk=self.object.profile_id)
+        have_active_contract = check_for_active_contract(trainee, coach)
+        context['have_active_contract'] = have_active_contract
+        return context

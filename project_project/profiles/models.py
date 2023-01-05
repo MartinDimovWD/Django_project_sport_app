@@ -93,7 +93,17 @@ class Contract(models.Model):
     # end_date = models.DateTimeField()
     is_active = models.BooleanField(default=False)
 
+    def terminate(self):
+        self.is_active=False
+        self.save()
 
+    def __str__(self):
+        status = ''
+        if self.is_active:
+            status = 'Active'
+        else:
+            status = 'Inactive'
+        return f'{status} contract between {self.client} and {self.coach}'
     # users can send each other direct messages only if they have a contract.
     # Otherwise, they can only book a meeting
 

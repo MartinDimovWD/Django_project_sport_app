@@ -19,6 +19,8 @@ Models and forms:
         advanced: learn to handstand; run 20km marathon
         - the workout model should sum all kg lifted, distance ran, etc in a method
         - workout - calendar view
+        - add a badge for trainers in the list the trainee
+        has a contract with
 Prime membership:
     - filter by prime,
     - only prime can write articles.
@@ -57,3 +59,19 @@ If you enter a number starting with 0 it is not a valid number, hence error.
 are next to the label in ().
 - disable the username field from edit profile.
 - the update and back to profile buttons don't work.
+
+
+Trainer dashboard:
+- num of times hired (num of contracts he's part of)
+- current active contracts
+- trainees who've had contract with the trainer can leave comments and rate the coach
+Rating + comment form
+- inbox
+
+System:
+- System will send messages for:
+    - new, expiring and cancelled contracts
+    - new messages
+    - new comments/ratings
+    - new, upcoming or cancelled bookings
+    - etc
