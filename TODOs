@@ -6,8 +6,10 @@ Models and forms:
     Profiles:
         - find how to increment the years of xp and age every year
         - validate the years of xp are not exceeding the age of the trainer - 18
-        - think of a hiring mechanism and booking a meeting
+        - think of a booking a meeting mechanism
         - Dashboard Stats for the year. Num of workouts,goals achieved, etc.
+        - trainee view for trainers - full list of goals, workouts, traineeprofile info
+        weight, height, etc
     Sport App:
         - rating as in the gyms
         - inline formsets to the workouts so x-number of exercises could be added
@@ -19,8 +21,6 @@ Models and forms:
         advanced: learn to handstand; run 20km marathon
         - the workout model should sum all kg lifted, distance ran, etc in a method
         - workout - calendar view
-        - add a badge for trainers in the list the trainee
-        has a contract with
 Prime membership:
     - filter by prime,
     - only prime can write articles.
@@ -38,7 +38,8 @@ Styling:
 - related items on the right side of the view (Article list on the left;
     small menu with gyms/trainers on the right)
 - forms in modal windows? hmmmm
-
+- align the dashboard-sections so there is enough space between the nav
+and the profile card. Center the content
 Load the pages with animation
 
 Error Handling and Unit Testing
@@ -59,11 +60,10 @@ If you enter a number starting with 0 it is not a valid number, hence error.
 are next to the label in ().
 - disable the username field from edit profile.
 - the update and back to profile buttons don't work.
-
+- the unsubscribe form works weird. Either change the copy so it prompts the user to uncheck
+the box for prime or change the button so it deactivates the prime when checked.
 
 Trainer dashboard:
-- num of times hired (num of contracts he's part of)
-- current active contracts
 - trainees who've had contract with the trainer can leave comments and rate the coach
 Rating + comment form
 - inbox

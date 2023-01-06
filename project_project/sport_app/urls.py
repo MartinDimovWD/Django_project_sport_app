@@ -2,8 +2,9 @@ from django.urls import path, include
 
 from project_project.sport_app.views.articles_views import ArticlesListView, ArticleDetails, ArticleCreate, \
     add_article_to_reading_list
-from project_project.sport_app.views.exercises_views import ExercisesListView, ExerciseDetails, CustomExerciseList, \
-    CustomExerciseCreate, CustomExerciseUpdate, CustomExerciseDetail, CustomExerciseDelete, add_to_favourites_exercise
+from project_project.sport_app.views.exercises_views import ExercisesListView, CustomExerciseList, \
+    CustomExerciseCreate, CustomExerciseUpdate, CustomExerciseDetail, CustomExerciseDelete, add_to_favourites_exercise, \
+    exercise_details
 from project_project.sport_app.views.goal_views import CustomGoalCreate, manage_goals
 from project_project.sport_app.views.filtering_views import filter_exercises_by_bodypart, filter_articles_by_category, filter_trainers_by_location
 from project_project.sport_app.views.trainers_views import TrainersListView, TrainerDetails
@@ -29,7 +30,7 @@ urlpatterns=[
         path('', ExercisesListView.as_view(), name='exercises list'),
         path('filter/<bodypart>', filter_exercises_by_bodypart, name='exercises filter'),
         # TODO: PUT A SLUG INSTEAD OF PK!
-        path('exercise/<slug:slug>', ExerciseDetails.as_view(), name='exercise details'),
+        path('exercise/<slug:slug>', exercise_details, name='exercise details'),
         # path('exercise/fave/<int:pk>', add_to_favourites, name='add to fave'),
         path('custom/', include([
             path('', CustomExerciseList.as_view(), name='my exercises list'),

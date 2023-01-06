@@ -1,44 +1,77 @@
 {% extends 'index.html' %}
 {% load static %}
 
+
 {% block page_content %}
-
 <div class="container profile-dashboard">
-<div class="card" style="width: 18rem;">
-  <img src="{{ trainerprofile.profile.profile_picture }}" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h4 class="card-title">{{ trainerprofile.profile.full_name }}, {{ trainerprofile.profile.age }}</h4>
-    <p class="card-text">@{{ trainerprofile.profile.username }}</p>
-    <p class="card-text">Location: {{ trainerprofile.profile.location }}</p>
-    <p class="card-text">Member since: {{ trainerprofile.profile.date_joined|date:'d M y' }}</p>
-    <a href="{% url 'user update personal' request.user.pk %}" class="card-link">Edit Personal Info</a>
+    <nav class="dashboard-nav-menu">
+        <a href="#" id="trainees-nav-link" class="dashboard-nav-link">
+            My Trainees
+        </a>
+        <a href="#" id="schedule-nav-link" class="dashboard-nav-link">
+            Schedule
+        </a>
+        <a href="#" id="articles-nav-link" class="dashboard-nav-link">
+            My Articles
+        </a>
+        <a href="#" id="reading-nav-link" class="dashboard-nav-link">
+            Reading List
+        </a>
+        <a href="#" id="favourites-nav-link" class="dashboard-nav-link">
+            Favourite Exercises
+        </a>
+        <a href="#" id="membership-nav-link" class="dashboard-nav-link">
+            Membership
+        </a>
+        <a href="#" id="profinfo-nav-link" class="dashboard-nav-link">
+            Profile Information
+        </a>
+    </nav>
 
-  </div>
-  <ul class="list-group list-group-flush">
-      <li class="list-group-item">{{ trainerprofile.training_field|capfirst }}</li>
-    <li class="list-group-item">Years of experience: {{ trainerprofile.years_experience }}</li>
-    <li class="list-group-item">{{ trainerprofile.phone_number }}</li>
-
-  </ul>
-  <div class="card-body">
-    <a href="{% url 'trainer update profile' slug=request.user.trainerprofile.slug %}" class="card-link">Edit Profile</a>
-    <a href="{% url 'trainer profile delete' slug=request.user.trainerprofile.slug %}" class="card-link">Delete Account</a>
-  </div>
-</div>
     <div class="dashboard-content">
-        <div class="prime-membership-status">
-            {% if request.user.trainerprofile.prime_membership %}
-               <h3 style="color:green"> Active Partner Membership <i class="fa-solid fa-award"></i> / <a href="{% url 'manage prime' slug=request.user.trainerprofile.slug %}" id="prime-deactivate">deactivate</a></h3>
-            {% else %}
-                <h3><a href="{% url 'manage prime' slug=request.user.trainerprofile.slug %}">Upgrade to Partner Membership</a></h3>
-            {% endif %}
+        <div class="dashboard-section" id="trainees-section">
+            {% include 'partials/trainer-dashboard/my-trainees.html' %}
         </div>
-        <div class="my-content">
-            My latest articles
+        <div class="dashboard-section" id="schedule-section">
+            {% include 'partials/trainer-dashboard/trainer-schedule.html' %}
         </div>
-        <div class="profile-stats">
-            Statistics
+        <div class="dashboard-section" id="articles-section">
+            {% include 'partials/trainer-dashboard/my-articles.html' %}
+        </div>
+        <div class="dashboard-section" id="membership-section">
+            {% include 'partials/trainer-dashboard/membership-status.html' %}
+        </div>
+        <div class="dashboard-section" id="profinfo-section">
+            {% include 'partials/trainer-dashboard/prof-info.html' %}
+        </div>
+        <div class="dashboard-section" id="reading-section">
+            {% include 'partials/content/reading-list.html' %}
+        </div>
+        <div class="dashboard-section" id="favourites-section">
+            {% include 'partials/content/favourite-exercises.html' %}
         </div>
     </div>
+
+    <div class="card" style="width: 18rem;">
+      <img src="{{ trainerprofile.profile.profile_picture }}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h4 class="card-title">{{ trainerprofile.profile.full_name }}, {{ trainerprofile.profile.age }}</h4>
+        <p class="card-text">@{{ trainerprofile.profile.username }}</p>
+        <p class="card-text">Location: {{ trainerprofile.profile.location }}</p>
+        <p class="card-text">Member since: {{ trainerprofile.profile.date_joined|date:'d M y' }}</p>
+        <a href="{% url 'user update personal' request.user.pk %}" class="card-link">Edit Personal Info</a>
+      </div>
+      <ul class="list-group list-group-flush">
+          <li class="list-group-item">{{ trainerprofile.training_field|capfirst }}</li>
+        <li class="list-group-item">Years of experience: {{ trainerprofile.years_experience }}</li>
+        <li class="list-group-item">{{ trainerprofile.phone_number }}</li>
+
+      </ul>
+      <div class="card-body">
+        <a href="{% url 'trainer update profile' slug=request.user.trainerprofile.slug %}" class="card-link">Edit Profile</a>
+        <a href="{% url 'trainer profile delete' slug=request.user.trainerprofile.slug %}" class="card-link">Delete Account</a>
+      </div>
+    </div>
+
 </div>
 {% endblock %}

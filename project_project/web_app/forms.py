@@ -1,0 +1,30 @@
+from django import forms
+
+from project_project.sport_app.models import Exercise
+from project_project.web_app.models import Rating
+
+
+class RatingForm(forms.ModelForm):
+    class Meta:
+        model = Rating
+        fields=['rating', 'comment']
+        widgets={
+            'rating': forms.RadioSelect(
+                attrs={
+                    'default': '1'
+                    # 'class': 'form-control',
+                }
+            ),
+            'comment': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                }
+            ),
+        }
+
+
+class ExerciseRatingForm(RatingForm):
+    class Meta(RatingForm.Meta):
+        model = Exercise
+
+

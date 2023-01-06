@@ -1,11 +1,14 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
+from django.views.generic.edit import FormMixin, ModelFormMixin
 
 from project_project.sport_app.forms import CustomExerciseForm
 from project_project.sport_app.models import Exercise, CustomExercise, FavouriteExercise, Article, UserReadingList
+from project_project.web_app.forms import RatingForm, ExerciseRatingForm
 
 
 class ExercisesListView(ListView):
@@ -21,16 +24,41 @@ class ExercisesListView(ListView):
         return context
 
 
-class ExerciseDetails(DetailView):
-    template_name = 'content/exercises/exercise.html'
-    model = Exercise
-    context_object_name = 'exercise'
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        user_faves = [ex.exercise for ex in FavouriteExercise.objects.filter(user=self.request.user)]
-        context['user_faves'] = user_faves
-        return context
 
+
+
+# class ExerciseDetails(ModelFormMixin, DetailView):
+#     template_name = 'content/exercises/exercise.html'
+#     model = Exercise
+#     context_object_name = 'exercise'
+#     form_class = RatingForm
+#
+#     def get_context_data(self, *, object_list=None, **kwargs):
+#         context = super(ExerciseDetails, self).get_context_data(**kwargs)
+#         user_faves = [ex.exercise for ex in FavouriteExercise.objects.filter(user=self.request.user)]
+#         context['user_faves'] = user_faves
+#         return context
+
+
+def exercise_details(request, slug):
+    exercise = Exercise.objects.get(slug=slug)
+
+    if request.method == 'POST':
+        form = ExerciseRatingForm(request.POST)
+        if form.is_valid():
+            f = form.save(commit=False)
+            f.user = request.user
+            f.exercise = exercise
+            f.save()
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+    else:
+        form = RatingForm()
+    context = {
+        'exercise': exercise,
+        'form':form
+    }
+    return render(request, 'content/exercises/exercise.html', context)
 
 class CustomExerciseCreate(LoginRequiredMixin, CreateView):
     template_name = 'content/exercises/custom/create-exercise.html'
@@ -74,6 +102,7 @@ class CustomExerciseDelete(DeleteView):
     model = CustomExercise
     context_object_name = 'custom_exercise'
 
+
 @login_required
 def add_to_favourites_exercise(request, pk):
     exercise = Exercise.objects.get(pk=pk)
@@ -83,5 +112,4 @@ def add_to_favourites_exercise(request, pk):
     else:
         FavouriteExercise.objects.create(exercise=exercise, user=request.user)
     return redirect('exercises list')
-
 

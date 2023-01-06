@@ -40,6 +40,9 @@ class TraineeProfile(models.Model):
     def get_favourite_exercises(self):
         pass
 
+    def get_goals(self):
+        return Goal.objects.filter(owner=self.profile.pk)
+
 
 class TrainerProfile(models.Model):
     client_type = models.CharField(max_length=30, null=False,blank=False)

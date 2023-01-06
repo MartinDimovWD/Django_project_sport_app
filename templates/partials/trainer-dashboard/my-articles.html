@@ -1,0 +1,18 @@
+<div class="my-articles">
+    {% if trainer_articles %}
+        {% for article in trainer_articles %}
+            {{ article.heading }}
+        {% endfor %}
+    {% else %}
+        {% if is_partner %}
+            You haven't published any articles yet.
+            Submit your article here:
+            <a href="{% url 'article create' %}"></a>
+        {% else %}
+            You need a partner membership in order to publish articles.
+            <p>
+                <a href="{% url 'manage prime' slug=request.user.trainerprofile.slug %}">Upgrade to Partner Membership from here</a>
+            </p>
+        {% endif %}
+    {% endif %}
+</div>

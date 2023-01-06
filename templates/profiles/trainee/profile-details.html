@@ -5,38 +5,38 @@
 {% block page_content %}
 <div class="container profile-dashboard">
     <nav class="dashboard-nav-menu">
-        <a href="#" id="stats-nav-link" class="trainee-dashboard-nav-link">
+        <a href="#" id="stats-nav-link" class="dashboard-nav-link">
             Stats
         </a>
-        <a href="#" id="goals-nav-link" class="trainee-dashboard-nav-link">
+        <a href="#" id="goals-nav-link" class="dashboard-nav-link">
             Goals
         </a>
-        <a href="#" id="workouts-nav-link" class="trainee-dashboard-nav-link">
+        <a href="#" id="workouts-nav-link" class="dashboard-nav-link">
             Workouts
         </a>
-        <a href="#" id="favourites-nav-link" class="trainee-dashboard-nav-link">
+        <a href="#" id="favourites-nav-link" class="dashboard-nav-link">
             Favourite exercises
         </a>
-        <a href="#" id="reading-nav-link" class="trainee-dashboard-nav-link">
+        <a href="#" id="reading-nav-link" class="dashboard-nav-link">
             Reading List
         </a>
     </nav>
 
 
     <div class="dashboard-content">
-            <div class="trainee-dashboard-section" id="stats-section">
+            <div class="dashboard-section" id="stats-section">
                 {% include 'partials/trainee-dashboard/stats.html' %}
             </div>
-            <div class="trainee-dashboard-section" id="goals-section">
+            <div class="dashboard-section" id="goals-section">
                 {% include 'partials/trainee-dashboard/goals-overview.html' %}
             </div>
-            <div class="trainee-dashboard-section" id="reading-section">
-                {% include 'partials/trainee-dashboard/reading-list.html' %}
+            <div class="dashboard-section" id="reading-section">
+                {% include 'partials/trainee-dashboard/../../partials/content/reading-list.html' %}
             </div>
-            <div class="trainee-dashboard-section" id="favourites-section">
-                {% include 'partials/trainee-dashboard/favourite-exercises.html' %}
+            <div class="dashboard-section" id="favourites-section">
+                {% include 'partials/trainee-dashboard/../../partials/content/favourite-exercises.html' %}
             </div>
-            <div class="trainee-dashboard-section" id="workouts-section">
+            <div class="dashboard-section" id="workouts-section">
                 {% include 'partials/trainee-dashboard/latest-workouts.html' %}
             </div>
     </div>
@@ -63,29 +63,4 @@
     </div>
 
 </div>
-    <script>
-
-    const traineeDashboardNavLinks =
-        Array.from(document.getElementsByClassName('trainee-dashboard-nav-link'))
-    const traineeDashboardSections =
-        Array.from(document.getElementsByClassName('trainee-dashboard-section'))
-
-    function hideSections(){
-        traineeDashboardSections.forEach(section=>section.style.display='none')
-    }
-    hideSections()
-    traineeDashboardSections[0].style.display='block'
-    function showSectionOnNavClick(navBtn){
-
-        let navBtnId = navBtn.getAttribute('id').split('-')[0]
-        let sectionToDisplay = document.getElementById(navBtnId+'-section')
-        hideSections()
-        sectionToDisplay.style.display='block'
-    }
-
-    traineeDashboardNavLinks.forEach(link=>link.addEventListener('click', ()=>{
-        showSectionOnNavClick(link)
-    }))
-
-    </script>
 {% endblock %}

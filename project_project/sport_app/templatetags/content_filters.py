@@ -3,6 +3,7 @@ import time
 
 from django.template import Library
 
+from project_project.profiles.utils import get_times_hired_coach, check_for_active_contract
 from project_project.sport_app.models import ExerciseInstance
 
 register = Library()
@@ -26,17 +27,26 @@ def random_reps(exercise):
     elif exercise.type == 'cardio':
         return f'Duration: {duration} minutes'
 
+
 @register.filter('open_now')
 def open_now(gym):
     current_hour = int(time.strftime('%H'))
     if gym.open_hour <= current_hour <= gym.close_hour:
         return True
 
+
 @register.filter('date_convert')
 def date_convert(date):
     return date.strftime('%d %b %Y - %I %p')
+
 
 @register.filter('get_exercises_of_workout')
 def get_exercises_of_workout(workout):
     exercises = ExerciseInstance.objects.filter(workout=workout)
     return exercises
+
+
+@register.filter('listview_times_hired')
+def listview_times_hired(coach):
+    return get_times_hired_coach(coach.profile)
+

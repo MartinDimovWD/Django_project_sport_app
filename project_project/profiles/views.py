@@ -15,9 +15,10 @@ from project_project.profiles.forms import TraineeProfileUpdateForm, TrainerProf
     CompleteTraineeProfileForm, ManagePrimeSubscriptionForm
 from project_project.profiles.mixins import TrainerProfileRequiredMixin
 from project_project.profiles.models import TrainerProfile, TraineeProfile, Contract
-from project_project.profiles.utils import check_for_active_contract
+from project_project.profiles.utils import check_for_active_contract, get_times_hired_coach, get_num_active_contracts_coach, \
+    get_active_trainees, get_goals_active_trainees
 from project_project.sport_app.forms import CustomGoalForm, CompleteGoalForm
-from project_project.sport_app.models import Goal, CustomGoal, Workout, UserReadingList, FavouriteExercise
+from project_project.sport_app.models import Goal, CustomGoal, Workout, UserReadingList, FavouriteExercise, Article
 
 
 def complete_trainer_profile_view(request):
@@ -69,12 +70,27 @@ class TrainerProfileView(DetailView):
         return reverse_lazy('trainer details', kwargs={'slug': self.object.slug})
 
 
-
-
 class TrainerPersonalProfileView(DetailView):
     template_name = 'profiles/trainer/view-for-trainers/trainer-details.html'
     model = TrainerProfile
     # context_object_name = 'trainer'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        coach = self.request.user
+        times_hired = get_times_hired_coach(coach)
+        context['times_hired'] = times_hired
+        num_active_clients = get_num_active_contracts_coach(coach)
+        context['num_active_clients'] = num_active_clients
+        active_trainees = get_active_trainees(coach)
+        context['active_trainees'] = active_trainees
+        trainee_goals = get_goals_active_trainees(coach)
+        context['trainee_goals'] = trainee_goals
+        trainer_articles = Article.objects.filter(author=coach)
+        context['trainer_articles'] = trainer_articles
+        is_partner = coach.trainerprofile.prime_membership
+        context['is_partner'] = is_partner
+        return context
 
 
 class UpdateTraineeProfileView(UpdateView):
@@ -109,7 +125,6 @@ class TraineeProfileView(FormMixin, DetailView):
         if len(user_workouts)>=3:
             context['last_workout_three'] = user_workouts[2]
         return context
-
 
 
 class TraineeDeleteView(DeleteView):
