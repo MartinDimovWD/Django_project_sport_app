@@ -1,3 +1,5 @@
+from functools import reduce
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
@@ -8,7 +10,9 @@ from django.views.generic.edit import FormMixin, ModelFormMixin
 
 from project_project.sport_app.forms import CustomExerciseForm
 from project_project.sport_app.models import Exercise, CustomExercise, FavouriteExercise, Article, UserReadingList
+from project_project.sport_app.utils import get_avg_rating, get_exercise_ratings
 from project_project.web_app.forms import RatingForm, ExerciseRatingForm
+from project_project.web_app.models import ExerciseRating
 
 
 class ExercisesListView(ListView):
@@ -40,24 +44,31 @@ class ExercisesListView(ListView):
 #         return context
 
 
+
 def exercise_details(request, slug):
     exercise = Exercise.objects.get(slug=slug)
-
-    if request.method == 'POST':
-        form = ExerciseRatingForm(request.POST)
-        if form.is_valid():
-            f = form.save(commit=False)
-            f.user = request.user
-            f.exercise = exercise
-            f.save()
-            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-
-    else:
-        form = RatingForm()
+    has_user_rating = ExerciseRating.objects.filter(exercise=exercise, user=request.user)
+    rating = get_exercise_ratings(exercise)
     context = {
         'exercise': exercise,
-        'form':form
+        'has_user_rating': has_user_rating,
+        'rating': rating
     }
+
+    if not has_user_rating:
+        if request.method == 'POST':
+            form = ExerciseRatingForm(request.POST)
+            if form.is_valid():
+                f = form.save(commit=False)
+                f.user = request.user
+                f.exercise = exercise
+                f.save()
+                return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+        else:
+            form = RatingForm()
+        context['form'] = form
+
     return render(request, 'content/exercises/exercise.html', context)
 
 class CustomExerciseCreate(LoginRequiredMixin, CreateView):

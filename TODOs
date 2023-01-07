@@ -21,6 +21,8 @@ Models and forms:
         advanced: learn to handstand; run 20km marathon
         - the workout model should sum all kg lifted, distance ran, etc in a method
         - workout - calendar view
+        - figure out how to reuse the get_avg_rating function. Either as an abstract function
+        or make it a method in the classes.
 Prime membership:
     - filter by prime,
     - only prime can write articles.
