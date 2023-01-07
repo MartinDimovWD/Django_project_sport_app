@@ -7,7 +7,7 @@ from project_project.sport_app.views.exercises_views import ExercisesListView, C
     exercise_details
 from project_project.sport_app.views.goal_views import CustomGoalCreate, manage_goals
 from project_project.sport_app.views.filtering_views import filter_exercises_by_bodypart, filter_articles_by_category, filter_trainers_by_location
-from project_project.sport_app.views.trainers_views import TrainersListView, TrainerDetails
+from project_project.sport_app.views.trainers_views import TrainersListView, trainer_details
 from project_project.sport_app.views.workouts_views import WorkoutsListView, WorkoutCreateView, WorkoutDetails, \
     WorkoutUpdateView, WorkoutDeleteView, add_workout
 
@@ -24,7 +24,7 @@ urlpatterns=[
         path('', TrainersListView.as_view(), name='trainers list'),
         path('filter/<location>/', filter_trainers_by_location, name='trainers filter'),
         # TODO: PUT A SLUG INSTEAD OF PK!
-        path('trainer/<slug:slug>', TrainerDetails.as_view(), name='trainer details'),
+        path('trainer/<slug:slug>', trainer_details, name='trainer details'),
     ])),
     path('exercises/',include([
         path('', ExercisesListView.as_view(), name='exercises list'),

@@ -11,18 +11,7 @@
 </ul>
 <h4>{{ exercise.type }}</h4>
 <p>{{ exercise.description }}</p>
-    Avg Rating: {{ rating }}
-    {% if not has_user_rating %}
-        <div>
-            <h1>RATING</h1>
-            <form action="" method="post">
-                {{ form.as_p }}
-                {% csrf_token %}
-                <button>Submit</button>
-            </form>
-        </div>
-    {% endif %}
-
+    {% include 'partials/rating.html' %}
 
 {% include 'partials/content/add-exericse-to-favourites.html' %}
     <div><a href="{% url 'exercises list' %}">Back to all exercises</a></div>

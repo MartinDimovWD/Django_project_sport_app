@@ -1,7 +1,7 @@
 from django import forms
 
 from project_project.sport_app.models import Exercise
-from project_project.web_app.models import Rating, ExerciseRating
+from project_project.web_app.models import Rating, ExerciseRating, GymRating, TrainerRating
 
 
 class RatingForm(forms.ModelForm):
@@ -26,6 +26,18 @@ class RatingForm(forms.ModelForm):
 class ExerciseRatingForm(RatingForm):
     class Meta(RatingForm.Meta):
         model = ExerciseRating
+        fields = ['rating', 'comment']
+
+
+class GymRatingForm(RatingForm):
+    class Meta(RatingForm.Meta):
+        model = GymRating
+        fields = ['rating', 'comment']
+
+
+class TrainerRatingForm(RatingForm):
+    class Meta(RatingForm.Meta):
+        model = TrainerRating
         fields = ['rating', 'comment']
 
 

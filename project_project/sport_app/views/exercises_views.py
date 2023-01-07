@@ -10,7 +10,7 @@ from django.views.generic.edit import FormMixin, ModelFormMixin
 
 from project_project.sport_app.forms import CustomExerciseForm
 from project_project.sport_app.models import Exercise, CustomExercise, FavouriteExercise, Article, UserReadingList
-from project_project.sport_app.utils import get_avg_rating, get_exercise_ratings
+from project_project.sport_app.utils import get_exercise_avg_ratings
 from project_project.web_app.forms import RatingForm, ExerciseRatingForm
 from project_project.web_app.models import ExerciseRating
 
@@ -28,9 +28,6 @@ class ExercisesListView(ListView):
         return context
 
 
-
-
-
 # class ExerciseDetails(ModelFormMixin, DetailView):
 #     template_name = 'content/exercises/exercise.html'
 #     model = Exercise
@@ -43,16 +40,16 @@ class ExercisesListView(ListView):
 #         context['user_faves'] = user_faves
 #         return context
 
-
-
 def exercise_details(request, slug):
     exercise = Exercise.objects.get(slug=slug)
     has_user_rating = ExerciseRating.objects.filter(exercise=exercise, user=request.user)
-    rating = get_exercise_ratings(exercise)
+    rating = get_exercise_avg_ratings(exercise)
+    rtgs = ExerciseRating.objects.filter(exercise=exercise)
     context = {
         'exercise': exercise,
         'has_user_rating': has_user_rating,
-        'rating': rating
+        'rating': rating,
+        'rtgs': rtgs
     }
 
     if not has_user_rating:
@@ -70,6 +67,7 @@ def exercise_details(request, slug):
         context['form'] = form
 
     return render(request, 'content/exercises/exercise.html', context)
+
 
 class CustomExerciseCreate(LoginRequiredMixin, CreateView):
     template_name = 'content/exercises/custom/create-exercise.html'

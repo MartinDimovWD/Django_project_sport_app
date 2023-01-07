@@ -1,0 +1,23 @@
+<div>
+    Avg Rating: {{ rating }}
+    {% if not has_user_rating %}
+        <div>
+            <h1>RATING</h1>
+            {% if request.user.pk %}
+            <form action="" method="post">
+                {{ form.as_p }}
+                {% csrf_token %}
+                <button>Submit</button>
+            </form>
+            {% endif %}
+        </div>
+    {% endif %}
+    {% if rtgs %}
+        {% for entry in rtgs %}
+            <div style="border: 1px solid black">
+                <p>{{ entry.user }} - {{ entry.date_added }}</p>
+                <p>{{ entry.comment }}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>

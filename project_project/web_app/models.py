@@ -28,6 +28,7 @@ class Rating(models.Model):
         null=True,
         blank=True
     )
+    date_added = models.DateTimeField(auto_now_add=True)
 
     def average_rating(self):
         return Rating.objects.filter(self).aggregate(Avg('rating'))['rating__avg']
