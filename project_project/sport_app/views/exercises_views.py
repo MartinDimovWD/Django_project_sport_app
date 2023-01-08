@@ -42,14 +42,18 @@ class ExercisesListView(ListView):
 
 def exercise_details(request, slug):
     exercise = Exercise.objects.get(slug=slug)
+    user_faves = [ex.exercise for ex in FavouriteExercise.objects.filter(user=request.user)]
     has_user_rating = ExerciseRating.objects.filter(exercise=exercise, user=request.user)
     rating = get_exercise_avg_ratings(exercise)
     rtgs = ExerciseRating.objects.filter(exercise=exercise)
     context = {
         'exercise': exercise,
+        'user_faves': user_faves,
         'has_user_rating': has_user_rating,
         'rating': rating,
-        'rtgs': rtgs
+        'rtgs': rtgs,
+        'yellow_stars': int(rating),
+        'grey_stars': 5 - int(rating),
     }
 
     if not has_user_rating:
@@ -120,5 +124,6 @@ def add_to_favourites_exercise(request, pk):
         user_favourite_exercises.delete()
     else:
         FavouriteExercise.objects.create(exercise=exercise, user=request.user)
-    return redirect('exercises list')
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
 

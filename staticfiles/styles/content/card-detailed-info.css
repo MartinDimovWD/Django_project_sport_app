@@ -8,23 +8,39 @@
 }
 
 .trainer-details-container,
+.exercise-details-container,
 .gym-details-container,
 .exercise-details-container{
+    width:1100px;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 
 .trainer-details-avatar img,
+.exercise-img img,
 .gym-logo img{
     max-height: 400px;
+    max-width:300px;
 }
+
 .trainer-details-avatar,
-.gym-logo h1{
+.gym-logo h1,
+.exercise-img h1{
     text-align: center;
 }
 
 .trainer-details .trainer-profile,
-.gym-info-details {
+.gym-info-details,
+.exercise-info-details{
     border-bottom: 0.2px solid grey;
 }
+
+
+.trainer-info,
+.gym-info,
+.exercise-info{
+    max-width: 700px;
+}
+

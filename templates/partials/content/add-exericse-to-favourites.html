@@ -1,11 +1,13 @@
-<button>
-    <a href="{% url 'favourite exercise' pk=exercise.pk %}">
-        {% if not exercise in user_faves %}
-            <i class="fa-solid fa-heart-circle-plus" style="color:green"></i>
-            Add to favorites
-        {% else %}
-            <i class="fa-solid fa-heart-circle-minus" style="color:red"></i>
-            Remove from favorites
-        {% endif %}
-    </a>
-</button>
+{#<div class="favourite-exercise-add">#}
+    <button class="btn btn-outline-light gym-details-btn">
+        <a href="{% url 'favourite exercise' pk=exercise.pk %}" style="color:black">
+            {% if not exercise in user_faves %}
+                <i class="fa-solid fa-heart-circle-plus" style="color:green"></i>
+                Add to favorites
+            {% else %}
+                <i class="fa-solid fa-heart-circle-minus" style="color:red"></i>
+                Remove from favorites
+            {% endif %}
+        </a>
+    </button>
+{#</div>#}

@@ -2,21 +2,42 @@
 {% load static %}
 {% load content_filters %}
 {% block page_content %}
-<h3>{{ exercise.name|capitalize_each_word }}</h3>
-<img src="{{ exercise.exercise_photo }}" alt="" height="100" width="100">
-<ul>
-    {% for part in exercise.body_parts %}
-        <li>{{ part }}</li>
-    {% endfor %}
-</ul>
-<h4>{{ exercise.type }}</h4>
-<p>{{ exercise.description }}</p>
-    {% include 'partials/rating.html' %}
+{#<h3>{{ exercise.name|capitalize_each_word }}</h3>#}
+{#<img src="{{ exercise.exercise_photo }}" alt="" height="100" width="100">#}
+{#<ul>#}
+{#    {% for part in exercise.body_parts %}#}
+{#        <li>{{ part }}</li>#}
+{#    {% endfor %}#}
+{#    {% include 'partials/rating-stars.html' %}#}
+{#</ul>#}
+{#<h4>{{ exercise.type }}</h4>#}
+{#<p>{{ exercise.description }}</p>#}
+{#    {% include 'partials/rating.html' %}#}
+{##}
+{#    {% include 'partials/content/add-exericse-to-favourites.html' %}#}
+{#    <div><a href="{% url 'exercises list' %}">Back to all exercises</a></div>#}
 
-{% include 'partials/content/add-exericse-to-favourites.html' %}
-    <div><a href="{% url 'exercises list' %}">Back to all exercises</a></div>
+
+<div class="container exercise-details-page-container">
+    <h1>{{ exercise.name }} / <a href="{% url 'exercises list' %}" style="font-size:22px">Back to all exercises</a></h1>
+    <div class="exercise-details-container">
+        <div class="exercise-img">
+            <img src="{{ exercise.exercise_photo }}" alt="" class="showcase-img">
+            <h1>
+                {{ exercise.body_parts|join_vertical_bar }}
+            </h1>
+            <h1 style="font-size:35px; align-self: center">{% include 'partials/rating-stars.html' %}</h1>
+            {% include 'partials/content/add-exericse-to-favourites.html' %}
+        </div>
+        <div class="exercise-info">
+            <div class="exercise-info-details">
+                <h3><small class="text-muted">Type: </small> {{ exercise.type }}</h3>
+                <h3><small class="text-muted">Description: </small> {{exercise.description }}</h3>
+                {% lorem 1 p %}
+            </div>
+            {% include 'partials/rating.html' %}
+        </div>
+
+    </div>
+</div>
 {% endblock %}
-
-<script>
-    document.getElementById('rating-field').style.display='none'
-</script>

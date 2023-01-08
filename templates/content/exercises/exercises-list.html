@@ -16,16 +16,24 @@
         {% for exercise in exercises %}
           <div class="col">
             <div class="card h-100">
+               <h2 class="card-title" style="text-align: left; border-bottom: 1px solid grey">
+                   {{ exercise.name|capitalize_each_word }}
+               </h2>
               <img src="{{ exercise.exercise_photo }}" class="card-img-top" alt="..." >
               <div class="card-body">
-                <h5 class="card-title">{{ exercise.name|capitalize_each_word }}</h5>
-                <p class="card-text">
+
+                <h5 class="card-text" style="text-align: left">
                     Type: {{ exercise.type }}
-                </p>
+                </h5>
               </div>
-              <button><a href="{% url 'exercise details' slug=exercise.slug %}">Details</a></button>
-    {#          TODO: create the add to favorites mechanism      #}
-                {% include 'partials/content/add-exericse-to-favourites.html' %}
+              <button class="btn btn-outline-light gym-details-btn">
+                  <a href="{% url 'exercise details' slug=exercise.slug %}">
+                      Details
+                  </a>
+              </button>
+{#                <div class="" style="display:flex;justify-content: center">#}
+                    {% include 'partials/content/add-exericse-to-favourites.html' %}
+{#                </div>#}
               <div class="card-footer">
                 <small class="text-muted">Body parts:
                     {% for part in exercise.body_parts %}

@@ -1,17 +1,16 @@
 TODOs:
 
 Models and forms:
-    Locations:
-        - gym rating - Default: none -> empty star
     Profiles:
         - find how to increment the years of xp and age every year
         - validate the years of xp are not exceeding the age of the trainer - 18
         - think of a booking a meeting mechanism
         - Dashboard Stats for the year. Num of workouts,goals achieved, etc.
         - trainee view for trainers - full list of goals, workouts, traineeprofile info
-        weight, height, etc
+        weight, height, etc. Profile cards -  Center the content
+        - 'Workout Buddies' - users can make friends and chat with each other.
+        - Users can add their social media in their profiles.
     Sport App:
-        - rating as in the gyms
         - inline formsets to the workouts so x-number of exercises could be added
         - also fix the edit workout page as it is still the general update cbv
         - Instead of a btn maybe make a heart on the thumbnail that the user
@@ -24,13 +23,8 @@ Models and forms:
         - figure out how to reuse the get_avg_rating function. Either as an abstract function
         or make it a method in the classes.
 Prime membership:
-    - filter by prime,
-    - only prime can write articles.
+    - filter by prime
     - Add call-to action for subscribing to prime.
-
-Template files:
-- login.html:
-    - when logged in, redirect to the page that the visitor tried to access before
 
 Admin dashboard that shows the count of trainees with favourite sports,
 exercises, articles, etc.
@@ -41,8 +35,8 @@ Styling:
     small menu with gyms/trainers on the right)
 - forms in modal windows? hmmmm
 - align the dashboard-sections so there is enough space between the nav
-and the profile card. Center the content
-Load the pages with animation
+- Ratings
+- Load the pages with animation
 
 Error Handling and Unit Testing
 
@@ -60,14 +54,13 @@ If you enter a number starting with 0 it is not a valid number, hence error.
 - users can change other people's profiles - mixin that allows only the owner to access the page.
 - Edit profile-the metrics are showing under the field (KG, CM). Fix them so they
 are next to the label in ().
-- disable the username field from edit profile.
-- the update and back to profile buttons don't work.
 - the unsubscribe form works weird. Either change the copy so it prompts the user to uncheck
 the box for prime or change the button so it deactivates the prime when checked.
+- have the rating system available for relevant users:
+    - gyms and exercises could be rated only when logged
+- sign-up dropdown has lost its styles
 
 Trainer dashboard:
-- trainees who've had contract with the trainer can leave comments and rate the coach
-Rating + comment form
 - inbox
 
 System:
@@ -77,3 +70,5 @@ System:
     - new comments/ratings
     - new, upcoming or cancelled bookings
     - etc
+
+Update the ReadMe file

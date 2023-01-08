@@ -14,7 +14,10 @@ def get_avg_rating(entries):
 
 def get_exercise_avg_ratings(exercise):
     entries = ExerciseRating.objects.filter(exercise=exercise)
-    return get_avg_rating(entries)
+    if entries:
+        return get_avg_rating(entries)
+    else:
+        return 0
 
 
 def get_gym_avg_ratings(gym):
@@ -25,3 +28,5 @@ def get_gym_avg_ratings(gym):
 def get_trainer_avg_ratings(trainer):
     entries = TrainerRating.objects.filter(trainer=trainer)
     return get_avg_rating(entries)
+
+

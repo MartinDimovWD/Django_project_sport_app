@@ -1,9 +1,10 @@
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView
 
-from project_project.profiles.mixins import TrainerProfileRequiredMixin
+from project_project.profiles.mixins import TrainerProfileRequiredMixin, PrimeRequiredMixin
 from project_project.sport_app.forms import ArticleForm
 from project_project.sport_app.models import Article, UserReadingList
 
@@ -43,7 +44,7 @@ class ArticleDetails(DetailView):
         return context
 
 
-class ArticleCreate(TrainerProfileRequiredMixin, CreateView):
+class ArticleCreate(TrainerProfileRequiredMixin, PrimeRequiredMixin, CreateView):
     template_name = 'content/articles/create-article.html'
     form_class = ArticleForm
     # model = Article
@@ -64,4 +65,4 @@ def add_article_to_reading_list(request, pk):
         article_in_reading_list.delete()
     else:
         UserReadingList.objects.create(article=article, user=request.user)
-    return redirect('articles list')
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

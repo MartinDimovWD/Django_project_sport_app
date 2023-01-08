@@ -63,9 +63,9 @@ class UpdatePersonalView(UpdateView):
 
     def get_success_url(self):
         try:
-            pk = self.object.traineeprofile.pk
-            return reverse_lazy('trainee profile details', kwargs={'pk': pk})
+            slug = self.object.traineeprofile.slug
+            return reverse_lazy('trainee profile details', kwargs={'slug': slug})
         except:
-            pk = self.object.trainerprofile.pk
-            return reverse_lazy('trainer profile details', kwargs={'pk': pk})
+            slug = self.object.trainerprofile.slug
+            return reverse_lazy('trainer profile details', kwargs={'slug': slug})
 

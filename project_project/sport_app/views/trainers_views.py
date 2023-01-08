@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 
 from project_project.accounts.models import AppUser
-from project_project.profiles.models import TrainerProfile
+from project_project.profiles.models import TrainerProfile, Contract
 from project_project.profiles.utils import check_for_active_contract, get_num_active_contracts_coach, get_times_hired_coach
 from project_project.sport_app.models import FavouriteExercise
 from project_project.sport_app.utils import get_trainer_avg_ratings
@@ -66,10 +66,12 @@ def trainer_details(request, slug):
         'have_active_contract': have_active_contract,
         'times_hired': get_times_hired_coach(trainer.profile),
         'num_active_contracts': get_num_active_contracts_coach(trainer.profile),
-        'rtgs': rtgs
+        'rtgs': rtgs,
+        'yellow_stars': int(rating),
+        'grey_stars': 5 - int(rating)
     }
 
-    if not has_user_rating:
+    if not has_user_rating and Contract.objects.filter(client=trainee, coach=trainer.profile):
         if request.method == 'POST':
             form = TrainerRatingForm(request.POST)
             if form.is_valid():

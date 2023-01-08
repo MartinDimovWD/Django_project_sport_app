@@ -14,6 +14,13 @@ class TrainerProfileRequiredMixin(LoginRequiredMixin):
         except:
             return render(request, 'profiles/403-need-coach-prof.html')
 
+
+class PrimeRequiredMixin(LoginRequiredMixin):
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.trainerprofile.prime_membership:
+            return render(request, 'profiles/403-need-prime-membership.html')
+
+
 class TraineeProfileRequiredMixin(LoginRequiredMixin):
 
     def dispatch(self, request, *args, **kwargs):

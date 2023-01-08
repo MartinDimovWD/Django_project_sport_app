@@ -1,0 +1,7 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block page_content %}
+    <h1>You need to have a partner membership to access this page</h1>
+    <h3><a href="{% url 'manage prime' slug=request.user.trainerprofile.slug %}">Upgrade to Partner Membership</a></h3>
+{% endblock %}

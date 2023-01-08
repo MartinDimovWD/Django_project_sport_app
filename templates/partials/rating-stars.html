@@ -1,0 +1,9 @@
+{% load content_filters %}
+
+
+{% for star in yellow_stars|times %}
+    <i class="fa-solid fa-star" style="color:yellow"></i>
+{% endfor %}
+{% for star in grey_stars|times %}
+    <i class="fa-solid fa-star" style="color:lightgray"></i>
+{% endfor %}

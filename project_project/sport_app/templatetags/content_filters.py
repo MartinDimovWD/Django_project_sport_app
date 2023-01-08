@@ -50,3 +50,10 @@ def get_exercises_of_workout(workout):
 def listview_times_hired(coach):
     return get_times_hired_coach(coach.profile)
 
+@register.filter('times')
+def times(number):
+    return range(number)
+
+@register.filter('join_vertical_bar')
+def join_vertical_bar(q):
+    return ' | '.join(q)

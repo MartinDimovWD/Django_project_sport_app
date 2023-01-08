@@ -1,23 +1,42 @@
+{% load content_filters %}
 <div>
-    Avg Rating: {{ rating }}
     {% if not has_user_rating %}
         <div>
             <h1>RATING</h1>
             {% if request.user.pk %}
-            <form action="" method="post">
-                {{ form.as_p }}
-                {% csrf_token %}
-                <button>Submit</button>
-            </form>
+                <form action="" method="post">
+                    {{ form.as_p }}
+                    {% csrf_token %}
+                    <button>Submit</button>
+                </form>
             {% endif %}
         </div>
     {% endif %}
+
+    <h4>Reviews</h4>
     {% if rtgs %}
         {% for entry in rtgs %}
-            <div style="border: 1px solid black">
-                <p>{{ entry.user }} - {{ entry.date_added }}</p>
-                <p>{{ entry.comment }}</p>
-            </div>
+            {% if entry.comment %}
+{#            <div style="border: 1px solid black">#}
+{#                <p>#}
+{#                    <img src="{{ entry.user.profile_picture }}" style="max-height: 30px">#}
+{#                    {{ entry.user }} - {{ entry.date_added }}#}
+{#                </p>#}
+{#                <p>{{ entry.comment }}</p>#}
+{#            </div>#}
+                <div class="card">
+                  <div class="card-header" style="justify-content: left">
+                    <img src="{{ entry.user.profile_picture }}" style="max-height: 25px" alt="">
+                                    {{ entry.user }} - {{ entry.date_added }}
+                  </div>
+                  <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                      <p>{{ entry.comment }}</p>
+                    </blockquote>
+                  </div>
+                </div>
+            {% endif %}
         {% endfor %}
     {% endif %}
 </div>
+

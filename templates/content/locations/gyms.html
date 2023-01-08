@@ -27,7 +27,11 @@
                         <p class="card-text"><small class="text-muted">Open: </small>{{ gym.get_working_hours }}</p>
                           <p><small class="text-muted">Sport available: </small>{% for sport in gym.sports_available.all %} {{ sport.sport_name }} |{% endfor %}</p>
                           <div class="workout-modal-btns" style="justify-content: start">
-                              <button class="btn btn-outline-light gym-details-btn"><a href="{% url 'gym details' slug=gym.slug %}">See more</a></button>
+                              <button class="btn btn-outline-light gym-details-btn">
+                                  <a href="{% url 'gym details' slug=gym.slug %}">
+                                      See more
+                                  </a>
+                              </button>
                           </div>
                           </div>
                     </div>

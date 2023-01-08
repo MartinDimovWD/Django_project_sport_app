@@ -5,7 +5,8 @@
 }
 .workout-modal-btns a,
 .trainer-hire-btn a,
-.gym-details-btn a{
+.gym-details-btn a,
+.favourite-exercise-add a{
     font-size: 24px;
     text-decoration: none;
     color:black;
@@ -25,9 +26,13 @@
 .workout-modal-btns button:hover,
 .trainers-list button:hover,
 .trainer-hire-btn button:hover,
-.gym-details-btn button:hover {
+.gym-details-btn button:hover{
     background-color: steelblue;
 }
+
+/*.favourite-exercise-add button:hover{*/
+/*    background-color: powderblue;*/
+/*}*/
 
 .trainers-list button a,
 .trainer-hire-btn a,

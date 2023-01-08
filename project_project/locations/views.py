@@ -30,7 +30,9 @@ def gym_details(request, slug):
         'gym': gym,
         'has_user_rating': has_user_rating,
         'rating': rating,
-        'rtgs': rtgs
+        'rtgs': rtgs,
+        'yellow_stars': int(rating),
+        'grey_stars': 5 - int(rating)
     }
 
     if not has_user_rating:

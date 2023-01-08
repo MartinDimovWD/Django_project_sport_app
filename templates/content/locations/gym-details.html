@@ -1,6 +1,6 @@
 {% extends 'index.html' %}
+{% load content_filters %}
 {% load static %}
-
 {% block page_content %}
 {# TODO: PUT FILTER BUTTONS#}
 {#https://www.youtube.com/watch?v=vU0VeFN-abU#}
@@ -8,15 +8,17 @@
         <h1 id="gym-name">{{ gym.gym_name }} / <a href="{% url 'gyms list' %}" style="font-size:22px">Back to all gyms</a></h1>
         <div class="gym-details-container">
             <div class="gym-logo">
-                <img src="{{ gym.logo }}" alt="" width='500px'>
+                <img src="{{ gym.logo }}" alt="" class="showcase-img">
                 <h1>
                     {% for sport in gym.sports_available.all %}
                         {{ sport.sport_name }} |
                     {% endfor %}
                 </h1>
+                <h1 style="font-size:35px; align-self: center">{% include 'partials/rating-stars.html' %}</h1>
             </div>
             <div class="gym-info">
                 <div class="gym-info-details">
+
                     <h3><small class="text-muted">Location: </small> {{ gym.location }}</h3>
                     <h3><small class="text-muted">Working hours: </small> {{ gym.get_working_hours }}</h3>
 
