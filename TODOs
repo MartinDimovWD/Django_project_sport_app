@@ -6,37 +6,33 @@ Models and forms:
         - validate the years of xp are not exceeding the age of the trainer - 18
         - think of a booking a meeting mechanism
         - Dashboard Stats for the year. Num of workouts,goals achieved, etc.
-        - trainee view for trainers - full list of goals, workouts, traineeprofile info
-        weight, height, etc. Profile cards -  Center the content
+        - trainee view for trainers - full list of goals, workouts, traineeprofile info weight, height, etc. Profile cards -  Center the content
         - 'Workout Buddies' - users can make friends and chat with each other.
         - Users can add their social media in their profiles.
     Sport App:
         - inline formsets to the workouts so x-number of exercises could be added
         - also fix the edit workout page as it is still the general update cbv
-        - Instead of a btn maybe make a heart on the thumbnail that the user
-        can click on for fave exercises and an open book for articles and reading list
+        - Instead of a btn maybe make a heart on the thumbnail that the user can click on for fave exercises and an open book for articles and reading list
         - consider a list with categories of goals depending on level:
-        beginner goals: 10 pull ups; run 5km
-        advanced: learn to handstand; run 20km marathon
+            - beginner goals: 10 pull ups; run 5km
+            - advanced: learn to handstand; run 20km marathon
         - the workout model should sum all kg lifted, distance ran, etc in a method
         - workout - calendar view
-        - figure out how to reuse the get_avg_rating function. Either as an abstract function
-        or make it a method in the classes.
+        - figure out how to reuse the get_avg_rating function. Either as an abstract function or make it a method in the classes.
 Prime membership:
     - filter by prime
     - Add call-to action for subscribing to prime.
 
-Admin dashboard that shows the count of trainees with favourite sports,
-exercises, articles, etc.
+Admin dashboard that shows the count of trainees with favourite sports, exercises, articles, etc.
 Also think of what other metrics the business might need.
 
 Styling:
-- related items on the right side of the view (Article list on the left;
-    small menu with gyms/trainers on the right)
+- related items on the right side of the view (Article list on the left; small menu with gyms/trainers on the right)
 - forms in modal windows? hmmmm
 - align the dashboard-sections so there is enough space between the nav
-- Ratings
+- Ratings form to look better. Find a better place for the comment section
 - Load the pages with animation
+- sign up dropdown menu. Change the on-click background-color
 
 Error Handling and Unit Testing
 
@@ -47,18 +43,13 @@ python manage.py loaddata trainer_profile_data
 
 Bugs:
 - profile requirements mixins.
-- In exercises and Workouts list show only content that is created by the
-    user except for the base content.
-- phone to be changed as char instead of number input and put num validator.
-If you enter a number starting with 0 it is not a valid number, hence error.
+- In exercises and Workouts list show only content that is created by the user except for the base content.
+- phone to be changed as char instead of number input and put num validator. If you enter a number starting with 0 it is not a valid number, hence error.
 - users can change other people's profiles - mixin that allows only the owner to access the page.
-- Edit profile-the metrics are showing under the field (KG, CM). Fix them so they
-are next to the label in ().
-- the unsubscribe form works weird. Either change the copy so it prompts the user to uncheck
-the box for prime or change the button so it deactivates the prime when checked.
-- have the rating system available for relevant users:
-    - gyms and exercises could be rated only when logged
-- sign-up dropdown has lost its styles
+- Edit profile-the metrics are showing under the field (KG, CM). Fix them so they are next to the label in ().
+- the unsubscribe form works weird. Either change the copy so it prompts the user to uncheck the box for prime or change the button so it deactivates the prime when checked.
+- have the rating system available for relevant users - gyms and exercises could be rated only when logged
+- anonymous users cannot see the list pages. big problems
 
 Trainer dashboard:
 - inbox

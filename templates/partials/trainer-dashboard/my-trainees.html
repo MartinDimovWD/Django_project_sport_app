@@ -1,26 +1,40 @@
+<h2>My Trainees</h2>
 <div class="my-trainees">
     {% if active_trainees %}
         {% for trainee, goals in trainee_goals.items %}
-            <div class="card border-light mb-3" style="width: 27rem; height:13rem">
+            <div class="card border-light mb-3" style="width: 32rem; height:13rem">
               <div class="card-header">
                   {{ trainee.full_name }}
-                  <img src="{{ trainee.profile_picture }}" style="max-height: 30px; max-width: 30px" alt="">
+
               </div>
-              <div class="card-body">
-                <h5 class="card-title">{{ trainee.first_name }}'s goals</h5>
-                <ul>
-                    {% for goal in goals %}
-                        <li>{{ goal }}
-                            {% if goal.is_accomplished %}
-                            {% else %}
-                            {% endif %}
-                        </li>
-                    {% endfor %}
-                </ul>
-                <a href="#">Full profile</a>
-                <p>
-                    <i class="fa-regular fa-envelope"></i> message {{ trainee.first_name }}
-                </p>
+              <div class="card-body container">
+                  <div class="row">
+                    <div class="col-5">
+                        <img src="{{ trainee.profile_picture }}" style="max-height: 130px; max-width: 130px" alt="">
+
+                        <p>
+                        <i class="fa-regular fa-envelope"></i> message {{ trainee.first_name }}
+                    </p>
+                    </div>
+                    <div class="col-7">
+                        <h5 class="card-title">{{ trainee.first_name }}'s goals</h5>
+                        <ul>
+                            {% for goal in goals %}
+                                <li>{{ goal }}
+                                    {% if goal.is_accomplished %}
+                                    {% else %}
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+
+                    <button class="btn btn-outline-light gym-details-btn">
+                        <a href="#">
+                            Full profile
+                        </a>
+                    </button>
+                    </div>
+                </div>
               </div>
             </div>
         {% endfor %}

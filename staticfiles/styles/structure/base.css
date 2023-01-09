@@ -1,20 +1,31 @@
 * {
     margin:0;
     padding: 0;
+    box-sizing:border-box;
     /*font-family: 'Bebas Neue', cursive;*/
     font-family: 'Bebas Neue', sans-serif;
     letter-spacing:0.8px;
 }
-body{
-    height: 100%;
+html{
+    background-color: aliceblue;
+}
+body {
 
+    overflow: auto;
+    height:100vh
 }
 main {
-    height: 100%;
-    width:100%;
+    padding-top:70px;
+    width: 100%;
+    height:100%;
     background-color: aliceblue;
 }
 
+header {
+    position: fixed;
+    z-index: 100000;
+    width:100%;
+}
 a {
     text-decoration: none;
 }
@@ -50,11 +61,11 @@ a {
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    margin:0;
+    padding:0;
 }
 
-body {
-    overflow: auto;
-}
+
 
 footer{
     background-color: steelblue;

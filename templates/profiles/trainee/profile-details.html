@@ -4,63 +4,65 @@
 
 {% block page_content %}
 <div class="container profile-dashboard">
-    <nav class="dashboard-nav-menu">
-        <a href="#" id="stats-nav-link" class="dashboard-nav-link">
-            Stats
-        </a>
-        <a href="#" id="goals-nav-link" class="dashboard-nav-link">
-            Goals
-        </a>
-        <a href="#" id="workouts-nav-link" class="dashboard-nav-link">
-            Workouts
-        </a>
-        <a href="#" id="favourites-nav-link" class="dashboard-nav-link">
-            Favourite exercises
-        </a>
-        <a href="#" id="reading-nav-link" class="dashboard-nav-link">
-            Reading List
-        </a>
-    </nav>
-
-
-    <div class="dashboard-content">
-            <div class="dashboard-section" id="stats-section">
-                {% include 'partials/trainee-dashboard/stats.html' %}
-            </div>
-            <div class="dashboard-section" id="goals-section">
-                {% include 'partials/trainee-dashboard/goals-overview.html' %}
-            </div>
-            <div class="dashboard-section" id="reading-section">
-                {% include 'partials/trainee-dashboard/../../partials/content/reading-list.html' %}
-            </div>
-            <div class="dashboard-section" id="favourites-section">
-                {% include 'partials/trainee-dashboard/../../partials/content/favourite-exercises.html' %}
-            </div>
-            <div class="dashboard-section" id="workouts-section">
-                {% include 'partials/trainee-dashboard/latest-workouts.html' %}
-            </div>
-    </div>
-
-    <div class="card" style="width: 18rem;">
-        <img src="{{ traineeprofile.profile.profile_picture }}" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h4 class="card-title">{{ traineeprofile.profile.full_name }}, {{ traineeprofile.profile.age }}</h4>
-            <p class="card-text">@{{ traineeprofile.profile.username }}</p>
-            <p class="card-text">Location: {{ traineeprofile.profile.location }}</p>
-            <p class="card-text">Member since: {{ traineeprofile.profile.date_joined|date:'d M y' }}</p>
-            <a href="{% url 'user update personal' request.user.pk %}" class="card-link">Edit Personal Info</a>
+    <div class="row">
+        <div class="col-2">
+            <nav class="dashboard-nav-menu">
+                <a href="#" id="stats-nav-link" class="dashboard-nav-link">
+                    Stats
+                </a>
+                <a href="#" id="goals-nav-link" class="dashboard-nav-link">
+                    Goals
+                </a>
+                <a href="#" id="workouts-nav-link" class="dashboard-nav-link">
+                    Workouts
+                </a>
+                <a href="#" id="favourites-nav-link" class="dashboard-nav-link">
+                    Favourite exercises
+                </a>
+                <a href="#" id="reading-nav-link" class="dashboard-nav-link">
+                    Reading List
+                </a>
+            </nav>
         </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Experience: {{ traineeprofile.experience }}</li>
-                <li class="list-group-item">Height: {{ traineeprofile.height }} cm</li>
-                <li class="list-group-item">Weight: {{ traineeprofile.weight }} kg</li>
 
-            </ul>
-        <div class="card-body">
-            <a href="{% url 'trainee update profile' slug=request.user.traineeprofile.slug %}" class="card-link">Edit Profile</a>
-            <a href="{% url 'trainee profile delete' slug=request.user.traineeprofile.slug %}" class="card-link">Delete Account</a>
+        <div class="dashboard-content col-8">
+                <div class="dashboard-section" id="stats-section">
+                    {% include 'partials/trainee-dashboard/stats.html' %}
+                </div>
+                <div class="dashboard-section" id="goals-section">
+                    {% include 'partials/trainee-dashboard/goals-overview.html' %}
+                </div>
+                <div class="dashboard-section" id="reading-section">
+                    {% include 'partials/trainee-dashboard/../../partials/content/reading-list.html' %}
+                </div>
+                <div class="dashboard-section" id="favourites-section">
+                    {% include 'partials/trainee-dashboard/../../partials/content/favourite-exercises.html' %}
+                </div>
+                <div class="dashboard-section" id="workouts-section">
+                    {% include 'partials/trainee-dashboard/latest-workouts.html' %}
+                </div>
         </div>
-    </div>
 
+        <div class="profile-card col-2">
+            <img src="{{ traineeprofile.profile.profile_picture }}" class="card-img-top" alt="..." >
+            <div class="card-body">
+                <h4 class="card-title">{{ traineeprofile.profile.full_name }}, {{ traineeprofile.profile.age }}</h4>
+                <p class="card-text">@{{ traineeprofile.profile.username }}</p>
+                <p class="card-text">Location: {{ traineeprofile.profile.location }}</p>
+                <p class="card-text">Member since: {{ traineeprofile.profile.date_joined|date:'d M y' }}</p>
+                <a href="{% url 'user update personal' request.user.pk %}" class="card-link">Edit Personal Info</a>
+            </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" style="background-color: steelblue; color:white">Experience: {{ traineeprofile.experience }}</li>
+                    <li class="list-group-item" style="background-color: steelblue; color:white">Height: {{ traineeprofile.height }} cm</li>
+                    <li class="list-group-item" style="background-color: steelblue; color:white">Weight: {{ traineeprofile.weight }} kg</li>
+
+                </ul>
+            <div class="card-body">
+                <a href="{% url 'trainee update profile' slug=request.user.traineeprofile.slug %}" class="card-link">Edit Profile</a>
+                <a href="{% url 'trainee profile delete' slug=request.user.traineeprofile.slug %}" class="card-link">Delete Account</a>
+            </div>
+        </div>
+</div>
 </div>
 {% endblock %}
