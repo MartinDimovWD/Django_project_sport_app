@@ -17,4 +17,5 @@
 <i class="fa-regular fa-calendar-days"></i>
 <i class="fa-solid fa-square-phone"></i>
 
-<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star" style="color:yellow"></i>
+<i class="fa-solid fa-star" style="color:lightgray"></i>

@@ -1,20 +1,6 @@
-{% load content_filters %}
 <div>
-    {% if not has_user_rating %}
-        <div>
-            <h1>RATING</h1>
-            {% if request.user.pk %}
-                <form action="" method="post">
-                    {{ form.as_p }}
-                    {% csrf_token %}
-                    <button>Submit</button>
-                </form>
-            {% endif %}
-        </div>
-    {% endif %}
-
-    <h4>Reviews</h4>
     {% if rtgs %}
+        <h4>Reviews</h4>
         {% for entry in rtgs %}
             {% if entry.comment %}
 {#            <div style="border: 1px solid black">#}
@@ -39,4 +25,3 @@
         {% endfor %}
     {% endif %}
 </div>
-

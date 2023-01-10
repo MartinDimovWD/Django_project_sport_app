@@ -26,16 +26,18 @@
             <h1>
                 {{ exercise.body_parts|join_vertical_bar }}
             </h1>
-            <h1 style="font-size:35px; align-self: center">{% include 'partials/rating-stars.html' %}</h1>
+            <h3 style="text-align: center"><small class="text-muted">Type: </small> {{ exercise.type }}</h3>
+            <h1 style="font-size:35px; align-self: center">{% include 'partials/rating/rating-stars.html' %}</h1>
             {% include 'partials/content/add-exericse-to-favourites.html' %}
+            {% include 'partials/rating/rating.html' %}
         </div>
         <div class="exercise-info">
             <div class="exercise-info-details">
-                <h3><small class="text-muted">Type: </small> {{ exercise.type }}</h3>
+
                 <h3><small class="text-muted">Description: </small> {{exercise.description }}</h3>
                 {% lorem 1 p %}
             </div>
-            {% include 'partials/rating.html' %}
+            {% include 'partials/rating/reviews.html' %}
         </div>
 
     </div>

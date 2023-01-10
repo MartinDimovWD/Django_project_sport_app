@@ -14,9 +14,7 @@
                         {{ sport.sport_name }} |
                     {% endfor %}
                 </h1>
-                <h1 style="font-size:35px; align-self: center">{% include 'partials/rating-stars.html' %}</h1>
-            </div>
-            <div class="gym-info">
+                <h1 style="font-size:35px; align-self: center">{% include 'partials/rating/rating-stars.html' %}</h1>
                 <div class="gym-info-details">
 
                     <h3><small class="text-muted">Location: </small> {{ gym.location }}</h3>
@@ -29,11 +27,15 @@
                         </ul>
                     </h3>
                 </div>
+                {% include 'partials/rating/rating.html' %}
+            </div>
+            <div class="gym-info">
+
                 <div class="gym-more-info">
                     <h3><small class="text-muted">About: </small></h3>
-                        {% lorem 3 p %}
+                        {% lorem 2 p %}
                 </div>
-                {% include 'partials/rating.html' %}
+                {% include 'partials/rating/reviews.html' %}
             </div>
         </div>
     </div>

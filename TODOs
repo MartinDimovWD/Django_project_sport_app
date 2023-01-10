@@ -19,6 +19,7 @@ Models and forms:
         - the workout model should sum all kg lifted, distance ran, etc in a method
         - workout - calendar view
         - figure out how to reuse the get_avg_rating function. Either as an abstract function or make it a method in the classes.
+
 Prime membership:
     - filter by prime
     - Add call-to action for subscribing to prime.
@@ -29,8 +30,7 @@ Also think of what other metrics the business might need.
 Styling:
 - related items on the right side of the view (Article list on the left; small menu with gyms/trainers on the right)
 - forms in modal windows? hmmmm
-- align the dashboard-sections so there is enough space between the nav
-- Ratings form to look better. Find a better place for the comment section
+- Rating done and looking good. Still not sure how to place the rating form and comments so all looks nice and tidy
 - Load the pages with animation
 - sign up dropdown menu. Change the on-click background-color
 
@@ -49,7 +49,7 @@ Bugs:
 - Edit profile-the metrics are showing under the field (KG, CM). Fix them so they are next to the label in ().
 - the unsubscribe form works weird. Either change the copy so it prompts the user to uncheck the box for prime or change the button so it deactivates the prime when checked.
 - have the rating system available for relevant users - gyms and exercises could be rated only when logged
-- anonymous users cannot see the list pages. big problems
+- anonymous users cannot see the list pages. Big problem
 
 Trainer dashboard:
 - inbox

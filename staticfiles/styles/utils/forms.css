@@ -1,7 +1,7 @@
 form {
     margin:0;
     padding:30px;
-    border: black 3px solid;
+    border: lightgrey 0.2px solid;
 }
 .form-container{
     max-width: 1100px;
@@ -44,4 +44,9 @@ form label{
 
 .goal-management-form-container {
     width:1200px;
+}
+
+.rating-divs {
+    display:inline-block;
+    padding-right: 20px;
 }

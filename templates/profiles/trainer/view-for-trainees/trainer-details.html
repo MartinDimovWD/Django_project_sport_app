@@ -13,7 +13,7 @@
         <div class="trainer-details-avatar">
             <img src="{{ trainer.profile.profile_picture }}" alt="" class="showcase-img">
             <h2>{{ trainer.training_field|capfirst }}</h2>
-            <h2>{% include 'partials/rating-stars.html' %}</h2>
+            <h2>{% include 'partials/rating/rating-stars.html' %}</h2>
             <div class="trainer-hire-btn">
                 <button class="btn btn-outline-light">
                     <a style="color:black" href="{% url 'hire coach' coach_pk=trainer.profile.pk %}">
@@ -32,6 +32,7 @@
                     Book a meeting
                 </a>
             </button>
+            {% include 'partials/rating/rating.html' %}
         </div>
         <div class="trainer-info">
             <div class="trainer-details">
@@ -58,7 +59,7 @@
                     <p>{{ trainer.bio }}</p>
                     {% lorem 2 p %}
                 </div>
-                {% include 'partials/rating.html' %}
+                {% include 'partials/rating/reviews.html' %}
 
             </div>
 

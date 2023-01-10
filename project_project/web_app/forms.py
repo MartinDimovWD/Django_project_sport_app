@@ -11,8 +11,10 @@ class RatingForm(forms.ModelForm):
         widgets={
             'rating': forms.RadioSelect(
                 attrs={
-                    'default': '1'
-                    # 'class': 'form-control',
+                    'default': '1',
+                    'class': 'rating-field',
+                    'label': None
+
                 }
             ),
             'comment': forms.TextInput(

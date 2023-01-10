@@ -14,11 +14,11 @@ class Rating(models.Model):
     rating = models.CharField(
         max_length=1,
         choices=(
-            ('1','1'),
-            ('2','2'),
-            ('3','3'),
-            ('4','4'),
-            ('5','5'),
+            ('1',''),
+            ('2',''),
+            ('3',''),
+            ('4',''),
+            ('5',''),
         ),
         blank=False,
         null=True,

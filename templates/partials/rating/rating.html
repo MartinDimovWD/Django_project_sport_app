@@ -1,0 +1,53 @@
+{% load content_filters %}
+<div>
+    {% if not has_user_rating %}
+        <div>
+            <h3 style="text-align: center">Leave a review</h3>
+            {% if request.user.pk %}
+                <form action="" method="post">
+                    {{ form }}
+                    {% csrf_token %}
+                    <button class="btn btn-outline-light gym-details-btn" style="color:black">
+                        <a>
+                            Submit
+                        </a>
+                    </button>
+                </form>
+            {% endif %}
+        </div>
+    {% endif %}
+
+</div>
+
+<script>
+    const checkboxes = document.querySelectorAll('#id_rating > div')
+    const ratingRadioBtns = document.querySelectorAll('#id_rating > div > label > input')
+    const ratingBlock = document.querySelector('#id_rating')
+
+    for (let i = 1; i<=5; i++){
+        let star = document.createElement('span')
+        star.style.display='inline';
+        star.innerHTML = '<i class="fa-solid fa-star rating-star-motion" style="color: lightgray;cursor:pointer"></i>';
+        ratingRadioBtns[i].before(star);
+        ratingRadioBtns.forEach(btn=>btn.style.display='none')
+    }
+    const stars = document.querySelectorAll('.rating-star-motion')
+
+    for (let i = 1; i<=5; i++) {
+        ratingRadioBtns[i].addEventListener('click', ()=>{
+            for (let y = 0; y<i; y++){
+                stars[y].style.color='yellow';
+            }
+        })
+    }
+    for (let i = 1; i<=5; i++) {
+        ratingRadioBtns[i].addEventListener('click', ()=>{
+            for (let y = 4; y>=i; y--){
+                stars[y].style.color='lightgrey';
+            }
+        })}
+    {#ratingBlock.addEventListener('mouseout', ()=> stars.forEach(star=>star.style.color='lightgrey'))#}
+
+    checkboxes.forEach(box => box.classList.add('rating-divs'))
+    checkboxes[0].style.display='none'
+</script>
