@@ -118,6 +118,7 @@ class Exercise(models.Model):
         ),
         null=False, blank=False
     )
+    base_exercise = models.BooleanField(default=True)
     slug = models.SlugField(
         max_length=200,
         null=False,
@@ -135,12 +136,12 @@ class Exercise(models.Model):
 
 
 
-
 # Custom exercises are those created by the user, and they are only accessible to them
 class CustomExercise(Exercise):
     owner = models.ForeignKey(AppUser, on_delete=models.CASCADE )
 
     def save(self, *args, **kwargs):
+        self.base_exercise = False
         if not self.exercise_photo:
             self.exercise_photo = 'https://i.pinimg.com/originals/c4/b7/3d/c4b73d3e1419c82d0976b48af1a29ab0.png'
         super(CustomExercise, self).save(*args,**kwargs)

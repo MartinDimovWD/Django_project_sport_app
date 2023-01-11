@@ -3,7 +3,7 @@
     {% if not has_user_rating %}
         <div>
             <h3 style="text-align: center">Leave a review</h3>
-            {% if request.user.pk %}
+            {% if request.user.pk%}
                 <form action="" method="post">
                     {{ form }}
                     {% csrf_token %}

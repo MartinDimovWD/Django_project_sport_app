@@ -23,31 +23,32 @@ class GymsListView(ListView):
 
 def gym_details(request, slug):
     gym = Gym.objects.get(slug=slug)
-    has_user_rating = GymRating.objects.filter(gym=gym, user=request.user)
+
     rating = get_gym_avg_ratings(gym)
     rtgs = GymRating.objects.filter(gym=gym)
     context = {
         'gym': gym,
-        'has_user_rating': has_user_rating,
         'rating': rating,
         'rtgs': rtgs,
         'yellow_stars': int(rating),
         'grey_stars': 5 - int(rating)
     }
+    if request.user.pk:
+        has_user_rating = GymRating.objects.filter(gym=gym, user=request.user)
+        context['has_user_rating'] = has_user_rating
+        if not has_user_rating:
+            if request.method == 'POST':
+                form = GymRatingForm(request.POST)
+                if form.is_valid():
+                    f = form.save(commit=False)
+                    f.user = request.user
+                    f.gym = gym
+                    f.save()
+                    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
-    if not has_user_rating:
-        if request.method == 'POST':
-            form = GymRatingForm(request.POST)
-            if form.is_valid():
-                f = form.save(commit=False)
-                f.user = request.user
-                f.gym = gym
-                f.save()
-                return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-
-        else:
-            form = RatingForm()
-        context['form'] = form
+            else:
+                form = RatingForm()
+            context['form'] = form
 
     return render(request, 'content/locations/gym-details.html', context)
 

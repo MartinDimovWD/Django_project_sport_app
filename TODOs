@@ -14,11 +14,12 @@ Models and forms:
         - also fix the edit workout page as it is still the general update cbv
         - Instead of a btn maybe make a heart on the thumbnail that the user can click on for fave exercises and an open book for articles and reading list
         - consider a list with categories of goals depending on level:
-            - beginner goals: 10 pull ups; run 5km
-            - advanced: learn to handstand; run 20km marathon
+            beginner goals: 10 pull ups; run 5km
+            advanced: learn to handstand; run 20km marathon
         - the workout model should sum all kg lifted, distance ran, etc in a method
         - workout - calendar view
         - figure out how to reuse the get_avg_rating function. Either as an abstract function or make it a method in the classes.
+        - show gym, trainer and exercise ratings in the listviews.
 
 Prime membership:
     - filter by prime
@@ -29,8 +30,7 @@ Also think of what other metrics the business might need.
 
 Styling:
 - related items on the right side of the view (Article list on the left; small menu with gyms/trainers on the right)
-- forms in modal windows? hmmmm
-- Rating done and looking good. Still not sure how to place the rating form and comments so all looks nice and tidy
+- Still not sure how to place the rating form and comments so all looks nice and tidy
 - Load the pages with animation
 - sign up dropdown menu. Change the on-click background-color
 
@@ -43,13 +43,10 @@ python manage.py loaddata trainer_profile_data
 
 Bugs:
 - profile requirements mixins.
-- In exercises and Workouts list show only content that is created by the user except for the base content.
 - phone to be changed as char instead of number input and put num validator. If you enter a number starting with 0 it is not a valid number, hence error.
 - users can change other people's profiles - mixin that allows only the owner to access the page.
 - Edit profile-the metrics are showing under the field (KG, CM). Fix them so they are next to the label in ().
 - the unsubscribe form works weird. Either change the copy so it prompts the user to uncheck the box for prime or change the button so it deactivates the prime when checked.
-- have the rating system available for relevant users - gyms and exercises could be rated only when logged
-- anonymous users cannot see the list pages. Big problem
 
 Trainer dashboard:
 - inbox

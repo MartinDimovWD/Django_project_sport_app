@@ -23,8 +23,6 @@
                   <a href="{% url 'custom exercise update' slug=exercise.slug %}"> / Edit</a>
                   {% endif %}
               </button>
-    {#          TODO: create the add to favorites mechanism      #}
-                <button><a href="">Add to favorites</a></button>
               <div class="card-footer">
                 <small class="text-muted">Body parts:
                     {% for part in exercise.body_parts %}

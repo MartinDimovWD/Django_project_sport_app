@@ -3,6 +3,7 @@ import re
 from django import forms
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import ModelForm, HiddenInput, formset_factory, modelformset_factory, inlineformset_factory
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
@@ -61,6 +62,7 @@ class UpdateTrainerProfileView(UpdateView):
         return reverse_lazy('trainer profile details', kwargs={'slug': self.object.slug})
 
 
+
 class TrainerProfileView(DetailView):
     template_name = 'profiles/trainer/view-for-trainees/trainer-details.html'
     model = TrainerProfile
@@ -93,7 +95,7 @@ class TrainerPersonalProfileView(DetailView):
         return context
 
 
-class UpdateTraineeProfileView(UpdateView):
+class UpdateTraineeProfileView(LoginRequiredMixin, UpdateView):
     model = TraineeProfile
     form_class = TraineeProfileUpdateForm
     # fields = ['height', 'weight', 'experience', 'goals']
@@ -102,7 +104,8 @@ class UpdateTraineeProfileView(UpdateView):
     def get_success_url(self):
         return reverse_lazy('trainee profile details', kwargs={'slug': self.object.slug})
 
-
+    def get_object(self,*args,**kwargs):
+        return self.request.user
 class TraineeProfileView(FormMixin, DetailView):
     template_name = 'profiles/trainee/profile-details.html'
     model = TraineeProfile

@@ -59,8 +59,9 @@
                     <p>{{ trainer.bio }}</p>
                     {% lorem 2 p %}
                 </div>
-                {% include 'partials/rating/reviews.html' %}
-
+                {% if have_active_contract %}
+                    {% include 'partials/rating/reviews.html' %}
+                {% endif %}
             </div>
 
         </div>

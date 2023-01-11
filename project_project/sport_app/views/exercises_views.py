@@ -23,10 +23,14 @@ class ExercisesListView(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        user_faves = [ex.exercise for ex in FavouriteExercise.objects.filter(user=self.request.user)]
-        context['user_faves'] = user_faves
+        if self.request.user.pk:
+            user_faves = [ex.exercise for ex in FavouriteExercise.objects.filter(user=self.request.user)]
+            context['user_faves'] = user_faves
         return context
 
+    def get_queryset(self):
+        queryset = Exercise.objects.filter(base_exercise=True)
+        return queryset
 
 # class ExerciseDetails(ModelFormMixin, DetailView):
 #     template_name = 'content/exercises/exercise.html'
@@ -42,33 +46,34 @@ class ExercisesListView(ListView):
 
 def exercise_details(request, slug):
     exercise = Exercise.objects.get(slug=slug)
-    user_faves = [ex.exercise for ex in FavouriteExercise.objects.filter(user=request.user)]
-    has_user_rating = ExerciseRating.objects.filter(exercise=exercise, user=request.user)
     rating = get_exercise_avg_ratings(exercise)
     rtgs = ExerciseRating.objects.filter(exercise=exercise)
     context = {
         'exercise': exercise,
-        'user_faves': user_faves,
-        'has_user_rating': has_user_rating,
         'rating': rating,
         'rtgs': rtgs,
         'yellow_stars': int(rating),
         'grey_stars': 5 - int(rating),
     }
 
-    if not has_user_rating:
-        if request.method == 'POST':
-            form = ExerciseRatingForm(request.POST)
-            if form.is_valid():
-                f = form.save(commit=False)
-                f.user = request.user
-                f.exercise = exercise
-                f.save()
-                return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    if request.user.pk:
+        has_user_rating = ExerciseRating.objects.filter(exercise=exercise, user=request.user)
+        context['has_user_rating'] = has_user_rating
+        # user_faves = [ex.exercise for ex in FavouriteExercise.objects.filter(user=request.user)]
+        # context['user_faves'] = user_faves
+        if not has_user_rating:
+            if request.method == 'POST':
+                form = ExerciseRatingForm(request.POST)
+                if form.is_valid():
+                    f = form.save(commit=False)
+                    f.user = request.user
+                    f.exercise = exercise
+                    f.save()
+                    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
-        else:
-            form = RatingForm()
-        context['form'] = form
+            else:
+                form = RatingForm()
+            context['form'] = form
 
     return render(request, 'content/exercises/exercise.html', context)
 

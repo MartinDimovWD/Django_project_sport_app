@@ -8,6 +8,7 @@ from project_project.sport_app.models import Goal
 
 
 class TraineeProfileUpdateForm(forms.ModelForm):
+
     class Meta:
         model = TraineeProfile
         fields = ['height', 'weight', 'experience', 'goals']
@@ -32,6 +33,12 @@ class TraineeProfileUpdateForm(forms.ModelForm):
                 })
         }
 
+    def __init__(self, *args, **kwargs):
+        super(TraineeProfileUpdateForm, self).__init__(*args,**kwargs)
+        user = kwargs.get('instance')
+        print(user.profile)
+        print(Goal.objects.filter(owner=user.profile))
+        self.fields['goals'].queryset = Goal.objects.filter(owner=user.profile)
 
 class TrainerProfileUpdateForm(forms.ModelForm):
     class Meta:

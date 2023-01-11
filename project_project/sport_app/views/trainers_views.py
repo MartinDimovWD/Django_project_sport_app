@@ -54,16 +54,12 @@ class TrainersListView(ListView):
 
 def trainer_details(request, slug):
     trainer = TrainerProfile.objects.get(slug=slug)
-    trainee = request.user
-    have_active_contract = check_for_active_contract(trainee, trainer.profile)
-    has_user_rating = TrainerRating.objects.filter(trainer=trainer, user=trainee)
+
     rating = get_trainer_avg_ratings(trainer)
     rtgs = TrainerRating.objects.filter(trainer=trainer)
     context = {
         'trainer': trainer,
-        'has_user_rating': has_user_rating,
         'rating': rating,
-        'have_active_contract': have_active_contract,
         'times_hired': get_times_hired_coach(trainer.profile),
         'num_active_contracts': get_num_active_contracts_coach(trainer.profile),
         'rtgs': rtgs,
@@ -71,18 +67,25 @@ def trainer_details(request, slug):
         'grey_stars': 5 - int(rating)
     }
 
-    if not has_user_rating and Contract.objects.filter(client=trainee, coach=trainer.profile):
-        if request.method == 'POST':
-            form = TrainerRatingForm(request.POST)
-            if form.is_valid():
-                f = form.save(commit=False)
-                f.user = request.user
-                f.trainer = trainer
-                f.save()
-                return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    if request.user.pk:
+        trainee = request.user
+        have_active_contract = check_for_active_contract(trainee, trainer.profile)
+        has_user_rating = TrainerRating.objects.filter(trainer=trainer, user=trainee)
+        context['has_user_rating'] = has_user_rating
+        context['have_active_contract'] = have_active_contract
 
-        else:
-            form = RatingForm()
-        context['form'] = form
+        if not has_user_rating and Contract.objects.filter(client=trainee, coach=trainer.profile):
+            if request.method == 'POST':
+                form = TrainerRatingForm(request.POST)
+                if form.is_valid():
+                    f = form.save(commit=False)
+                    f.user = request.user
+                    f.trainer = trainer
+                    f.save()
+                    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+            else:
+                form = RatingForm()
+            context['form'] = form
 
     return render(request, 'profiles/trainer/view-for-trainees/trainer-details.html', context)

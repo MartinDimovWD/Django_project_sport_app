@@ -23,8 +23,9 @@ class ArticlesListView(ListView):
             context['featured2'] = Article.objects.all()[1]
         # context['form'] = self.filterset.form
         # TODO: might put featured articles instead of the first 3
-        reading_list = [art.article for art in UserReadingList.objects.filter(user=self.request.user)]
-        context['reading_list'] = reading_list
+        if self.request.user.pk:
+            reading_list = [art.article for art in UserReadingList.objects.filter(user=self.request.user)]
+            context['reading_list'] = reading_list
         return context
 
     def get_queryset(self):
@@ -39,8 +40,9 @@ class ArticleDetails(DetailView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        reading_list = [art.article for art in UserReadingList.objects.filter(user=self.request.user)]
-        context['reading_list'] = reading_list
+        if self.request.user.pk:
+            reading_list = [art.article for art in UserReadingList.objects.filter(user=self.request.user)]
+            context['reading_list'] = reading_list
         return context
 
 

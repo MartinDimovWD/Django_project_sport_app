@@ -1,9 +1,18 @@
+{% load content_filters %}
 <div class="reading-list">
     <h1>Reading list</h1>
     {% if reading_list %}
         {% for article in reading_list %}
-            {{ article }}
-
+            <div class="article-card-reading-list">
+                <h5>
+                    <a href="{% url 'article details' slug=article.slug %}">{{ article }}</a>
+                </h5>
+                <p>
+                    {% for cat in article.category %}
+                        <a href="{% url 'articles filter' category=cat %}">{{ cat }}</a>
+                    {% endfor %}
+                </p>
+            </div>
         {% endfor %}
     {% else %}
         No articles added
