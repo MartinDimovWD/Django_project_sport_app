@@ -1,11 +1,13 @@
-<div class="dj-paginator">
-    {% if page_obj.has_previous %}
-        <a href="?page=1"><<</a>
-        <a href="?page={{ page_obj.previous_page_number }}"><</a>
-    {% endif %}
-    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-    {% if page_obj.has_next %}
-        <a href="?page={{ page_obj.next_page_number }}">></a>
-        <a href="?page={{ page_obj.paginator.num_pages }}">>></a>
-    {% endif %}
-</div>
+<footer>
+    <div class="dj-paginator">
+        {% if page_obj.has_previous %}
+            <a href="?page=1"><<</a>
+            <a href="?page={{ page_obj.previous_page_number }}"><</a>
+        {% endif %}
+        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">></a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">>></a>
+        {% endif %}
+    </div>
+</footer>

@@ -26,6 +26,13 @@
                     Type: {{ exercise.type }}
                 </h5>
               </div>
+
+                <div style="display:flex; flex-direction: row; justify-content: center">
+                    {% for point in exercise|get_exercise_rating|times %}
+                        {% include 'partials/rating/list-view-star.html' %}
+                    {% endfor %}
+                </div>
+
               <button class="btn btn-outline-light gym-details-btn">
                   <a href="{% url 'exercise details' slug=exercise.slug %}">
                       Details
@@ -45,7 +52,7 @@
         {% endfor %}
     </div>
 {% if 'filter' in request.path %}
-    <div>
+    <div style="padding-bottom:80px;">
         <a href="{% url 'exercises list' %}" >Back to all exercises</a>
     </div>
 {% endif %}

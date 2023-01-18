@@ -161,7 +161,7 @@ class Article(models.Model):
         blank=False
     )
     publication_date = models.DateTimeField(auto_now_add=True)
-    article_image = models.URLField(null=False,blank=False)
+    article_image = models.URLField(null=True,blank=True)
     category = MultiSelectField(
         max_length=1000,
         choices=(
@@ -188,6 +188,8 @@ class Article(models.Model):
         super().save(*args, **kwargs)
         if not self.slug:
             self.slug = slugify(f'{self.heading}')
+        if not self.article_image:
+            self.article_image = 'https://newportfilm.com/wp-content/uploads/2013/07/insta20NDN20venus26serena20april202013.jpg'
         return super().save(*args, **kwargs)
 
     def __str__(self):

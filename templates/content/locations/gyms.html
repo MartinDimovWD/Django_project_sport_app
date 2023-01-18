@@ -11,6 +11,11 @@
                   <div class="row g-0">
                     <div class="col-md-4 gym-logo-container">
                       <img src="{{ gym.logo }}" class="img-fluid rounded-start" alt="...">
+                        <div style="display:flex; flex-direction: row; justify-content: center">
+                            {% for point in gym|get_gym_rating|times %}
+                                {% include 'partials/rating/list-view-star.html' %}
+                            {% endfor %}
+                        </div>
                     </div>
                     <div class="col-md-8">
                       <div class="card-body">
@@ -23,6 +28,7 @@
 
                         {% endif %}
                         </h4>
+
                         <p class="card-text"><small class="text-muted">Location: </small>{{ gym.location }}</p>
                         <p class="card-text"><small class="text-muted">Open: </small>{{ gym.get_working_hours }}</p>
                           <p><small class="text-muted">Sport available: </small>{% for sport in gym.sports_available.all %} {{ sport.sport_name }} |{% endfor %}</p>

@@ -3,8 +3,11 @@ import time
 
 from django.template import Library
 
+from project_project.locations.models import Gym
 from project_project.profiles.utils import get_times_hired_coach, check_for_active_contract
 from project_project.sport_app.models import ExerciseInstance
+from project_project.sport_app.utils import get_gym_avg_ratings, get_exercise_avg_ratings, get_trainer_avg_ratings
+from project_project.web_app.models import GymRating
 
 register = Library()
 
@@ -57,3 +60,21 @@ def times(number):
 @register.filter('join_vertical_bar')
 def join_vertical_bar(q):
     return ' | '.join(q)
+
+@register.filter('get_gym_rating')
+def get_gym_rating(gym):
+    if get_gym_avg_ratings(gym):
+        return int(get_gym_avg_ratings(gym))
+    return 0
+
+@register.filter('get_exercise_rating')
+def get_exercise_rating(exercise):
+    if get_exercise_avg_ratings(exercise):
+        return int(get_exercise_avg_ratings(exercise))
+    return 0
+
+@register.filter('get_trainer_rating')
+def get_trainer_rating(trainer):
+    if get_trainer_avg_ratings(trainer):
+        return int(get_trainer_avg_ratings(trainer))
+    return 0

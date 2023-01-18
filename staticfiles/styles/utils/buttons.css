@@ -47,4 +47,6 @@
     border: 0.2px solid lightgrey;
 }
 
-
+.sign-up-dropdown-link:hover{
+    background-color: lightgrey;
+}

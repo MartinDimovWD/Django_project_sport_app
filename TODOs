@@ -8,6 +8,8 @@ Models and forms:
         - Dashboard Stats for the year. Num of workouts,goals achieved, etc.
         - 'Workout Buddies' - users can make friends and chat with each other.
         - Users can add their social media in their profiles.
+        - Google calendar - ask the clients to put their google calendar link so it is displayed in the schedule
+   
     Sport App:
         - inline formsets to the workouts so x-number of exercises could be added
         - also fix the edit workout page as it is still the general update cbv
@@ -18,7 +20,6 @@ Models and forms:
         - the workout model should sum all kg lifted, distance ran, etc in a method
         - workout - calendar view
         - figure out how to reuse the get_avg_rating function. Either as an abstract function or make it a method in the classes.
-        - show gym, trainer and exercise ratings in the listviews.
 
 Prime membership:
     - filter by prime
@@ -31,7 +32,6 @@ Styling:
 - related items on the right side of the view (Article list on the left; small menu with gyms/trainers on the right)
 - Still not sure how to place the rating form and comments so all looks nice and tidy
 - Load the pages with animation
-- sign up dropdown menu. Change the on-click background-color
 
 Error Handling and Unit Testing
 

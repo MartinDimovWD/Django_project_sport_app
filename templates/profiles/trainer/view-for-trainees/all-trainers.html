@@ -10,11 +10,11 @@
 {#        <a href="">Show only trainers in my city</a>#}
 {#        {{ trainers_in_city }}#}
 {#    {% endif %}#}
-<div class="container trainers-list">
+<div class="container trainers-list" style="padding-bottom:80px;">
 {% for trainer in trainers %}
 
-    <div class="card mt-3" style="max-width: 540px;">
-      <div class="row g-0
+    <div class="card mt-3" style="max-width: 640px;">
+      <div style="padding:10px;" class="row g-0
             {% if trainer.prime_membership %}
                      prime-trainer
                     {% endif %}
@@ -24,6 +24,13 @@
             <a href="{% url 'trainer details' slug=trainer.slug %}">
                 <img src="{{ trainer.profile.profile_picture }}" class="img-fluid rounded-start" alt="...">
                 <h3>{{ trainer.training_field }}</h3>
+                <div style="display:flex; flex-direction: row; justify-content: center">
+                    {% if trainer|get_trainer_rating %}
+                    {% for point in trainer|get_trainer_rating|times %}
+                        {% include 'partials/rating/list-view-star.html' %}
+                    {% endfor %}
+                    {% endif %}
+                </div>
             </a>
         </div>
 
@@ -51,9 +58,6 @@
       </div>
     </div>
 {% endfor %}
-    <div>
-        <a href="{% url 'trainers list' %}">Back to all trainers</a>
-    </div>
-    {% include 'partials/custom_paginator.html' %}
 </div>
+{% include 'partials/custom_paginator.html' %}
 {% endblock %}

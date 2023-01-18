@@ -26,6 +26,8 @@ header {
     z-index: 100000;
     width:100%;
 }
+
+
 a {
     text-decoration: none;
 }
@@ -65,11 +67,14 @@ a {
     padding:0;
 }
 
-
-
-footer{
+footer {
+    position: fixed;
+    left:0;
+    bottom:0;
+    width:100%;
     background-color: steelblue;
-    height: 30px
+    color:white;
+    text-align:center;
 }
 
 .dj-paginator {
@@ -79,5 +84,9 @@ footer{
     text-underline: none;
     text-decoration: none;
     font-size:35px;
+    color:white
+}
+.dj-paginator a:hover{
+    color: lightgoldenrodyellow;
 }
 

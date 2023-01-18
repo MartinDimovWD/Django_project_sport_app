@@ -6,50 +6,52 @@
 
 {#    TODO: put a carousel eventually #}
 
-<div class="container">
+<div class="container articles-list-container">
     {% if request.user.trainerprofile %}
         <div>
             <h2>Write an article <a href="{% url 'article create' %}">here</a></h2>
         </div>
     {% endif %}
     {% if articles %}
-    {% for article in articles %}
-        <div class="col-5 mt-3 regular-article">
-            <div class="card">
-              <div class="card-header">
-                  {% for category in article.category %}
-                      <a href="{% url 'articles filter' category=category %}">{{ category }}</a> |
-                      {% endfor %}
-              </div>
-              <div class="card-body">
-                <h3 class="card-title article-heading"><a href="{% url 'article details' slug=article.slug %}">{{ article.heading|capitalize_each_word }}</a></h3>
-                <p class="card-text">{{ article.abstract }} plus some additional text and lorem ipsum that is
-                supposed to take some extra text</p>
-                  <div style="display:flex; justify-content: center">
-                      <img src="{{ article.article_image }}" alt="" class="article-list-thumbnail" style="justify-self:center">
+    <div class="row row-cols-1 row-cols-md-3 g-4" style="padding-bottom:80px;">
+        {% for article in articles %}
+            <div class="col-5 mt-3 regular-article">
+                <div class="card">
+                  <div class="card-header">
+                      {% for category in article.category %}
+                          <a href="{% url 'articles filter' category=category %}">{{ category }}</a> |
+                          {% endfor %}
                   </div>
+                  <div class="card-body">
+                    <h3 class="card-title article-heading"><a href="{% url 'article details' slug=article.slug %}">{{ article.heading|capitalize_each_word }}</a></h3>
+                    <p class="card-text">{{ article.abstract }} plus some additional text and lorem ipsum that is
+                    supposed to take some extra text</p>
+                      <div style="display:flex; justify-content: center; object-fit: cover">
+                          <img src="{{ article.article_image }}" alt="" class="article-list-thumbnail" style="justify-self:center">
+                      </div>
+                      </div>
+                  <div class="card-footer text-muted">
+                    {{ article.publication_date|date:'d M y' }}
                   </div>
-              <div class="card-footer text-muted">
-                {{ article.publication_date|date:'d M y' }}
-              </div>
-                <div class="card-footer text-muted">
-                    {% if article.author.trainerprofile %}
-                    <a href="{% url 'trainer details' slug=article.author.trainerprofile.slug %}"> {{ article.author }}</a>
-                    {% if article.author.trainerprofile.prime_membership %}
-                        <i class="fa-solid fa-award" style="color:green"></i>
-                    {% endif %}
-                     <span><img src="{{ article.author.profile_picture }}" height="25px" width="25px" alt=""></span>
-                    {% else %}
-                    {{ article.author }}
-                    {% endif %}
-                </div>
-                <div class="card-footer">
-                    {% include 'partials/content/add-article-to-reading-list.html' %}
-                </div>
+                    <div class="card-footer text-muted">
+                        {% if article.author.trainerprofile %}
+                        <a href="{% url 'trainer details' slug=article.author.trainerprofile.slug %}"> {{ article.author }}</a>
+                        {% if article.author.trainerprofile.prime_membership %}
+                            <i class="fa-solid fa-award" style="color:green"></i>
+                        {% endif %}
+                         <span><img src="{{ article.author.profile_picture }}" height="25px" width="25px" alt=""></span>
+                        {% else %}
+                        {{ article.author }}
+                        {% endif %}
+                    </div>
+                    <div class="card-footer">
+                        {% include 'partials/content/add-article-to-reading-list.html' %}
+                    </div>
 
+                </div>
             </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
 {#        {% if not 'filter' in request.path %}#}
             {% include 'partials/custom_paginator.html' %}
 {#        {% endif %}#}
