@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block page_content %}
+
+    <div class="trainee-details-container container" style="margin-top:10px">
+        <div class="trainee-profile-details">
+            <img src="{{ trainee.profile.profile_picture }}" alt="" style="max-width: 300px;">
+            <h3>Name: {{ trainee.profile.get_full_name }}</h3>
+            <h3>Location: {{ trainee.profile.location }}</h3>
+            <h4>Level: {{ trainee.experience }}</h4>
+            <h5>Height: {{ trainee.height }} cm</h5>
+            <h5>Weight: {{ trainee.weight }} kg</h5>
+        </div>
+        <div style="width:900px;">
+        {% include 'partials/trainee-dashboard/goals-overview.html' %}
+        {% include 'partials/trainer-dashboard/trainee-workouts.html' %}
+
+        </div>
+
+    </div>
+
+    <script>
+        document.getElementById('manage-goals-btn').remove()
+    </script>
+{% endblock %}

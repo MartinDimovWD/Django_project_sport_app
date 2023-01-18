@@ -106,6 +106,7 @@ class UpdateTraineeProfileView(LoginRequiredMixin, UpdateView):
 
     def get_object(self,*args,**kwargs):
         return self.request.user
+
 class TraineeProfileView(FormMixin, DetailView):
     template_name = 'profiles/trainee/profile-details.html'
     model = TraineeProfile
@@ -129,6 +130,18 @@ class TraineeProfileView(FormMixin, DetailView):
             context['last_workout_three'] = user_workouts[2]
         return context
 
+
+class TraineeDetailsViewForTrainers(DetailView):
+    template_name = 'profiles/trainee/trainee-details.html'
+    model = TraineeProfile
+    context_object_name = 'trainee'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        trainee = self.object.profile.pk
+        context['goals'] = Goal.objects.filter(owner=trainee)
+        context['workouts'] = Workout.objects.filter(owner=trainee)
+        return context
 
 class TraineeDeleteView(DeleteView):
     template_name = 'profiles/trainee/profile-delete.html'

@@ -19,3 +19,16 @@ function showSectionOnNavClick(navBtn){
 dashboardNavLinks.forEach(link=>link.addEventListener('click', ()=>{
     showSectionOnNavClick(link)
 }))
+
+// const fullProfileBtns =
+//     Array.from(document.getElementsByClassName('full-profile-btn'))
+//
+// function getTrainee(ev){
+//     return ev.target.getAttribute('id')
+//
+// }
+// fullProfileBtns.forEach(btn=>btn.addEventListener('click', (ev)=>{
+//     let trainee = getTrainee(ev)
+//     document.getElementsByClassName('trainee-list')[0].style.display='none'
+//     document.getElementsByClassName('trainee-details')[0].style.display='block'
+// }))

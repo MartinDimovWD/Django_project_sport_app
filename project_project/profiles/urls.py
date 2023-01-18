@@ -3,7 +3,8 @@ from django.urls import include, path
 from project_project.accounts.views import UpdatePersonalView
 from project_project.profiles.views import complete_trainer_profile_view, complete_trainee_profile_view, \
     UpdateTrainerProfileView, UpdateTraineeProfileView, TrainerProfileView, TraineeProfileView, TraineeDeleteView, \
-    TrainerPersonalProfileView, TrainerDeleteView, ManagePrimeSubscriptionView, hire_coach_view
+    TrainerPersonalProfileView, TrainerDeleteView, ManagePrimeSubscriptionView, hire_coach_view, \
+    TraineeDetailsViewForTrainers
 
 urlpatterns = [
     path('trainer/', include([
@@ -19,7 +20,8 @@ urlpatterns = [
         path('complete-profile/', complete_trainee_profile_view, name='trainee complete profile'),
         path('update-profile/<slug:slug>/', UpdateTraineeProfileView.as_view(), name='trainee update profile'),
         path('profile-details/<slug:slug>/', TraineeProfileView.as_view(), name='trainee profile details'),
-        path('profile-delete/<slug:slug>/', TraineeDeleteView.as_view(), name='trainee profile delete')
+        path('profile-delete/<slug:slug>/', TraineeDeleteView.as_view(), name='trainee profile delete'),
+        path('trainee-details/<slug:slug>/', TraineeDetailsViewForTrainers.as_view(), name='trainee details view for trainers'),
     ])),
     path('hire-coach/<int:coach_pk>', hire_coach_view, name='hire coach'),
 ]

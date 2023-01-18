@@ -10,7 +10,8 @@
 .trainer-details-container,
 .exercise-details-container,
 .gym-details-container,
-.exercise-details-container{
+.exercise-details-container,
+.trainee-details-container{
     width:1100px;
     display: flex;
     flex-direction: row;
@@ -20,7 +21,8 @@
 
 .trainer-details-avatar img,
 .exercise-img img,
-.gym-logo img{
+.gym-logo img,
+.trainee-profile-details img{
     max-height: 400px;
     max-width:300px;
 }

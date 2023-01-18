@@ -6,7 +6,6 @@ Models and forms:
         - validate the years of xp are not exceeding the age of the trainer - 18
         - think of a booking a meeting mechanism
         - Dashboard Stats for the year. Num of workouts,goals achieved, etc.
-        - trainee view for trainers - full list of goals, workouts, traineeprofile info weight, height, etc. Profile cards -  Center the content
         - 'Workout Buddies' - users can make friends and chat with each other.
         - Users can add their social media in their profiles.
     Sport App:

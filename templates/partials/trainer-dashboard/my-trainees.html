@@ -5,13 +5,11 @@
             <div class="card border-light mb-3" style="width: 32rem; height:13rem">
               <div class="card-header">
                   {{ trainee.full_name }}
-
               </div>
               <div class="card-body container">
                   <div class="row">
                     <div class="col-5">
                         <img src="{{ trainee.profile_picture }}" style="max-height: 130px; max-width: 130px" alt="">
-
                         <p>
                         <i class="fa-regular fa-envelope"></i> message {{ trainee.first_name }}
                     </p>
@@ -27,9 +25,8 @@
                                 </li>
                             {% endfor %}
                         </ul>
-
                     <button class="btn btn-outline-light gym-details-btn">
-                        <a href="#">
+                        <a href="{% url 'trainee details view for trainers' slug=trainee.traineeprofile.slug %}">
                             Full profile
                         </a>
                     </button>
