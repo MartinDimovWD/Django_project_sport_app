@@ -47,6 +47,13 @@
     border: 0.2px solid lightgrey;
 }
 
-.sign-up-dropdown-link:hover{
-    background-color: lightgrey;
+
+.nav-dropdown-link{
+    background-color: steelblue;
+    padding-left:15px;
 }
+
+
+
+
+

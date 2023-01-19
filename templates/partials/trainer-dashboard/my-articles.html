@@ -1,9 +1,10 @@
+<h1>My Articles</h1>
 <div class="my-articles">
     {% if trainer_articles %}
         {% for article in trainer_articles %}
             <div class="my-articles-listing">
                 <p>
-                    <h3>{{ article.heading }}</h3>
+                    <h4>{{ article.heading }}</h4>
                     <a href="{% url 'article edit' slug=article.slug %}" style="color:green">Edit</a>
                     <a href="{% url 'article delete' slug=article.slug %}" style="color:red">Delete</a>
                 </p>

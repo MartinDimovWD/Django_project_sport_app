@@ -20,6 +20,8 @@ Models and forms:
         - the workout model should sum all kg lifted, distance ran, etc in a method
         - workout - calendar view
         - figure out how to reuse the get_avg_rating function. Either as an abstract function or make it a method in the classes.
+        - filter gyms by open now, location and sports
+        - add the articles list of each trainer in their trainer detail view
 
 Prime membership:
     - filter by prime
@@ -32,6 +34,8 @@ Styling:
 - related items on the right side of the view (Article list on the left; small menu with gyms/trainers on the right)
 - Still not sure how to place the rating form and comments so all looks nice and tidy
 - Load the pages with animation
+- think of a better looking footer (e.g. make it visible only when scrolled to the bottom of the page.
+- make the article detail page look better.
 
 Error Handling and Unit Testing
 
@@ -46,6 +50,7 @@ Bugs:
 - users can change other people's profiles - mixin that allows only the owner to access the page.
 - Edit profile-the metrics are showing under the field (KG, CM). Fix them so they are next to the label in ().
 - the unsubscribe form works weird. Either change the copy so it prompts the user to uncheck the box for prime or change the button so it deactivates the prime when checked.
+- Add to fave exercises doesn't show its in the fave list when in detail view.
 
 Trainer dashboard:
 - inbox

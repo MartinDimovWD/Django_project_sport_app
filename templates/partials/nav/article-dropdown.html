@@ -1,0 +1,23 @@
+<li class="nav-item dropdown" id="articles-nav-dropdown" style="display: inline; background-color: steelblue">
+
+    <a href="{% url 'articles list' %}" style="padding-right:0">
+        Articles
+    </a>
+    <button type="button" class="dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false"
+        style="background-color: steelblue;border:none;color:white; padding-right: 30px">
+        <span class="visually-hidden">Toggle Dropdown</span>
+    </button>
+
+  <ul class="dropdown-menu articles-nav-dropdown" style="background-color: steelblue">
+    <li><a class="nav-dropdown-link" href="{% url 'articles filter' category='Exercises' %}">Exercises</a></li>
+    <li><a class="nav-dropdown-link" href="{% url 'articles filter' category='Programmes' %}">Programmes</a></li>
+    <li><a class="nav-dropdown-link" href="{% url 'articles filter' category='Nutrition' %}">Nutrition</a></li>
+    <li><a class="nav-dropdown-link" href="{% url 'articles filter' category='Supplements' %}">Supplements</a></li>
+    <li><a class="nav-dropdown-link" href="{% url 'articles filter' category='Training' %}">Training</a></li>
+    <li><a class="nav-dropdown-link" href="{% url 'articles filter' category='Science' %}">Science</a></li>
+    <li><a class="nav-dropdown-link" href="{% url 'articles filter' category='Interviews' %}">Interviews</a></li>
+    <li><a class="nav-dropdown-link" href="{% url 'articles filter' category='Equipment' %}">Equipment</a></li>
+      <hr>
+    <li><a class="nav-dropdown-link" href="{% url 'articles list'%}">Show all</a></li>
+  </ul>
+</li>

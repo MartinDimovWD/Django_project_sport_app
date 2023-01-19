@@ -9,8 +9,8 @@
             {% if not request.user.pk %}
                 <li><a href="{% url 'index register' %}">Home</a></li>
             {% endif %}
-            <li><a href="{% url 'articles list' %}">Articles</a></li>
-            <li><a href="{% url 'exercises list' %}">Exercises</a></li>
+            {% include 'partials/nav/article-dropdown.html' %}
+            {% include 'partials/nav/exercise-dropdown.html' %}
             <li><a href="{% url 'gyms list' %}">Find a gym</a></li>
 
             {% if request.user.trainerprofile %}
@@ -35,13 +35,14 @@
                 <li><a href="{% url 'log in' %}">Login</a></li>
     {#            <li><a href="{% url 'combined register' %}">Sign Up</a></li>#}
 
-                <li class="nav-item dropdown" style="display: inline">
+                <li class="nav-item dropdown" style="display: inline;background-color: steelblue">
                   <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Sign Up
                   </a>
-                  <ul class="dropdown-menu">
-                    <li><a class="sign-up-dropdown-link" href="{% url 'trainee sign up' %}" style="color:black; padding-left:15px;">Trainee</a></li>
-                    <li><a class="sign-up-dropdown-link" href="{% url 'trainer sign up' %}" style="color:black; padding-left:15px;">Coach</a></li>
+                  <ul class="dropdown-menu" style="display: inline;background-color: steelblue">
+                    <li><a class="nav-dropdown-link" href="{% url 'trainee sign up' %}">Trainee</a></li>
+                      <hr>
+                    <li><a class="nav-dropdown-link" href="{% url 'trainer sign up' %}">Coach</a></li>
                   </ul>
                 </li>
 

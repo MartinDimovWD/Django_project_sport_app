@@ -1,0 +1,21 @@
+<li class="nav-item dropdown" id="exercises-nav-dropdown" style="display: inline; background-color: steelblue">
+  <a href="{% url 'exercises list' %}" style="padding-right:0">
+    Exercises
+  </a>
+    <button type="button" class="dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false"
+        style="background-color: steelblue;border:none;color:white; padding-right: 30px">
+        <span class="visually-hidden">Toggle Dropdown</span>
+    </button>
+  <ul class="dropdown-menu articles-nav-dropdown" style="background-color: steelblue">
+    <li><a class="nav-dropdown-link" href="{% url 'articles filter' category='Legs' %}">Legs</a></li>
+    <li><a class="nav-dropdown-link" href="{% url 'articles filter' category='Shoulder' %}">Shoulders</a></li>
+    <li><a class="nav-dropdown-link" href="{% url 'articles filter' category='Arms' %}">Arms</a></li>
+    <li><a class="nav-dropdown-link" href="{% url 'articles filter' category='Back' %}">Back</a></li>
+    <li><a class="nav-dropdown-link" href="{% url 'articles filter' category='Chest' %}">Chest</a></li>
+    <li><a class="nav-dropdown-link" href="{% url 'articles filter' category='Core' %}">Core</a></li>
+      <br>
+    <li><a class="nav-dropdown-link" href="{% url 'articles filter' category='full_body' %}">Full Body</a></li>
+      <hr>
+    <li><a class="nav-dropdown-link" href="{% url 'exercises list'%}">Show all</a></li>
+  </ul>
+</li>

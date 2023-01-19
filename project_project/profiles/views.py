@@ -90,6 +90,8 @@ class TrainerPersonalProfileView(DetailView):
         context['trainee_goals'] = trainee_goals
         trainer_articles = Article.objects.filter(author=coach)
         context['trainer_articles'] = trainer_articles
+        reading_list = [art.article for art in UserReadingList.objects.filter(user=coach)]
+        context['reading_list'] = reading_list
         is_partner = coach.trainerprofile.prime_membership
         context['is_partner'] = is_partner
         return context

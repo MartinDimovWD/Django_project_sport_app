@@ -28,6 +28,7 @@
         let star = document.createElement('span')
         star.style.display='inline';
         star.innerHTML = '<i class="fa-solid fa-star rating-star-motion" style="color: lightgray;cursor:pointer"></i>';
+        console.log(ratingRadioBtns[i])
         ratingRadioBtns[i].before(star);
         ratingRadioBtns.forEach(btn=>btn.style.display='none')
     }

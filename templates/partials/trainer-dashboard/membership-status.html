@@ -1,3 +1,4 @@
+<h1>Membership status</h1>
 <div class="prime-membership-status">
     {% if request.user.trainerprofile.prime_membership %}
        <h3 style="color:green"> Active Partner Membership <i class="fa-solid fa-award"></i> / <a href="{% url 'manage prime' slug=request.user.trainerprofile.slug %}" id="prime-deactivate">deactivate</a></h3>
