@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block page_content %}
+<div class="container">
+    <h1 class="form-page-header">Edit your article</h1>
+    <div class="article-form-container form-container ">
+        <div class="article-form form-inner"></div>
+        <form action="{% url 'article edit' slug=article.slug %}" method="post">
+            {% include 'partials/field-errors-alert.html' %}
+            <label for="">Heading:</label><p>{{ form.heading }}</p>
+            <label for="">Article image:</label><p>{{ form.article_image }}</p>
+            <label for="">Categories:</label><p>{{ form.category }}</p>
+            <label for="">Abstract</label><p>{{ form.abstract }}</p>
+            <label for="">Body</label><p>{{ form.body }}</p>
+        <div class="workout-modal-btns">
+            <button class="btn btn-outline-light" style="color:black"><a>Submit Changes</a></button>
+        </div>
+        {% csrf_token %}
+        </form>
+    </div>
+</div>
+{% endblock %}

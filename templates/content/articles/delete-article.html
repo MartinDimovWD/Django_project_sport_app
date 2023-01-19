@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block page_content %}
+<div class="container">
+    <h1 class="form-page-header">Are you sure you want to delete this article?</h1>
+    <div class="article-form-container form-container ">
+        <div class="article-form form-inner"></div>
+        <form action="{% url 'article delete' slug=article.slug %}" method="post">
+            <h1 style="text-align: center">{{ article.heading }}</h1>
+            {{ form }}
+        <div class="workout-modal-btns">
+            <button class="btn btn-outline-light" style="color:black"><a>Delete</a></button>
+            <button class="btn btn-outline-light"><a href="{% url 'trainer profile details' slug=request.user.trainerprofile.slug %}">Back to my profile</a></button>
+        </div>
+        {% csrf_token %}
+        </form>
+    </div>
+</div>
+{% endblock %}

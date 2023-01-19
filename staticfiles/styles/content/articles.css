@@ -22,3 +22,15 @@
 .article-heading a{
     color:black
 }
+
+.my-articles-listing {
+    border-bottom: 0.4px grey solid;
+}
+
+.my-articles-listing a {
+    color: black;
+    text-decoration: none;
+}
+.my-articles-listing a:hover {
+    color: black;
+}

@@ -9,7 +9,7 @@ Models and forms:
         - 'Workout Buddies' - users can make friends and chat with each other.
         - Users can add their social media in their profiles.
         - Google calendar - ask the clients to put their google calendar link so it is displayed in the schedule
-   
+
     Sport App:
         - inline formsets to the workouts so x-number of exercises could be added
         - also fix the edit workout page as it is still the general update cbv

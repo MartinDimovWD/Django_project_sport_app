@@ -1,7 +1,7 @@
 from django.urls import path, include
 
 from project_project.sport_app.views.articles_views import ArticlesListView, ArticleDetails, ArticleCreate, \
-    add_article_to_reading_list
+    add_article_to_reading_list, ArticleEdit, ArticleDelete
 from project_project.sport_app.views.exercises_views import ExercisesListView, CustomExerciseList, \
     CustomExerciseCreate, CustomExerciseUpdate, CustomExerciseDetail, CustomExerciseDelete, add_to_favourites_exercise, \
     exercise_details
@@ -17,6 +17,8 @@ urlpatterns=[
         path('filter/<category>/', filter_articles_by_category, name='articles filter'),
         # TODO: PUT A SLUG INSTEAD OF PK!
         path('article/<slug:slug>', ArticleDetails.as_view(), name='article details'),
+        path('article/edit/<slug:slug>', ArticleEdit.as_view(), name='article edit'),
+        path('article/delete/<slug:slug>', ArticleDelete.as_view(), name='article delete'),
         path('create', ArticleCreate.as_view(), name='article create'),
         path('add-to-reading-list/<int:pk>', add_article_to_reading_list, name='add to reading list' )
     ])),

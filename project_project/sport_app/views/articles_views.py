@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from project_project.profiles.mixins import TrainerProfileRequiredMixin, PrimeRequiredMixin
 from project_project.sport_app.forms import ArticleForm
@@ -58,6 +58,19 @@ class ArticleCreate(TrainerProfileRequiredMixin, PrimeRequiredMixin, CreateView)
         form.instance.author = self.request.user
         return super().form_valid(form)
 
+class ArticleEdit(UpdateView):
+    model = Article
+    form_class = ArticleForm
+    template_name = 'content/articles/edit-article.html'
+    # fields = ['heading', 'abstract', 'body', 'article_image', 'category']
+    # context_object_name = 'article'
+    success_url = reverse_lazy('articles list')
+
+class ArticleDelete(DeleteView):
+    model = Article
+    fields=[]
+    template_name = 'content/articles/delete-article.html'
+    success_url = reverse_lazy('articles list')
 
 @login_required
 def add_article_to_reading_list(request, pk):
