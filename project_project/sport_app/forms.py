@@ -1,8 +1,10 @@
 from django import forms
 from django.forms import inlineformset_factory
+from django_filters import FilterSet
 
 from project_project.accounts.models import AppUser
-from project_project.sport_app.models import Workout, CustomExercise, Article, CustomGoal, Goal, ExerciseInstance
+from project_project.sport_app.models import Workout, CustomExercise, Article, CustomGoal, Goal, ExerciseInstance, \
+    Exercise
 
 
 class ArticleForm(forms.ModelForm):
@@ -178,6 +180,5 @@ class CustomExerciseForm(forms.ModelForm):
                 }
             )
         }
-
 
 

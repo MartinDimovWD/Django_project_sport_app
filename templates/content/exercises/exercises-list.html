@@ -3,6 +3,11 @@
 {% load content_filters %}
 {% block page_content %}
 <div class="container">
+    <form action="" method="get">
+        {{ exercises_filter }}
+        <button type="submit">Search</button>
+    </form>
+
     <div class="row row-cols-1 row-cols-md-3 g-4">
     <div class="col" id="my-exercises-div">
         {% if request.user.pk %}
@@ -56,6 +61,8 @@
         <a href="{% url 'exercises list' %}" >Back to all exercises</a>
     </div>
 {% endif %}
-{% include 'partials/custom_paginator.html' %}
+
+
 </div>
+    {% include 'partials/custom_paginator.html' %}
 {% endblock %}

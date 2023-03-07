@@ -7,14 +7,14 @@
         <span class="visually-hidden">Toggle Dropdown</span>
     </button>
   <ul class="dropdown-menu articles-nav-dropdown" style="background-color: steelblue">
-    <li><a class="nav-dropdown-link" href="{% url 'articles filter' category='Legs' %}">Legs</a></li>
-    <li><a class="nav-dropdown-link" href="{% url 'articles filter' category='Shoulder' %}">Shoulders</a></li>
-    <li><a class="nav-dropdown-link" href="{% url 'articles filter' category='Arms' %}">Arms</a></li>
-    <li><a class="nav-dropdown-link" href="{% url 'articles filter' category='Back' %}">Back</a></li>
-    <li><a class="nav-dropdown-link" href="{% url 'articles filter' category='Chest' %}">Chest</a></li>
-    <li><a class="nav-dropdown-link" href="{% url 'articles filter' category='Core' %}">Core</a></li>
+    <li><a class="nav-dropdown-link" href="{% url 'exercises filter' bodypart='Legs' %}">Legs</a></li>
+    <li><a class="nav-dropdown-link" href="{% url 'exercises filter' bodypart='Shoulder' %}">Shoulders</a></li>
+    <li><a class="nav-dropdown-link" href="{% url 'exercises filter' bodypart='Arms' %}">Arms</a></li>
+    <li><a class="nav-dropdown-link" href="{% url 'exercises filter' bodypart='Back' %}">Back</a></li>
+    <li><a class="nav-dropdown-link" href="{% url 'exercises filter' bodypart='Chest' %}">Chest</a></li>
+    <li><a class="nav-dropdown-link" href="{% url 'exercises filter' bodypart='Core' %}">Core</a></li>
       <br>
-    <li><a class="nav-dropdown-link" href="{% url 'articles filter' category='full_body' %}">Full Body</a></li>
+    <li><a class="nav-dropdown-link" href="{% url 'exercises filter' bodypart='full_body' %}">Full Body</a></li>
       <hr>
     <li><a class="nav-dropdown-link" href="{% url 'exercises list'%}">Show all</a></li>
   </ul>

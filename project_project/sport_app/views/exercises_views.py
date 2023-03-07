@@ -8,6 +8,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
 from django.views.generic.edit import FormMixin, ModelFormMixin
 
+from project_project.sport_app.filters import ExerciseFilter
 from project_project.sport_app.forms import CustomExerciseForm
 from project_project.sport_app.models import Exercise, CustomExercise, FavouriteExercise, Article, UserReadingList
 from project_project.sport_app.utils import get_exercise_avg_ratings
@@ -23,6 +24,9 @@ class ExercisesListView(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
+        exercises = Exercise.objects.all()
+        exercises_filter = ExerciseFilter(self.request.GET, queryset=exercises)
+        context['exercises_filter'] = exercises_filter
         if self.request.user.pk:
             user_faves = [ex.exercise for ex in FavouriteExercise.objects.filter(user=self.request.user)]
             context['user_faves'] = user_faves
@@ -44,10 +48,12 @@ class ExercisesListView(ListView):
 #         context['user_faves'] = user_faves
 #         return context
 
+
 def exercise_details(request, slug):
     exercise = Exercise.objects.get(slug=slug)
     rating = get_exercise_avg_ratings(exercise)
     rtgs = ExerciseRating.objects.filter(exercise=exercise)
+
     context = {
         'exercise': exercise,
         'rating': rating,
@@ -59,9 +65,9 @@ def exercise_details(request, slug):
     if request.user.pk:
         has_user_rating = ExerciseRating.objects.filter(exercise=exercise, user=request.user)
         context['has_user_rating'] = has_user_rating
-        # user_faves = [ex.exercise for ex in FavouriteExercise.objects.filter(user=request.user)]
-        # context['user_faves'] = user_faves
-        if not has_user_rating:
+        user_faves = [ex.exercise for ex in FavouriteExercise.objects.filter(user=request.user)]
+        context['user_faves'] = user_faves
+        if not ExerciseRating.objects.filter(exercise=exercise, user=request.user):
             if request.method == 'POST':
                 form = ExerciseRatingForm(request.POST)
                 if form.is_valid():

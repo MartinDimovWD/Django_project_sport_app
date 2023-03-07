@@ -37,9 +37,9 @@
                         {% if article.author.trainerprofile %}
                         <a href="{% url 'trainer details' slug=article.author.trainerprofile.slug %}"> {{ article.author }}</a>
                         {% if article.author.trainerprofile.prime_membership %}
-                            <i class="fa-solid fa-award" style="color:green"></i>
+                            &nbsp;&nbsp;<i class="fa-solid fa-award" style="color:green"></i>
                         {% endif %}
-                         <span><img src="{{ article.author.profile_picture }}" height="25px" width="25px" alt=""></span>
+{#                         <span><img src="{{ article.author.profile_picture }}" height="25px" width="25px" alt=""></span>#}
                         {% else %}
                         {{ article.author }}
                         {% endif %}
@@ -52,9 +52,7 @@
             </div>
         {% endfor %}
     </div>
-{#        {% if not 'filter' in request.path %}#}
-            {% include 'partials/custom_paginator.html' %}
-{#        {% endif %}#}
+
         {% if 'filter' in request.path %}
             <div>
                 <a href="{% url 'articles list' %}">Back to all articles</a>
@@ -65,4 +63,7 @@
         <h1>There are no articles!</h1>
     {% endif %}
 </div>
+    {#        {% if not 'filter' in request.path %}#}
+{% include 'partials/custom_paginator.html' %}
+{#        {% endif %}#}
 {% endblock %}

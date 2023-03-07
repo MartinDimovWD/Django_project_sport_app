@@ -8,8 +8,8 @@
         <div class="trainee-update-profile-form form-inner">
             <form action="{% url 'trainee update profile' slug=request.user.traineeprofile.slug %}" method="post">
                 {% include 'partials/field-errors-alert.html' %}
-                <label for="">Height: </label><p>{{ form.height }} cm</p>
-                <label for="">Weight: </label><p>{{ form.weight }} kg</p>
+                <label for="">Height (cm): </label><p>{{ form.height }}</p>
+                <label for="">Weight (kg): </label><p>{{ form.weight }}</p>
                 <label for="">Experience level: </label><p>{{ form.experience }}</p>
                 <label for="">Goals: </label><p>{{ form.goals }}</p>
                 <div class="workout-modal-btns">

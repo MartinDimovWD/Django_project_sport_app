@@ -1,16 +1,12 @@
-from django import forms
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
-from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, UpdateView
 
 from project_project.accounts.forms import AppUserUpdateForm, ClientSignUpForm
 from project_project.accounts.models import AppUser
-from project_project.web_app.field_validators import age_validator
 
 
 def combined_sign_up_view(request):

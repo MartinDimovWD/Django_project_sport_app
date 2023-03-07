@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
 
-from project_project.accounts.models import AppUser
-from project_project.profiles.models import TrainerProfile, TraineeProfile
+dropdown_nav_links_data = {
+        'article_categories': ['Exercises', 'Programmes', 'Nutrition', 'Supplements', 'Training', 'Science',
+                               'Interviews', 'Equipment'],
+        'exercise_bodyparts': ['Legs', 'Shoulders', 'Arms', 'Back', 'Chest', 'Core', 'Full Body']
+    }
 
 
 def index_register_view(request):

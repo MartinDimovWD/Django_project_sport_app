@@ -104,7 +104,7 @@ class UpdateTraineeProfileView(LoginRequiredMixin, UpdateView):
     template_name = 'profiles/trainee/update-profile.html'
 
     def get_success_url(self):
-        return reverse_lazy('trainee profile details', kwargs={'slug': self.object.slug})
+        return reverse_lazy('trainee profile details', kwargs={'slug': self.object.traineeprofile.slug})
 
     def get_object(self,*args,**kwargs):
         return self.request.user

@@ -36,9 +36,7 @@ class TraineeProfileUpdateForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(TraineeProfileUpdateForm, self).__init__(*args,**kwargs)
         user = kwargs.get('instance')
-        print(user.profile)
-        print(Goal.objects.filter(owner=user.profile))
-        self.fields['goals'].queryset = Goal.objects.filter(owner=user.profile)
+        self.fields['goals'].queryset = Goal.objects.filter(owner=user.traineeprofile.profile)
 
 class TrainerProfileUpdateForm(forms.ModelForm):
     class Meta:

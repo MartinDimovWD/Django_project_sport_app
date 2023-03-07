@@ -48,9 +48,8 @@ Bugs:
 - profile requirements mixins.
 - phone to be changed as char instead of number input and put num validator. If you enter a number starting with 0 it is not a valid number, hence error.
 - users can change other people's profiles - mixin that allows only the owner to access the page.
-- Edit profile-the metrics are showing under the field (KG, CM). Fix them so they are next to the label in ().
+- fix the update profile button and views
 - the unsubscribe form works weird. Either change the copy so it prompts the user to uncheck the box for prime or change the button so it deactivates the prime when checked.
-- Add to fave exercises doesn't show its in the fave list when in detail view.
 
 Trainer dashboard:
 - inbox

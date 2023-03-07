@@ -1,9 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from django.forms import PasswordInput
 
 from project_project.accounts.models import AppUser
-from project_project.web_app.field_validators import age_validator
 
 
 class ClientSignUpForm(UserCreationForm):
@@ -136,15 +134,3 @@ class AppUserUpdateForm(forms.ModelForm):
         }
 
 
-# class SignInForm(forms.ModelForm):
-#     class Meta:
-#         model = AppUser
-#         fields = []
-#         widgets = {
-#             'email': forms.EmailInput(
-#                 attrs={
-#                     'class': 'form-control',
-#                     'placeholder': 'Enter your email'
-#                 }
-#             )
-#         }

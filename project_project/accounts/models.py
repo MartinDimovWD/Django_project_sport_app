@@ -1,9 +1,7 @@
 from django.contrib.auth.models import AbstractUser, User
-from django.core.validators import MinLengthValidator
 from django.db import models
 from cities_light.models import City
 
-from project_project.web_app.validators import name_only_alpha
 
 
 class AppUser(AbstractUser):
