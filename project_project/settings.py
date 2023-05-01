@@ -1,11 +1,13 @@
+import os
 from pathlib import Path
-
+from dotenv import load_dotenv
 
 from django.urls import reverse_lazy
 
+load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-14!xu0xyq83vvc6ip)gu9-7!l40s+s2h92w@-=xp-@e=1a65tf'
+SECRET_KEY = os.getenv('DJ_SECRET_KEY')
 
 DEBUG = True
 
@@ -72,11 +74,11 @@ WSGI_APPLICATION = 'project_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'proj_proj_db5',
-        'USER': 'postgres-user',
-        'PASSWORD': 'password',
-        'HOST': '127.0.0.1',
+        'ENGINE': os.getenv('ENGINE'),
+        'NAME': os.getenv('DB_NAME'),
+        'HOST': os.getenv('DB_HOST'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASS'),
         'PORT': '5432'
     }
 }
