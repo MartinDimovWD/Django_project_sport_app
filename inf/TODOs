@@ -66,8 +66,3 @@ Update the ReadMe file
 
 
 
-django-braces==1.15.0
-django-filter==22.1
-django-model-utils==4.3.1
-django-multiselectfield==0.1.12
-django-pyodbc-azure==2.1.0.0
